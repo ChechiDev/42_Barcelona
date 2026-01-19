@@ -1,19 +1,22 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 11:12:40 by sperez-l          #+#    #+#             */
-/*   Updated: 2025/12/23 14:08:41 by sperez-l         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 /*
-#include "libft.h"
-#include <stdio.h>
-#include <ctype.h>
+ft_isdigit
+
+Comprueba si el carácter pasado como argumento es un dígito decimal.
+
+La función recibe un entero que representa un carácter (normalmente un
+char promovido a int) y verifica si su valor ASCII se encuentra dentro
+del rango correspondiente a los caracteres '0' a '9'.
+
+Valor de retorno:
+- Devuelve 1 si el carácter es un dígito ('0'–'9').
+- Devuelve 0 en cualquier otro caso.
+
+Esta función no realiza ninguna conversión numérica, únicamente compara
+valores de caracteres según la tabla ASCII.
 */
+
+#include "libft.h"
+
 int	ft_isdigit(int c)
 {
 	unsigned char	uc;
@@ -25,7 +28,7 @@ int	ft_isdigit(int c)
 	}
 	return (0);
 }
-/*
+
 int	main(int argc, char **argv)
 {
 	char	c;
@@ -39,4 +42,3 @@ int	main(int argc, char **argv)
 	printf("ft_isdigit: %d\n", ft_isdigit(c) != 0);
 	return (0);
 }
-*/
