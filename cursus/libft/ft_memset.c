@@ -1,19 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 18:57:08 by sperez-l          #+#    #+#             */
-/*   Updated: 2025/12/29 18:49:36 by sperez-l         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+ft_memset
+
+Rellena los primeros `len` bytes del bloque de memoria apuntado por `b`
+con el valor `c`, convertido a `unsigned char`.
+
+La función escribe byte a byte sin tener en cuenta el tipo de datos
+almacenado en la memoria ni la presencia de caracteres nulos ('\0').
+
+Parámetros:
+- b: puntero al bloque de memoria que se va a modificar.
+- c: valor que se copiará en cada byte (se trunca a un byte).
+- len: número de bytes que se deben rellenar.
+
+Valor de retorno:
+- Devuelve el mismo puntero `b`.
+
+Comportamiento indefinido:
+- Si `b` es NULL y `len` es mayor que 0.
+*/
 
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
 
 void	*ft_memset(void *ptr, int c, size_t n)
 {
@@ -31,7 +37,7 @@ void	*ft_memset(void *ptr, int c, size_t n)
 	}
 	return (ptr);
 }
-/*
+
 int	main(int argc, char **argv)
 {
 	char buffer[50];
@@ -59,4 +65,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-*/
