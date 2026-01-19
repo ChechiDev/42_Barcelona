@@ -1,26 +1,42 @@
-#include "libft.h"
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/22 18:35:34 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/14 13:25:14 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_isalpha(int c)
+#include "libft.h"
+#include <ctype.h>
+#include <stdio.h>
+
+int	ft_isalpha(int c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+	unsigned char	uc;
+
+	uc = (unsigned char)c;
+	if ((uc >= 'A' && uc <= 'Z') || (uc >= 'a' && uc <= 'z'))
 	{
 		return (1);
 	}
-	else
-	{
-		return (0);
-	}
-}
-
-int main(int argc, char **argv)
-{
-	if (argc == 2)
-	{
-		if (ft_isalpha(argv[1][0]))
-			write(1, "It's an alphabetic character.\n", 30);
-		else
-			write(1, "It's not an alphabetic character.\n", 34);
-	}
 	return (0);
 }
+
+int	main(int argc, char **argv)
+{
+	char	c;
+
+	if (argc != 2)
+	{
+		return (1);
+	}
+	c = (unsigned char)argv[1][0];
+	printf("isalpha: %d\n", isalpha(c) != 0);
+	printf("ft_isalpha: %d\n", ft_isalpha(c) != 0);
+	return (0);
+}
+
