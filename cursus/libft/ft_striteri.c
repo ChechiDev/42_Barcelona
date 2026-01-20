@@ -30,7 +30,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 		i++;
 	}
 }
-
+/*
 static void	ft_iter_toupper(unsigned int i,	char *c)
 {
 	(void)i;
@@ -61,3 +61,4 @@ int	main(int argc, char **argv)
 	free(res);
 	return (0);
 }
+*/
