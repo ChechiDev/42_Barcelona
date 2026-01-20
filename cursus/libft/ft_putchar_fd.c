@@ -16,7 +16,9 @@ Valor de retorno:
 - Ninguno.
 */
 
-void ft_putchar_fd(char c, int fd)
+#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
