@@ -35,3 +35,15 @@ void	ft_putendl_fd(char *s, int fd)
 	}
 	write(fd, "\n", 1);
 }
+/*
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		printf("Use: %s <text>\n", argv[0]);
+		return (1);
+	}
+	ft_putendl_fd(argv[1], 1);
+	return (0);
+}
+*/
