@@ -1,34 +1,22 @@
-/*
-ft_memchr
-
-Busca el primer byte con valor igual a 'c' dentro de los primeros 'n' bytes
-del bloque de memoria apuntado por 's'.
-
-La función examina la memoria byte a byte, sin detenerse ante caracteres
-nulos ('\0'), ya que no trabaja con strings sino con memoria cruda.
-
-Si se encuentra el byte buscado, devuelve un puntero al byte dentro del
-bloque de memoria original.
-
-Si el byte no aparece en los primeros 'n' bytes, la función devuelve NULL.
-
-Parámetros:
-- s: puntero al bloque de memoria donde se realiza la búsqueda.
-- c: valor del byte a buscar (convertido internamente a unsigned char).
-- n: número máximo de bytes a examinar.
-
-Valor de retorno:
-- Un puntero al primer byte coincidente dentro de 's'.
-- NULL si no se encuentra el valor en los primeros 'n' bytes.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 18:10:57 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:49:51 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	const unsigned char	*ptr;
-	unsigned char	uc;
-	size_t	i;
+	unsigned char		uc;
+	size_t				i;
 
 	ptr = (const unsigned char *)s;
 	uc = (unsigned char)c;
@@ -43,7 +31,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	void	*res;
@@ -65,3 +53,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+*/

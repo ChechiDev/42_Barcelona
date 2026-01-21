@@ -1,21 +1,14 @@
-/*
-ft_putendl_fd
-
-Escribe la cadena de caracteres 's' en el descriptor de archivo 'fd',
-seguida de un salto de línea ('\n').
-
-Si 's' es NULL, la función no realiza ninguna acción.
-
-Parámetros:
-- s: cadena a escribir.
-- fd: descriptor de archivo destino.
-
-Valor devuelto:
-- Ninguno.
-
-Funciones autorizadas:
-- write
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 18:44:27 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 18:46:03 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -25,7 +18,7 @@ void	ft_putendl_fd(char *s, int fd)
 
 	if (!s)
 	{
-		return;
+		return ;
 	}
 	i = 0;
 	while (s[i])

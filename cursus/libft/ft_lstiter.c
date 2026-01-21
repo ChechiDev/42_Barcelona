@@ -1,17 +1,14 @@
-/*
-ft_lstiter
-
-Itera la lista enlazada apuntada por `lst` y aplica la función `f`
-al contenido (`content`) de cada uno de sus nodos.
-
-La función `f` recibe un puntero al contenido del nodo y puede
-modificarlo si es necesario.
-
-Esta función no crea ni elimina nodos, no reserva ni libera memoria
-y no modifica la estructura de la lista.
-
-Si `lst` o `f` son NULL, la función no realiza ninguna operación.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 19:30:09 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 19:30:48 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -19,7 +16,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (!lst || !f)
 	{
-		return;
+		return ;
 	}
 	while (lst)
 	{

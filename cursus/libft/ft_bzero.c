@@ -1,32 +1,21 @@
-/*
-ft_bzero
-
-Descripción:
-Pone a cero (valor 0) los primeros `n` bytes del bloque de memoria
-apuntado por `s`.
-
-Parámetros:
-- s: puntero al bloque de memoria que se va a inicializar.
-- n: número de bytes a poner a cero.
-
-Comportamiento:
-- Si `n` es mayor que 0, todos los bytes desde `s[0]` hasta `s[n - 1]`
-  se establecen a 0.
-- Si `n` es 0, la función no realiza ninguna operación.
-
-Valor de retorno:
-- Ninguno.
-
-Nota:
-Esta función es equivalente a llamar a ft_memset(s, 0, n).
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/29 17:45:20 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:32:51 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
 void	ft_bzero(void *ptr, size_t n)
 {
-	unsigned char *dst;
-	size_t	i;
+	unsigned char	*dst;
+	size_t			i;
 
 	dst = (unsigned char *)ptr;
 	i = 0;
@@ -36,7 +25,7 @@ void	ft_bzero(void *ptr, size_t n)
 		i++;
 	}
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	unsigned char	buffer[50];
@@ -66,3 +55,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+*/

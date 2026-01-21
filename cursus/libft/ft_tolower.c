@@ -1,23 +1,14 @@
-/*
-ft_tolower
-
-Convierte una letra mayúscula ASCII en su equivalente en minúscula.
-
-Si el carácter recibido corresponde a una letra entre 'A' y 'Z',
-la función devuelve el mismo carácter convertido a minúscula.
-
-Si el carácter no es una letra mayúscula, se devuelve sin modificar.
-
-La función no realiza ninguna asignación de memoria y trabaja
-exclusivamente con valores ASCII.
-
-Parámetro:
-- c: carácter a evaluar, representado como int.
-
-Valor de retorno:
-- El carácter convertido a minúscula si procede, o el mismo valor
-  de entrada si no se cumple la condición.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 14:43:07 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 17:50:29 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -29,7 +20,7 @@ int	ft_tolower(int c)
 	}
 	return (c);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	int	res;
@@ -44,3 +35,4 @@ int	main(int argc, char **argv)
 	write(1, "\n", 1);
 	return (0);
 }
+*/

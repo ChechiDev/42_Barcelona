@@ -1,20 +1,14 @@
-/*
-ft_putchar_fd
-
-Envía el carácter 'c' al descriptor de archivo especificado por 'fd'.
-
-Escribe exactamente un byte en el file descriptor dado utilizando la
-función write(). No realiza ninguna gestión de errores ni validación
-del descriptor; se asume que 'fd' es válido según el contrato de la
-función.
-
-Parámetros:
-- c: carácter a escribir.
-- fd: descriptor de archivo sobre el que se escribe.
-
-Valor de retorno:
-- Ninguno.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 18:42:00 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 18:42:42 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 

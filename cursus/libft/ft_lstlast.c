@@ -1,16 +1,14 @@
-/*
-ft_lstlast
-
-Devuelve un puntero al último nodo de una lista enlazada.
-
-Recorre la lista empezando por el nodo inicial `lst` hasta encontrar
-el nodo cuyo campo `next` es NULL, lo que indica que es el último
-elemento de la lista.
-
-Si la lista está vacía (`lst == NULL`), la función devuelve NULL.
-
-La lista no se modifica y no se realiza ninguna reserva de memoria.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 19:25:09 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 19:25:30 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 

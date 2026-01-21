@@ -1,8 +1,14 @@
-/*
-Envía la cadena de caracteres 's' al descriptor de archivo 'fd'.
-Si 's' es NULL, la función no realiza ninguna acción.
-No añade salto de línea.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 18:43:34 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 18:46:22 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -12,7 +18,7 @@ void	ft_putstr_fd(char *s, int fd)
 
 	if (!s)
 	{
-		return;
+		return ;
 	}
 	i = 0;
 	while (s[i])

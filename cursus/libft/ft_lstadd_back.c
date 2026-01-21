@@ -1,23 +1,14 @@
-/*
-ft_lstadd_back
-
-Añade el nodo `new` al final de la lista enlazada `lst`.
-
-Si la lista está vacía (`*lst == NULL`), el nodo `new` pasa a ser
-el primer elemento de la lista.
-
-En caso contrario, la función recorre la lista hasta encontrar
-el último nodo y enlaza `new` como su siguiente elemento.
-
-No reserva ni libera memoria.
-
-Parámetros:
-- lst: dirección del puntero al primer nodo de la lista.
-- new: puntero al nodo que se desea añadir al final.
-
-Valor de retorno:
-- Ninguno.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 19:26:05 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 19:27:24 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -27,12 +18,12 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 	if (!lst || !new)
 	{
-		return;
+		return ;
 	}
 	if (*lst == NULL)
 	{
 		*lst = new;
-		return;
+		return ;
 	}
 	tmp = *lst;
 	while (tmp->next)
@@ -41,7 +32,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	tmp->next = new;
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	t_list	*test_lst;
@@ -71,3 +62,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+*/

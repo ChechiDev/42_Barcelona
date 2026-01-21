@@ -1,22 +1,14 @@
-/*
-ft_isascii
-
-Descripción:
- Comprueba si el valor entero recibido representa un carácter ASCII válido.
- Un carácter ASCII válido está comprendido entre los valores 0 y 127
- (inclusive), según el estándar ASCII.
-
-Parámetros:
- c -> valor entero a comprobar.
-
-Valor de retorno:
- Devuelve 1 si c pertenece al rango ASCII (0–127).
- Devuelve 0 en caso contrario.
-
-Notas:
-- Esta función no verifica si el carácter es imprimible.
-- Solo valida la pertenencia al conjunto ASCII estándar.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/23 12:16:42 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 17:48:47 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -28,7 +20,7 @@ int	ft_isascii(int c)
 	}
 	return (0);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	int	c;
@@ -42,3 +34,4 @@ int	main(int argc, char **argv)
 	printf("ft_isascii: %d\n", isascii(c) != 0);
 	return (0);
 }
+*/

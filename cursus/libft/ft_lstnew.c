@@ -1,17 +1,18 @@
-/*
-ft_lstnew
-
-Reserva memoria para un nuevo nodo de lista enlazada.
-Inicializa el campo `content` con el valor recibido como parámetro
-y el campo `next` con NULL.
-
-@param content: puntero al contenido a almacenar en el nodo.
-@return puntero al nuevo nodo creado o NULL si falla malloc.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 19:04:44 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 19:21:03 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-t_list *ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content)
 {
 	t_list	*lst;
 
@@ -21,7 +22,7 @@ t_list *ft_lstnew(void *content)
 		return (NULL);
 	}
 	lst->content = content;
-	lst->next= NULL;
+	lst->next = NULL;
 	return (lst);
 }
 /*

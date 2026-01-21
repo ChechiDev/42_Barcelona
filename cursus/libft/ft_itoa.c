@@ -1,17 +1,14 @@
-/*
-ft_itoa
-
-Convierte el número entero recibido como argumento en una cadena de
-caracteres terminada en '\0'.
-
-Reserva memoria dinámica suficiente para almacenar la representación
-decimal del número, incluyendo el signo negativo si el valor es menor
-que cero.
-
-El valor devuelto debe ser liberado por el llamador.
-
-En caso de fallo en la reserva de memoria, la función devuelve NULL.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 18:29:45 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 18:31:49 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -38,19 +35,14 @@ char	*ft_itoa(int n)
 	long	nb;
 	size_t	i;
 
-
 	nb = (long)n;
 	i = ft_intlen(nb);
 	s = (char *)malloc(i + 1);
 	if (!s)
-	{
 		return (NULL);
-	}
 	s[i] = '\0';
 	if (nb == 0)
-	{
 		s[0] = '0';
-	}
 	if (nb < 0)
 	{
 		s[0] = '-';

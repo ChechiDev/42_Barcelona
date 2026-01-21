@@ -1,27 +1,21 @@
-/*
-ft_strrchr
-
-Busca la última aparición del carácter 'c' en la cadena de caracteres 's'.
-
-Recorre la cadena 's' de principio a fin y devuelve un puntero a la última
-posición donde aparece el carácter 'c'.
-
-Si el carácter 'c' es '\0', la función devuelve un puntero al carácter nulo
-que marca el final de la cadena.
-
-Si el carácter 'c' no se encuentra en la cadena, la función devuelve NULL.
-
-El valor de 'c' se compara tras ser convertido a unsigned char.
-
-La función no reserva memoria dinámica.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 16:35:24 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:36:56 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
 	unsigned char	uc;
-	char	*last;
+	char			*last;
 
 	uc = (unsigned char)c;
 	last = NULL;
@@ -39,7 +33,7 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (last);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	*res;
@@ -60,3 +54,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+*/

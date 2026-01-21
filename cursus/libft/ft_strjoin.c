@@ -1,19 +1,14 @@
-/*
-ft_strjoin
-
-Contrato:
-Reserva memoria dinámica y devuelve una nueva cadena de caracteres
-resultante de la concatenación de las cadenas `s1` y `s2`.
-
-- La nueva cadena contiene primero el contenido de `s1` y a continuación
-  el contenido de `s2`, en el mismo orden.
-- La cadena devuelta termina siempre en carácter nulo (`'\0'`).
-- Si `s1` o `s2` son NULL, el comportamiento es indefinido
-  (en libft se suele devolver NULL de forma defensiva).
-- Si la reserva de memoria falla, la función devuelve NULL.
-
-La memoria devuelta debe ser liberada por el llamador.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/14 17:32:21 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/14 18:34:20 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -51,7 +46,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	res[s1_len + s2_len] = '\0';
 	return (res);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	*res;
@@ -70,3 +65,4 @@ int	main(int argc, char **argv)
 	free(res);
 	return (0);
 }
+*/

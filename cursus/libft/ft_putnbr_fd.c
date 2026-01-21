@@ -1,14 +1,14 @@
-/*
-ft_putnbr_fd
-
-Escribe el número entero 'n' en el descriptor de archivo 'fd'.
-El número se imprime en base decimal, incluyendo el signo si es negativo.
-
-No reserva memoria dinámica.
-No devuelve ningún valor.
-
-En caso de que 'n' sea INT_MIN, debe imprimirse correctamente.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 18:53:16 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 19:13:09 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -16,7 +16,7 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	long	nb;
 	char	c;
-	
+
 	nb = (long)n;
 	if (nb < 0)
 	{

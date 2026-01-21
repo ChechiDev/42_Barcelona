@@ -1,31 +1,22 @@
-/*
-t_memcpy
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/29 18:52:31 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:30:41 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-Description:
-Copia exactamente n bytes desde el área de memoria apuntada por src
-al área de memoria apuntada por dst.
-
-Parameters:
-dst  -> puntero al bloque de memoria de destino
-src  -> puntero al bloque de memoria de origen
-n    -> número de bytes a copiar
-
-Return value:
-Devuelve el puntero dst.
-
-Notes:
-- El contenido copiado no se interpreta como caracteres ni como strings.
-- La copia se realiza byte a byte.
-- El comportamiento es indefinido si las áreas de memoria se solapan.
-- Para memoria solapada debe utilizarse ft_memmove.
-*/
 #include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*d;
+	unsigned char		*d;
 	const unsigned char	*s;
-	size_t	i;
+	size_t				i;
 
 	d = (unsigned char *)dest;
 	s = (const unsigned char *)src;
@@ -37,7 +28,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	buffer[50];	
@@ -68,3 +59,4 @@ int	main(int argc, char **argv)
 	return (0);
 
 }
+*/

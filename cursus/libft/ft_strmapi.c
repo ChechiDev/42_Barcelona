@@ -1,25 +1,21 @@
-/*
-ft_strmapi
-
-Aplica la función 'f' a cada carácter de la cadena 's', pasando como
-primer argumento el índice del carácter dentro de la cadena y como
-segundo argumento el propio carácter.
-
-La función crea una nueva cadena, reservando memoria dinámica, en la
-que se almacenan los resultados de aplicar 'f' a cada carácter de 's'.
-
-La cadena original 's' no se modifica.
-
-Devuelve un puntero a la nueva cadena resultante.
-Devuelve NULL si la reserva de memoria falla.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 18:32:28 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 18:33:22 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;
-	char	*res;
+	char			*res;
 
 	if (!s || !f)
 	{

@@ -1,23 +1,14 @@
-/*
-ft_strdup
-
-Contrato:
-Reserva memoria suficiente para crear una copia exacta de la cadena
-terminada en '\0' apuntada por `s`.
-Copia carácter a carácter el contenido de `s` en la nueva zona de memoria
-y añade el terminador nulo al final.
-
-Parámetros:
-- s: puntero a una cadena válida terminada en '\0'.
-
-Valor de retorno:
-- Un puntero a la nueva cadena duplicada.
-- NULL si la reserva de memoria falla.
-
-Notas:
-- La memoria devuelta debe liberarse con `free()`.
-- El comportamiento es indefinido si `s` es NULL.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/09 13:51:43 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/13 17:50:55 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -43,7 +34,7 @@ char	*ft_strdup(const char *s)
 	new[i] = '\0';
 	return (new);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	*copy;
@@ -63,3 +54,4 @@ int	main(int argc, char **argv)
 	free(copy);
 	return (0);
 }
+*/

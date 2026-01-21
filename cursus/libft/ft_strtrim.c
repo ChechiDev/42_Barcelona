@@ -1,25 +1,14 @@
-/*
-ft_strtrim
-
-Reserva memoria y devuelve una nueva cadena que resulta de eliminar
-todos los caracteres presentes en `set` tanto al inicio como al final
-de la cadena `s1`.
-
-El recorte se realiza únicamente en los extremos de la cadena; los
-caracteres intermedios, aunque pertenezcan a `set`, no se eliminan.
-
-Parámetros:
-- s1: cadena original que se desea recortar.
-- set: conjunto de caracteres a eliminar en los extremos de `s1`.
-
-Valor de retorno:
-- Un puntero a la nueva cadena recortada.
-- NULL si falla la reserva de memoria.
-
-Notas:
-- La cadena devuelta está terminada en '\0'.
-- El llamador es responsable de liberar la memoria devuelta.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/14 18:38:06 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 17:58:19 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -34,7 +23,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	if (set[0] == '\0')
 	{
-		return ft_strdup(s1);
+		return (ft_strdup(s1));
 	}
 	start = 0;
 	end = ft_strlen(s1);

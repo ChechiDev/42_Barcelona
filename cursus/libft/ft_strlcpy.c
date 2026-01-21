@@ -1,24 +1,14 @@
-/*
-ft_strlcpy
-
-Copia una cadena de caracteres desde `src` hacia `dst` garantizando
-la correcta terminación en null ('\0') siempre que `dstsize` sea mayor
-que 0.
-
-La función copia como máximo `dstsize - 1` caracteres desde `src` a
-`dst` y añade el carácter nulo al final del buffer destino.
-
-No realiza ninguna reserva de memoria: `dst` debe apuntar a un buffer
-válido con un tamaño de al menos `dstsize` bytes.
-
-Valor de retorno:
-Devuelve la longitud total de la cadena `src`. Este valor permite
-detectar si la copia ha sido truncada comparándolo con `dstsize`.
-
-Comportamiento especial:
-- Si `dstsize` es 0, no se copia ningún carácter y `dst` no se modifica.
-- Si el valor devuelto es mayor o igual que `dstsize`, la copia ha sido truncada.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 11:55:24 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:54:50 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -28,7 +18,7 @@ size_t	ft_strlcpy(char	*dst, const char *src, size_t n)
 	size_t	src_len;
 
 	src_len = 0;
-	while(src[src_len])
+	while (src[src_len])
 	{
 		src_len++;
 	}
@@ -37,7 +27,7 @@ size_t	ft_strlcpy(char	*dst, const char *src, size_t n)
 		return (src_len);
 	}
 	i = 0;
-	while(i + 1 < n && src[i])
+	while (i + 1 < n && src[i])
 	{
 		dst[i] = src[i];
 		i++;
@@ -45,7 +35,7 @@ size_t	ft_strlcpy(char	*dst, const char *src, size_t n)
 	dst[i] = '\0';
 	return (src_len);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	buffer[20];
@@ -68,3 +58,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+*/

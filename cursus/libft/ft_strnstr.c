@@ -1,23 +1,14 @@
-/*
-ft_strnstr
-
-Busca la primera aparición de la cadena `needle` dentro de la cadena `haystack`,
-pero examinando como máximo `len` caracteres de `haystack`.
-
-La búsqueda se detiene cuando:
-- Se encuentra `needle` completamente.
-- Se han comparado `len` caracteres de `haystack`.
-- Se alcanza el carácter nulo '\0' de `haystack`.
-
-Si `needle` es una cadena vacía, la función devuelve `haystack`.
-
-Valor de retorno:
-- Un puntero al comienzo de la primera ocurrencia de `needle` en `haystack`,
-  dentro del límite `len`.
-- NULL si `needle` no se encuentra en ese rango.
-
-No modifica las cadenas de entrada.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/08 16:40:03 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/08 19:18:49 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -46,7 +37,7 @@ char	*ft_strnstr(const char *big, const char *small, size_t n)
 	}
 	return (NULL);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	*res;
@@ -69,3 +60,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+*/

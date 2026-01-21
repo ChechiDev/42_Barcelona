@@ -1,19 +1,14 @@
-/*
-ft_lstsize
-
-Cuenta el número de nodos de una lista enlazada.
-
-Parámetro:
-- lst: puntero al primer nodo de la lista.
-
-Retorno:
-- Número total de nodos de la lista.
-- 0 si la lista está vacía (lst == NULL).
-
-Notas:
-- No modifica la lista.
-- No reserva ni libera memoria.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 19:24:04 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 19:24:33 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 

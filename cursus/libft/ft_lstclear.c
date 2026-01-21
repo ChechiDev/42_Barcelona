@@ -1,28 +1,24 @@
-/*
-ft_lstclear
-
-Elimina y libera todos los nodos de una lista enlazada.
-Para cada nodo, aplica la función `del` sobre el contenido
-y libera el propio nodo. Al finalizar, el puntero de la lista
-se establece a NULL.
-
-Parámetros:
-- lst: dirección del puntero al primer nodo de la lista.
-- del: función que libera el contenido de cada nodo.
-
-Retorno:
-- Ninguno.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 19:29:03 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 19:29:46 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*next;
 
 	if (!lst || !del)
 	{
-		return;
+		return ;
 	}
 	while (*lst)
 	{

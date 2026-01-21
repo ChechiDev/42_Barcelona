@@ -1,45 +1,29 @@
-/*
-ft_memmove
-
-Copia `n` bytes desde la zona de memoria apuntada por `src` a la zona
-de memoria apuntada por `dest`.
-
-A diferencia de ft_memcpy, esta función garantiza un comportamiento
-correcto incluso cuando las zonas de memoria de `src` y `dest` se
-solapan.
-
-La copia se realiza:
-- de izquierda a derecha si `dest` está antes que `src`,
-- de derecha a izquierda si `dest` está después que `src`,
-  evitando así la sobrescritura de datos aún no copiados.
-
-Parámetros:
-- dest: puntero a la zona de memoria destino.
-- src:  puntero a la zona de memoria origen.
-- n:    número de bytes a copiar.
-
-Valor de retorno:
-- Devuelve el puntero `dest`.
-
-Comportamiento indefinido:
-- Si `dest` o `src` son punteros inválidos.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/30 16:48:53 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:53:17 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	const unsigned char *s;
-	unsigned char	*d;
-	size_t	i;
+	const unsigned char	*s;
+	unsigned char		*d;
+	size_t				i;
 
 	d = (unsigned char *)dest;
 	s = (const unsigned char *)src;
 	i = 0;
-
 	if (d < s)
 	{
-		while(i < n)
+		while (i < n)
 		{
 			d[i] = s[i];
 			i++;
@@ -47,7 +31,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	else
 	{
-		while(n > 0)
+		while (n > 0)
 		{
 			d[n - 1] = s[n - 1];
 			n--;
@@ -55,7 +39,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	buffer[11];
@@ -86,3 +70,4 @@ int	main(int argc, char **argv)
 	printf("Como string: %s\n", buffer);
 	return (0);
 }
+*/

@@ -1,19 +1,22 @@
-/*
-ft_lstadd_front
-
-Añade el nodo 'new' al principio de la lista 'lst'.
-'lst' es la dirección del puntero al primer nodo de la lista.
-Si la lista estaba vacía, 'new' pasa a ser el primer nodo.
-No reserva ni libera memoria.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 19:22:16 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 19:23:33 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!lst || !new)
 	{
-		return;
+		return ;
 	}
 	new->next = *lst;
 	*lst = new;

@@ -1,26 +1,14 @@
-/*
- ft_isalpha
-
- Descripción:
- Comprueba si el carácter pasado como argumento es un carácter alfabético
- según la tabla ASCII.
-
- Se consideran caracteres alfabéticos:
- - Letras mayúsculas: 'A' a 'Z'
- - Letras minúsculas: 'a' a 'z'
-
- Parámetros:
- - c: entero que representa un carácter (normalmente un unsigned char
-   convertido a int).
-
- Valor de retorno:
- - Devuelve 1 si el carácter es alfabético.
- - Devuelve 0 si el carácter no es alfabético.
-
- Notas:
- - No reconoce caracteres acentuados ni Unicode.
- - El comportamiento replica el de la función isalpha de la libc.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/22 18:35:34 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:40:54 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -35,7 +23,7 @@ int	ft_isalpha(int c)
 	}
 	return (0);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	c;
@@ -49,3 +37,4 @@ int	main(int argc, char **argv)
 	printf("ft_isalpha: %d\n", ft_isalpha(c) != 0);
 	return (0);
 }
+*/

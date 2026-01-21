@@ -1,25 +1,14 @@
-/*
-ft_strlcat
-
-Concatena la cadena 'src' al final de la cadena 'dst', garantizando que
-la cadena resultante esté terminada en '\0' siempre que 'size' sea mayor
-que 0.
-
-El parámetro 'size' representa el tamaño total del buffer 'dst', no el
-espacio libre disponible. La función copiará como máximo
-(size - strlen(dst) - 1) caracteres desde 'src'.
-
-Si 'size' es menor o igual que la longitud inicial de 'dst', no se copia
-ningún carácter y la función devuelve (size + strlen(src)).
-
-Valor de retorno:
-Devuelve la longitud total que habría tenido la cadena resultante si
-hubiera habido espacio suficiente, es decir:
-strlen(dst_inicial) + strlen(src).
-
-Esta función no reserva memoria y opera directamente sobre el buffer
-proporcionado.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 12:54:07 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:42:15 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -40,9 +29,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t n)
 		src_len++;
 	}
 	if (dst_len == n)
-	{
 		return (n + src_len);
-	}
 	i = 0;
 	while (src[i] && (dst_len + i + 1) < n)
 	{
@@ -52,7 +39,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t n)
 	dst[dst_len + i] = '\0';
 	return (dst_len + src_len);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	buffer[20];
@@ -80,3 +67,4 @@ int	main(int argc, char **argv)
 	printf("result: %zu\n", result);
 	return (0);
 }
+*/

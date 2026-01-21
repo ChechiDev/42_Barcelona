@@ -1,20 +1,14 @@
-/*
-ft_calloc
-
-Reserva memoria para un array de `nmemb` elementos de `size` bytes cada uno,
-inicializando todos los bytes de la zona reservada a 0.
-
-Comportamiento:
-- Reserva `nmemb * size` bytes en el heap.
-- Si la reserva tiene éxito, todos los bytes quedan a cero.
-- Si `nmemb` o `size` es 0, devuelve un puntero válido que puede pasarse a free().
-- Si ocurre un overflow en la multiplicación `nmemb * size` o falla la reserva,
-  devuelve NULL.
-
-Valor de retorno:
-- Puntero a la memoria reservada e inicializada a 0.
-- NULL en caso de error.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/09 12:22:31 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:39:55 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -28,9 +22,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	{
 		ptr = malloc(1);
 		if (!ptr)
-		{
 			return (NULL);
-		}
 		return (ptr);
 	}
 	res = (nmemb * size);
@@ -47,7 +39,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	}
 	return (ptr);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	int	*arr;
@@ -77,3 +69,4 @@ int	main(int argc, char **argv)
 	free(arr);
 	return(0);
 }
+*/

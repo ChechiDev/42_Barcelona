@@ -1,26 +1,14 @@
-/*
-ft_atoi
-
-Convierte una cadena de caracteres en un entero de tipo int.
-
-La función ignora los espacios en blanco iniciales (según isspace),
-reconoce un signo opcional ('+' o '-'), y procesa los caracteres
-numéricos consecutivos para construir el valor entero resultante.
-
-La conversión se detiene en el primer carácter no numérico.
-
-Si la cadena no contiene una secuencia válida de dígitos tras los
-espacios y el signo opcional, el resultado es 0.
-
-El comportamiento en caso de desbordamiento o subdesbordamiento
-está indefinido, igual que en la función atoi de la libc.
-
-Parámetros:
-- str: puntero a la cadena de caracteres a convertir.
-
-Valor de retorno:
-- El valor entero representado por la cadena.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/09 12:05:29 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/09 12:20:36 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -50,7 +38,7 @@ int	ft_atoi(const char *str)
 	}
 	return (res * sign);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	int	res;
@@ -65,3 +53,4 @@ int	main(int argc, char **argv)
 	printf("ft_atoi: %d\n", res);
 	return (0);
 }
+*/

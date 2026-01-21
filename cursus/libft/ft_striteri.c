@@ -1,17 +1,14 @@
-/*
-ft_striteri
-
-Aplica la función 'f' a cada carácter de la cadena 's'.
-A 'f' se le pasa como primer argumento el índice del carácter dentro de 's'
-y como segundo argumento la dirección del propio carácter, que puede ser
-modificado directamente.
-
-La iteración se realiza de izquierda a derecha, desde el primer carácter
-hasta el carácter nulo final '\0'.
-
-No reserva memoria dinámica y no devuelve ningún valor.
-Si 's' o 'f' son NULL, la función no realiza ninguna acción.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 18:33:47 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 18:40:00 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -21,7 +18,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 
 	if (!s || !f)
 	{
-		return; 
+		return ;
 	}
 	i = 0;
 	while (s[i])

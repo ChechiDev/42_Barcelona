@@ -1,22 +1,14 @@
-/*
-ft_toupper
-
-Convierte un carácter alfabético minúsculo en su equivalente en mayúscula.
-
-Si el carácter recibido está en el rango de letras minúsculas ('a' a 'z'),
-la función devuelve el carácter correspondiente en mayúscula ('A' a 'Z').
-
-Si el carácter no es una letra minúscula, se devuelve sin modificar.
-
-Parámetro:
-- c: carácter representado como un int (normalmente un unsigned char).
-
-Valor devuelto:
-- El carácter convertido a mayúscula si procede.
-- El mismo valor de entrada si no se realiza conversión.
-
-No reserva memoria ni produce efectos secundarios.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 14:30:13 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:34:31 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -28,7 +20,7 @@ int	ft_toupper(int c)
 	}
 	return (c);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	int	res;
@@ -43,3 +35,4 @@ int	main(int argc, char **argv)
 	write(1, "\n", 1);
 	return (0);
 }
+*/

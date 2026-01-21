@@ -1,19 +1,14 @@
-/*
-ft_memcmp
-
-Compara los primeros `n` bytes de las áreas de memoria apuntadas por `s1` y `s2`.
-La comparación se realiza byte a byte, interpretando cada byte como `unsigned char`.
-
-Devuelve:
- - Un valor menor que 0 si el primer byte distinto en `s1` es menor que el de `s2`.
- - Un valor mayor que 0 si el primer byte distinto en `s1` es mayor que el de `s2`.
- - 0 si los primeros `n` bytes de ambas áreas de memoria son idénticos.
-
-Si `n` es 0, la función devuelve 0.
-
-El comportamiento es indefinido si las áreas de memoria no son válidas
-para al menos `n` bytes.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/08 16:13:38 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:50:29 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -21,7 +16,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	const unsigned char	*uc1;
 	const unsigned char	*uc2;
-	size_t	i;
+	size_t				i;
 
 	uc1 = (const unsigned char *)s1;
 	uc2 = (const unsigned char *)s2;
@@ -36,7 +31,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	size_t	n;
@@ -52,3 +47,4 @@ int	main(int argc, char **argv)
 	printf("result: %d\n", res);
 	return (0);
 }
+*/

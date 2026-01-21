@@ -1,21 +1,14 @@
-/*
-ft_strchr
-
-Busca la primera aparición del carácter 'c' en la cadena 's'.
-
-Parámetros:
-- s: puntero a una cadena de caracteres terminada en '\0'.
-- c: carácter a buscar (se interpreta como unsigned char).
-
-Retorno:
-- Devuelve un puntero a la primera ocurrencia de 'c' en 's'.
-- Si 'c' es '\0', devuelve un puntero al terminador nulo de la cadena.
-- Si el carácter no se encuentra, devuelve NULL.
-
-Notas:
-- La cadena 's' no se modifica.
-- El recorrido se realiza de izquierda a derecha.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/07 14:55:00 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 16:36:16 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -30,7 +23,7 @@ char	*ft_strchr(const char *s, int c)
 		{
 			return ((char *)s);
 		}
-		s++;	
+		s++;
 	}
 	if (uc == '\0')
 	{
@@ -38,7 +31,7 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (NULL);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	*res;
@@ -59,3 +52,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+*/

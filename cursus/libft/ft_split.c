@@ -1,26 +1,14 @@
-/*
-ft_split
-
-Divide la cadena de caracteres `s` en un conjunto de subcadenas utilizando
-el carácter `c` como delimitador.
-
-Reserva memoria y devuelve un array de strings terminado en NULL, donde
-cada string corresponde a una subcadena de `s` separada por `c`.
-
-No se incluyen subcadenas vacías: los delimitadores consecutivos, así como
-los delimitadores al inicio o al final de la cadena, se ignoran.
-
-Parámetros:
-- s: cadena de caracteres a dividir.
-- c: carácter delimitador.
-
-Valor devuelto:
-- Un array de strings terminado en NULL.
-- NULL si `s` es NULL o si falla alguna reserva de memoria.
-
-En caso de error durante la reserva, toda la memoria previamente asignada
-debe liberarse correctamente.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 17:59:33 by sperez-l          #+#    #+#             */
+/*   Updated: 2026/01/21 18:41:31 by sperez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -55,28 +43,20 @@ char	**ft_split(char const *s, char c)
 	size_t	word;
 	size_t	i;
 
-	arr = (char **)malloc((ft_word_count(s, c) + 1) * sizeof(char *)); 
+	arr = (char **)malloc((ft_word_count(s, c) + 1) * sizeof(char *));
 	if (!s || !arr)
-	{
 		return (NULL);
-	}
 	i = 0;
 	while (*s)
 	{
 		while (*s == c && *s)
-		{
 			s++;
-		}
 		if (*s)
 		{
 			if (!ft_strchr(s, c))
-			{
 				word = ft_strlen(s);
-			}
 			else
-			{
 				word = ft_strchr(s, c) - s;
-			}
 			arr[i++] = ft_substr(s, 0, word);
 			s = s + word;
 		}
