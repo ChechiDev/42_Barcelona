@@ -6,7 +6,7 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:13:38 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/01/21 16:50:29 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:59:55 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	{
 		if (uc1[i] != uc2[i])
 		{
-			return (uc1[i] - uc2[2]);
+			return (uc1[i] - uc2[i]);
 		}
 		i++;
 	}
