@@ -6,7 +6,7 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 10:25:23 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/01/30 12:22:20 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/01/30 14:04:10 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int	ft_val_and_print_char(char c, int *count)
 	return (0);
 }
 
-int	ft_print_hex_ptr(unsigned long n, int *count)
+static int	ft_print_hex_ptr(unsigned long n, int *count)
 {
-	char	base;
+	const char	*base;
 
 	base = "0123456789abcdef";
 	if (n >= 16)
@@ -60,7 +60,7 @@ int	ft_print_ptr(va_list args)
 			return (-1);
 		return (count);
 	}
-	if (ft_print_hex_ptr(addres, count) < 0)
+	if (ft_print_hex_ptr(address, &count) < 0)
 		return (-1);
 	return (count);
 }
