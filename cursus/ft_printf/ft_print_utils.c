@@ -6,11 +6,43 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 18:33:05 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/01/30 12:28:25 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:56:46 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+const char	*ft_hex_base(char spec)
+{
+	if (spec == 'X')
+	{
+		return ("0123456789ABCDEF");
+	}
+	return ("0123456789abcdef");
+}
+
+int	ft_put_hex(unsigned int n, const char *base)
+{
+	int	count;
+	int	res;
+
+	count = 0;
+	if (n >= 16)
+	{
+		res = ft_put_hex(n / 16, base);
+		if (res < 0)
+		{
+			return (-1);
+		}
+		count += res;
+	}
+	res = write(1, &base[n % 16], 1);
+	if (res < 0)
+	{
+		return (-1);
+	}
+	return (count + 1);
+}
 
 int	is_valid_spec(char spec)
 {

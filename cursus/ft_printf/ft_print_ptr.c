@@ -6,61 +6,37 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 10:25:23 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/01/30 14:04:10 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:09:05 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	ft_val_and_print_char(char c, int *count)
-{
-	int	print;
-
-	print = ft_putchar_fd(c, 1);
-	if (print < 0)
-	{
-		return (-1);
-	}
-	*count += print;
-	return (0);
-}
-
-static int	ft_print_hex_ptr(unsigned long n, int *count)
-{
-	const char	*base;
-
-	base = "0123456789abcdef";
-	if (n >= 16)
-	{
-		if (ft_print_hex_ptr(n / 16, count) < 0)
-		{
-			return (-1);
-		}
-	}
-	return (ft_val_and_print_char(base[n % 16], count));
-}
-
 int	ft_print_ptr(va_list args)
 {
-	int				count;
 	void			*ptr;
 	unsigned long	address;
+	ssize_t			w;
+	int				res;
 
 	ptr = va_arg(args, void *);
-	address = (unsigned long)ptr;
-	count = 0;
-	if (ft_val_and_print_char('0', &count) < 0
-		|| ft_val_and_print_char('x', &count) < 0)
+	if (ptr == NULL)
 	{
-		return (-1);
-	}
-	if (address == 0)
-	{
-		if (ft_val_and_print_char('0', &count) < 0)
+		w = write(1, "(nil)", 5);
+		if (w < 0)
 			return (-1);
-		return (count);
+		return (5);
 	}
-	if (ft_print_hex_ptr(address, &count) < 0)
+	w = write(1, "0x", 2);
+	if (w < 0)
+	{
 		return (-1);
-	return (count);
+	}
+	address = (unsigned long)ptr;
+	res = ft_put_hex(address, ft_hex_base('x'));
+	if (res < 0)
+	{
+		return (-1);
+	}
+	return (2 + res);
 }

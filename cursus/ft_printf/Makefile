@@ -4,6 +4,8 @@ SOURCES = \
 	  ft_print_char.c \
 	  ft_print_str.c \
 	  ft_print_ptr.c \
+	  ft_print_nbr.c \
+	  ft_print_hex.c \
 	  ft_print_format.c \
 	  ft_print_utils.c 
 

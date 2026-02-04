@@ -6,17 +6,19 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:25:48 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/01/30 12:27:02 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/02/04 11:11:23 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_print_str(const char *str)
+int	ft_print_str(va_list args)
 {
-	int		len;
+	char	*str;
+	size_t	len;
 	ssize_t	result;
 
+	str = va_arg(args, char *);
 	if (str == NULL)
 	{
 		result = write(1, "(null)", 6);
@@ -32,5 +34,5 @@ int	ft_print_str(const char *str)
 	{
 		return (-1);
 	}
-	return (len);
+	return ((int)len);
 }
