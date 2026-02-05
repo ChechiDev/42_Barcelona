@@ -21,7 +21,7 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	$(AR) $(NAME) $(OBJECTS)
 
-%.o: %.c Makefile libftprintf.h
+%.o: %.c Makefile ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

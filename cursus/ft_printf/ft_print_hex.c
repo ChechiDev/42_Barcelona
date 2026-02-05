@@ -6,11 +6,11 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:50:07 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/02/04 16:58:41 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:18:17 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_print_hex(va_list args, char spec)
 {

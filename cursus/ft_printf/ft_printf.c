@@ -6,11 +6,11 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 18:51:14 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/02/04 18:41:43 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:19:58 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	ft_handle_format(const char *format, size_t *i, va_list args)
 {
@@ -55,7 +55,7 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-
+/*
 int	main(void)
 {
 	ft_printf("Test literal\n");
@@ -68,6 +68,6 @@ int	main(void)
 	ft_printf("Hex upper: %X\n", 255);
 	ft_printf("Pointer: %p\n", (void *)0x1234);
 	ft_printf("Percent: %%\n");
-
 	return (0);
 }
+*/

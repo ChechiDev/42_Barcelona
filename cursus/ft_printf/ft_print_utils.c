@@ -6,11 +6,11 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 18:33:05 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/02/04 17:56:46 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:42:54 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 const char	*ft_hex_base(char spec)
 {
@@ -21,22 +21,22 @@ const char	*ft_hex_base(char spec)
 	return ("0123456789abcdef");
 }
 
-int	ft_put_hex(unsigned int n, const char *base)
+int	ft_put_hex(unsigned long address, const char *base)
 {
 	int	count;
 	int	res;
 
 	count = 0;
-	if (n >= 16)
+	if (address >= 16)
 	{
-		res = ft_put_hex(n / 16, base);
+		res = ft_put_hex(address / 16, base);
 		if (res < 0)
 		{
 			return (-1);
 		}
 		count += res;
 	}
-	res = write(1, &base[n % 16], 1);
+	res = write(1, &base[address % 16], 1);
 	if (res < 0)
 	{
 		return (-1);

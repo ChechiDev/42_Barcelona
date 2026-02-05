@@ -6,11 +6,11 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 17:16:03 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/02/04 13:49:31 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:48:25 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_print_format(char spec, va_list args)
 {
@@ -26,5 +26,7 @@ int	ft_print_format(char spec, va_list args)
 		return (ft_print_nbr(args, spec));
 	if (spec == 'x' || spec == 'X')
 		return (ft_print_hex(args, spec));
+	if (spec == '%')
+		return (ft_putchar_fd('%', 1));
 	return (0);
 }

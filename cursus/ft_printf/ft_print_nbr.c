@@ -6,16 +6,16 @@
 /*   By: sperez-l <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 10:50:21 by sperez-l          #+#    #+#             */
-/*   Updated: 2026/02/04 13:10:09 by sperez-l         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:18:48 by sperez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_put_unsigned(unsigned long ln)
 {
 	int	count;
-	
+
 	count = 0;
 	if (ln >= 10)
 	{
