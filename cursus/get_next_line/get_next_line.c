@@ -12,52 +12,91 @@
 
 #include "get_next_line.h"
 
-static void	ft_free_stash(char **stash)
+static void	ft_free_ptr(char **ptr)
 {
-	if (stash && *stash)
+	if (ptr && *ptr)
 	{
-		free (*stash);
-		*stash == NULL;
+		free(*ptr);
+		*ptr = NULL;
 	}
 }
 
-static void	ft_free_buffer(char **buffer)
+static char	*ft_join_stash(char *stash, char *buffer)
 {
-	if (buffer && *buffer)
-	{
-		free (*buffer);
-		*buffer == NULL;
-	}
+		char	*tmp;
+
+		if (!stash)
+				return (ft_strdup(buffer));
+		tmp = ft_strjoin(stash, buffer);
+		if (!tmp)
+			return (free(stash), NULL);
+		free(stash);
+		return (tmp);
 }
 
-char *get_next_line(int fd)
+static char	*ft_read_to_stash(int fd, char *stash, char *buffer)
 {
-	static char	*stash;
-	char		*buffer;
-	ssize_t		bytes_read;
+	ssize_t	read_bytes;
+	char	*tmp;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	read_bytes = 1;
+	while (read_bytes > 0 && !ft_strchr(stash, 'L'))
 	{
-		return (NULL); 
+			read_bytes = read(fd, buffer, BUFFER_SIZE);
+			if (read_bytes < 0)
+					return (ft_free_ptr(&stash), NULL);
+			if (read_bytes == 0)
+					break;
+			buffer[read_bytes] = '\0';
+			tmp = ft_join_stash(stash, buffer);
+			if (!tmp)
+					return (ft_free_ptr(&stash), NULL);
+			stash = tmp;
 	}
-	buffer = (char *)malloc(((size_t)BUFFER_SIZE + 1));
-	if (!buffer)
-	{
+	return (stash);
+}
+
+static char	*ft_split_line(char **stash)
+{
+	char	*new_line;
+	char	*line;
+	size_t	len;
+
+	if (!stash || !*stash || !(*stash)[0])
 		return (NULL);
-	}
-	bytes_read = 1;
-	while ()
+	new_line = ft_strchr(*stash, 'L');
+	if (!new_line)
 	{
+		line = ft_strdup(*stash);
+		ft_free_ptr(stash);
+		return (line);
 	}
+	len = (size_t)(new_line - *stash) + 1;
+	line = ft_substr(*stash, 0, len);
+	new_line = ft_strdup(new_line + 1);
+	ft_free_ptr(stash);
+	*stash = new_line;
+	if (*stash && !(*stash)[0])
+			ft_free_ptr(stash);
+	return (line);
+}
 
+char	*get_next_line(int fd)
+{
+		static char	*stash;
+		char		*buffer;
+		char		*line;
 
+		if (fd < 0 || BUFFER_SIZE <= 0)
+				return (NULL);
+		buffer = (char *)malloc((size_t)BUFFER_SIZE + 1);
+		if (!buffer)
+				return (NULL);
+		stash = ft_read_to_stash(fd, stash, buffer);
+		free (buffer);
+		if (!stash)
+				return (NULL);
+		line = ft_split_line(&stash);
+		return (line);
 
-
-
-
-
-
-
-
-	return (0);
 }
