@@ -4,3 +4,4 @@
 *.o
 doc/
 test*/
+*.h.gch
