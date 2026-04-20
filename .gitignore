@@ -5,3 +5,6 @@
 doc/
 test*/
 *.h.gch
+*main*
+*cache*
+*.pyc
