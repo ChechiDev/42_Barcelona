@@ -23,7 +23,7 @@ class Plant:
 
         def __init__(self) -> None:
             self._counts = {label: 0 for label in self._LABELS}
-
+   
         def increment(self, method: str) -> None:
             """ Increment the counter for the given method name """
             if method in self._counts:
@@ -36,7 +36,7 @@ class Plant:
                 for label in self._LABELS
             ]
             print(f"Stats: {', '.join(parts)}")
-
+ 
     @staticmethod
     def _is_older(age: int) -> str:
         """ Return a string indicating if age exceeds one year """
@@ -90,7 +90,7 @@ class Flower(Plant):
         self._color = color
         self._blooming = False
         self._grow_rate = _GROW_RATE
-
+  
     def bloom(self) -> None:
         """ Set the flower to blooming state """
         self._blooming = True
@@ -115,7 +115,8 @@ class Seed(Flower):
         name: str,
         height: float,
         age: int,
-        color: str, seed_count: int = 0
+        color: str,
+        seed_count: int = 0
     ) -> None:
         super().__init__(name, height, age, color)
         self._seed_count = seed_count
