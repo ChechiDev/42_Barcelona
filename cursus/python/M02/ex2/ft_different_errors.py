@@ -2,7 +2,8 @@
 
 
 def garden_operations(operation_number: int) -> None:
-    """ Function that validate an specific opereation """
+    """ Trigger specific exceptions based on the operation number """
+
     if (operation_number == 0):
         int("abc")
     elif (operation_number == 1):
@@ -14,7 +15,8 @@ def garden_operations(operation_number: int) -> None:
 
 
 def test_error_types() -> None:
-    """ Show speficic Exception """
+    """ Test handling of different built-in exception types """
+
     try:
         print("Testing operation 0...")
         garden_operations(0)
@@ -37,12 +39,14 @@ def test_error_types() -> None:
         print(f"Caught TypeError: {e}")
     print("Testing operation 4...")
     print("Operation completed successfully\n")
-    print("All error types tested successfully")
 
 
 def main():
+    """ Run the error type demonstration """
+
     print("=== Garden Error Types Demo ===")
     test_error_types()
+    print("All error types tested successfully")
 
 
 if __name__ == "__main__":

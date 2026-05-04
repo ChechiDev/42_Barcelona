@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 
 def input_temperature(temp_str: str) -> int:
-    """ Function that converts str into int """
+    """ Convert a string to an integer temperature """
+
     return int(temp_str)
 
 
 def test_temperature() -> None:
-    """ test temperature typing """
+    """ Test temperature input conversion and error handling """
 
     print("Input data is '25'")
     try:
         temp = input_temperature("25")
         print(f"Temperature is now {temp}°C\n")
-
     except ValueError as e:
         print(f"Caught input_temperature error: {e}\n")
 
@@ -20,7 +20,6 @@ def test_temperature() -> None:
     try:
         temp2 = input_temperature("abc")
         print(f"Temperature is now {temp2}°C\n")
-
     except ValueError as e:
         print(f"Caught input_temperature error: {e}\n")
 
@@ -28,6 +27,7 @@ def test_temperature() -> None:
 
 
 def main():
+    """ Run the temperature conversion demo """
     print("=== Garden Temperature ===\n")
     test_temperature()
 
