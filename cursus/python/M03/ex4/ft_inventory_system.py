@@ -3,18 +3,16 @@ import sys
 
 
 def parse_argument(arg: str) -> tuple[str, int] | None:
-   
+    """ Parse a single 'name:qty' argument, return tuple or None on failure """
     # Compruebo  syntax:
     arg = arg.strip()
     if arg.count(":") != 1:
         print(f"Error - invalid parameter '{arg}'")
         return None
-
     # Parto el name y qty:
     name, qty_str = arg.split(":")
     name = name.strip()
     qty_str = qty_str.strip()
-
     # Pruebo de convertir qty en int:
     try:
         qty = int(qty_str)
@@ -25,13 +23,13 @@ def parse_argument(arg: str) -> tuple[str, int] | None:
 
 
 def build_inventory(args: list[str]) -> dict[str, int]:
-    
+    """ Build inventory dict from command-line arguments """
     inventory: dict[str, int] = {}
     for arg in args:
         parsed = parse_argument(arg)
         if parsed is None:
             continue
-        name, qty = parsed 
+        name, qty = parsed
         if name in inventory:
             print(f"Redundant item '{name}' - discarding")
             continue
@@ -40,7 +38,7 @@ def build_inventory(args: list[str]) -> dict[str, int]:
 
 
 def display_stats(inventory: dict[str, int]) -> None:
-   
+    """ Display inventory stats including totals, percentages and extremes """
     if len(inventory) == 0:
         print("Got inventory: {}")
     else:
@@ -62,16 +60,22 @@ def display_stats(inventory: dict[str, int]) -> None:
         for name in inventory.keys():
             if inventory[name] > inventory[max_name]:
                 max_name = name
-        print(f"Item most abundant: {max_name} with quantity {inventory[max_name]}")
+        print(
+            f"Item most abundant: "
+            f"{max_name} with quantity {inventory[max_name]}"
+        )
         # Min:
         for name in inventory.keys():
             if inventory[name] < inventory[min_name]:
                 min_name = name
-        print(f"Item least abundant: {min_name} with quantity {inventory[min_name]}")
+        print(
+            f"Item least abundant: "
+            f"{min_name} with quantity {inventory[min_name]}"
+        )
 
 
 def main() -> None:
-
+    """ Orchestrate inventory building, stats display and item addition """
     print("=== Inventory System Analysis ===")
     inventory = build_inventory(sys.argv[1:])
     display_stats(inventory)
