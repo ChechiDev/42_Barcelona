@@ -31,7 +31,9 @@ def gen_event() -> typing.Generator[tuple[str, str], None, None]:
         yield (name, action)
 
 
-def consume_event(lista: list[tuple[str, str]]) -> typing.Generator[tuple[str, str], None, None]:
+def consume_event(
+    lista: list[tuple[str, str]]
+) -> typing.Generator[tuple[str, str], None, None]:
 
     while lista:
         idx = random.randint(0, len(lista) - 1)
@@ -53,7 +55,7 @@ def main() -> None:
     list_event = [next(gen_2) for _ in range(10)]
     print(f"Built list of 10 events: {list_event}")
 
-    # Part 3 
+    # Part 3
     for event in consume_event(list_event):
         print(f"Got event from list: {event}")
         print(f"Remains in list: {list_event}")
