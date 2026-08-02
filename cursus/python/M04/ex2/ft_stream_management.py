@@ -49,8 +49,8 @@ def read_file(filename: str) -> str | None:
 
     try:
         file: typing.IO[str] = open(filename)
-    except OSError as error:
-        print_error(f"Error opening file '{filename}': {error}")
+    except OSError as e:
+        print_error(f"Error opening file '{filename}': {e}")
         return None
 
     try:
@@ -71,8 +71,8 @@ def save_content(filename: str, content: str) -> bool:
 
     try:
         file: typing.IO[str] = open(filename, "w")
-    except OSError as error:
-        print_error(f"Error opening file '{filename}': {error}")
+    except OSError as e:
+        print_error(f"Error opening file '{filename}': {e}")
         return False
 
     try:

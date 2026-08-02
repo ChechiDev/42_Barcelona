@@ -11,8 +11,8 @@ def display_file(filename: str) -> None:
 
     try:
         file = open(filename)
-    except OSError as error:
-        print(f"Error opening file '{filename}': {error}")
+    except OSError as e:
+        print(f"Error opening file '{filename}': {e}")
         return
 
     try:
