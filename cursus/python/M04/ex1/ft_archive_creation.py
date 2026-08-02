@@ -12,6 +12,7 @@ def process_content(content: str) -> str:
     last_was_newline = False
 
     for char in content:
+        # Procesar carácter a carácter permite detectar cada salto de línea.
         has_content = True
         if char == "\n":
             result += "#\n"
@@ -20,6 +21,7 @@ def process_content(content: str) -> str:
             result += char
             last_was_newline = False
 
+    # Si no termina en salto de línea, se agrega el marcador pendiente.
     if has_content and not last_was_newline:
         result += "#"
 
@@ -55,6 +57,7 @@ def save_content(filename: str, content: str) -> None:
     print(f"Saving data to '{filename}'")
 
     try:
+        # El modo "w" crea el archivo o reemplaza su contenido existente.
         file: typing.IO[str] = open(filename, "w")
     except OSError as e:
         print(f"Error opening file '{filename}': {e}")
@@ -81,6 +84,7 @@ def process_archive(filename: str) -> None:
     print(transformed_content, end="")
     print("---")
 
+    # Una entrada vacía decide explícitamente no persistir la transformación.
     new_filename = input("Enter new file name (or empty): ")
     if not new_filename:
         print("Not saving data.")

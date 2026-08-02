@@ -15,13 +15,16 @@ def secure_archive(
 
     try:
         if action == WRITE_MODE:
+            # with cierra el archivo automáticamente al salir del bloque.
             with open(filename, "w") as file:
                 file.write(content)
             return True, SUCCESS_MESSAGE
 
         with open(filename) as file:
+            # La tupla combina estado de éxito y dato leído en un retorno.
             return True, file.read()
     except OSError as e:
+        # Capturar OSError concentra errores de permisos, rutas y E/S.
         return False, f"{e}"
 
 
@@ -41,6 +44,7 @@ def main() -> None:
 
     print("Using 'secure_archive' to write previous content to a new file:")
     if result[0]:
+        # El primer elemento decide si el contenido es reutilizable.
         print(secure_archive("new_fragment.txt", WRITE_MODE, result[1]))
     else:
         print(secure_archive("new_fragment.txt", WRITE_MODE, ""))

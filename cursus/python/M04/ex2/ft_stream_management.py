@@ -29,6 +29,7 @@ def process_content(content: str) -> str:
 def read_line() -> str:
     """ Read one line from standard input without using input """
 
+    # readline lee desde stdin sin mostrar un prompt automático como input().
     line = sys.stdin.readline()
     if len(line) > 0 and line[-1] == "\n":
         return line[:-1]
@@ -38,6 +39,7 @@ def read_line() -> str:
 def print_error(message: str) -> None:
     """ Print a prefixed error message to standard error """
 
+    # stderr separa los errores de la salida normal del programa.
     print(f"[STDERR] {message}", file=sys.stderr)
 
 
@@ -98,6 +100,7 @@ def process_archive(filename: str) -> None:
     print("---")
 
     print("Enter new file name (or empty): ", end="")
+    # flush muestra el prompt antes de esperar la lectura desde stdin.
     sys.stdout.flush()
     new_filename = read_line()
     if not new_filename:
@@ -105,6 +108,7 @@ def process_archive(filename: str) -> None:
         return
 
     if not save_content(new_filename, transformed_content):
+        # El booleano permite reaccionar sin lanzar excepciones al llamador.
         print("Data not saved.")
 
 

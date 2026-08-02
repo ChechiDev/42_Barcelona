@@ -10,6 +10,7 @@ def display_file(filename: str) -> None:
     print(f"Accessing file '{filename}'")
 
     try:
+        # Abrir puede fallar por permisos, rutas o ausencia del archivo.
         file = open(filename)
     except OSError as e:
         print(f"Error opening file '{filename}': {e}")
@@ -20,6 +21,7 @@ def display_file(filename: str) -> None:
         print(file.read(), end="")
         print("---")
     finally:
+        # finally garantiza el cierre incluso ante errores de lectura.
         file.close()
         print(f"File '{filename}' closed.")
 
@@ -28,6 +30,7 @@ def main() -> None:
     """ Validate arguments and launch the file display workflow """
 
     if len(sys.argv) != 2:
+        # Validar argumentos evita acceder a una posición inexistente.
         print("Usage: ft_ancient_text.py <file>")
         return
 
