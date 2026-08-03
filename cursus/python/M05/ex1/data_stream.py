@@ -14,8 +14,6 @@ class DataProcessor(ABC):
     """ Define the common interface for all data processors """
 
     def __init__(self, name: str) -> None:
-        """ Initialize a named processor with empty storage """
-
         self._name = name
         self._items: list[str] = []
         self._next_output_rank = 0
@@ -81,8 +79,6 @@ class NumericProcessor(DataProcessor):
     """ Process numeric values and lists of numeric values """
 
     def __init__(self) -> None:
-        """ Initialize a numeric processor """
-
         super().__init__("Numeric Processor")
 
     def validate(self, data: Any) -> bool:
@@ -110,8 +106,6 @@ class TextProcessor(DataProcessor):
     """ Process text values and lists of text values """
 
     def __init__(self) -> None:
-        """ Initialize a text processor """
-
         super().__init__("Text Processor")
 
     def validate(self, data: Any) -> bool:
@@ -239,7 +233,7 @@ def put_processor_outputs(processor: DataProcessor, amount: int) -> None:
 
 
 def build_demo_stream() -> list[Any]:
-    """ Build the demonstration data stream from the subject """
+    """ Build the demonstration data stream """
 
     return [
         "Hello world",
@@ -260,6 +254,7 @@ def run_demo() -> None:
     """ Run the data stream demonstration scenario """
 
     print("=== Code Nexus - Data Stream ===")
+    print()
     print("Initialize Data Stream...")
     data_stream = DataStream()
     data_stream.print_processors_stats()
@@ -275,6 +270,7 @@ def run_demo() -> None:
     text_processor = TextProcessor()
     log_processor = LogProcessor()
     print("Registering other data processors")
+    print()
     data_stream.register_processor(text_processor)
     data_stream.register_processor(log_processor)
     print("Send the same batch again")
