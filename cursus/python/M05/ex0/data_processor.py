@@ -169,6 +169,7 @@ def run_numeric_processor_demo() -> None:
     """ Run the numeric processor demo """
 
     processor = NumericProcessor()
+    print()
     print("Testing Numeric Processor...")
     print_validation(processor, 42)
     print_validation(processor, "Hello")
@@ -190,6 +191,7 @@ def run_text_processor_demo() -> None:
     """ Run the text processor demo """
 
     processor = TextProcessor()
+    print()
     print("Testing Text Processor...")
     print_validation(processor, 42)
     text_data = ["Hello", "Nexus", "World"]
@@ -203,6 +205,7 @@ def run_log_processor_demo() -> None:
     """ Run the log processor demo """
 
     processor = LogProcessor()
+    print()
     print("Testing Log Processor...")
     print_validation(processor, "Hello")
     log_data = [
