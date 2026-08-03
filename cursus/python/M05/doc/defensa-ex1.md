@@ -20,7 +20,7 @@ Los procesadores concretos son:
 
 `DataStream` mantiene una lista de procesadores registrados. En `process_stream`, recorre cada elemento recibido y pregunta a cada procesador si puede validarlo. El primer procesador compatible lo ingiere. Si ningún procesador puede procesar el elemento, se imprime el error requerido por el subject.
 
-El flujo principal (`run_demo`) demuestra el escenario del enunciado de forma dinámica: recibe el stream y las cantidades de consumo desde fuera. Primero registra solo el procesador numérico, luego añade los procesadores de texto y logs, reprocesa el mismo stream, consume elementos con `output()` mediante `put_processor_outputs()` y muestra las estadísticas actualizadas.
+El flujo principal (`run_demo`) demuestra el escenario del enunciado de forma dinámica: recibe el stream y las cantidades de consumo. `main()` construye el stream usando constantes cortas en mayúsculas y helpers reutilizables. Primero se registra solo el procesador numérico, luego se añaden los procesadores de texto y logs, se reprocesa el mismo stream, se consumen elementos con `output()` mediante `put_processor_outputs()` y se muestran las estadísticas actualizadas.
 
 La implementación cumple el subject porque:
 
@@ -29,7 +29,7 @@ La implementación cumple el subject porque:
 - Permite añadir procesadores sin cambiar la lógica principal de `DataStream`.
 - Imprime errores para datos no soportados.
 - Muestra estadísticas de total procesado y elementos pendientes.
-- Incluye un escenario reutilizable mediante `run_demo(...)`, sin datos de ejemplo hardcodeados en el archivo entregable.
+- Incluye un escenario ejecutable mediante `main()` y un flujo reutilizable mediante `run_demo(...)`, con datos separados en constantes.
 
 ## 2. Posibles preguntas de defensa
 

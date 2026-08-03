@@ -9,6 +9,21 @@ TextData = str | list[str]
 LogEntry = dict[str, str]
 LogData = LogEntry | list[LogEntry]
 
+TXT_VAL = "Hello world"
+NUM_DATA = [3.14, -1, 2.71]
+
+LOG_WARN_LVL = "WARNING"
+LOG_WARN_MSG = "Telnet access! Use ssh instead"
+LOG_INFO_LVL = "INFO"
+LOG_INFO_MSG = "User wil is connected"
+
+NUM_VAL = 42
+TXT_DATA = ["Hi", "five"]
+
+NUM_OUT_NB = 3
+TXT_OUT_NB = 2
+LOG_OUT_NB = 1
+
 
 class DataProcessor(ABC):
     """ Define the common interface for all data processors """
@@ -293,3 +308,23 @@ def run_demo(
     put_processor_outputs(text_processor, text_output_amount)
     put_processor_outputs(log_processor, log_output_amount)
     data_stream.print_processors_stats()
+
+
+def main() -> None:
+    """ Run the script entrypoint """
+
+    stream = build_stream(
+        TXT_VAL,
+        NUM_DATA,
+        [
+            build_log_entry(LOG_WARN_LVL, LOG_WARN_MSG),
+            build_log_entry(LOG_INFO_LVL, LOG_INFO_MSG),
+        ],
+        NUM_VAL,
+        TXT_DATA,
+    )
+    run_demo(stream, NUM_OUT_NB, TXT_OUT_NB, LOG_OUT_NB)
+
+
+if __name__ == "__main__":
+    main()

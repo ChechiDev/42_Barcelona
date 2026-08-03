@@ -9,6 +9,23 @@ TextData = str | list[str]
 LogEntry = dict[str, str]
 LogData = LogEntry | list[LogEntry]
 
+NUM_VAL = 42
+NUM_INV_VAL = "Hello"
+NUM_INV_ING = "foo"
+NUM_DATA = [1, 2, 3, 4, 5]
+NUM_OUT_NB = 3
+
+TXT_INV_VAL = 42
+TXT_DATA = ["Hello", "Nexus", "World"]
+TXT_OUT_NB = 1
+
+LOG_INV_VAL = "Hello"
+LOG_NOTICE_LVL = "NOTICE"
+LOG_NOTICE_MSG = "Connection to server"
+LOG_ERR_LVL = "ERROR"
+LOG_ERR_MSG = "Unauthorized access!!"
+LOG_OUT_NB = 2
+
 
 class DataProcessor(ABC):
     """ Define the common interface for all data processors """
@@ -265,3 +282,28 @@ def run_demo(
     )
     run_text_processor_demo(text_invalid_value, text_data, text_output_amount)
     run_log_processor_demo(log_invalid_value, log_data, log_output_amount)
+
+
+def main() -> None:
+    """ Run the script entrypoint """
+
+    run_demo(
+        NUM_VAL,
+        NUM_INV_VAL,
+        NUM_INV_ING,
+        NUM_DATA,
+        TXT_INV_VAL,
+        TXT_DATA,
+        LOG_INV_VAL,
+        [
+            build_log_entry(LOG_NOTICE_LVL, LOG_NOTICE_MSG),
+            build_log_entry(LOG_ERR_LVL, LOG_ERR_MSG),
+        ],
+        NUM_OUT_NB,
+        TXT_OUT_NB,
+        LOG_OUT_NB,
+    )
+
+
+if __name__ == "__main__":
+    main()
