@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Focused tests for exercise 0 data processors"""
 
 from __future__ import annotations
@@ -54,11 +56,11 @@ def test_numeric_ingest_outputs_fifo_strings_and_ranks() -> None:
     processor.ingest([1, 2.5])
     processor.ingest(3)
 
-    assert processor.remaining_items == 3
+    assert processor.get_data_len() == 3
     assert processor.output() == (0, "1")
     assert processor.output() == (1, "2.5")
     assert processor.output() == (2, "3")
-    assert processor.remaining_items == 0
+    assert processor.get_data_len() == 0
 
 
 @pytest.mark.parametrize("bad_value", ["foo", [1, "2"], True, [False]])
@@ -146,7 +148,7 @@ def test_log_ingest_accepts_single_entry() -> None:
     processor = LogProcessor()
     processor.ingest({"log_level": "INFO", "log_message": "Started"})
 
-    assert processor.remaining_items == 1
+    assert processor.get_data_len() == 1
     assert processor.output() == (0, "INFO: Started")
 
 

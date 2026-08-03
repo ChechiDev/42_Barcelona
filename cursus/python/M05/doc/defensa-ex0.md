@@ -9,10 +9,10 @@ Este ejercicio crea una arquitectura común para procesar distintos tipos de dat
   - `ingest(self, data: Any) -> None`: ingiere datos válidos y los guarda internamente.
   - `output(self) -> tuple[int, str]`: extrae el dato más antiguo guardado y devuelve su rango junto con el valor.
 - `DataProcessor` no se puede instanciar directamente porque `validate` e `ingest` son métodos abstractos.
-- La cola interna `_data` guarda todos los valores ya procesados como `str`.
-- `_next_rank` empieza en `0` y aumenta cada vez que se llama a `output`, de forma que cada salida tiene un rango asociado.
-- `remaining_items` permite consultar cuántos elementos quedan pendientes.
-- Los helpers `_store_item` y `_store_items` están en la clase base porque el almacenamiento es común a todos los procesadores; así las subclases solo se ocupan de validar y convertir/formatear sus datos.
+- La cola interna `_items` guarda todos los valores ya procesados como `str`.
+- `_next_output_rank` empieza en `0` y aumenta cada vez que se llama a `output`, de forma que cada salida tiene un rango asociado.
+- `get_data_len` permite consultar cuántos elementos quedan pendientes.
+- Los helpers `_put_item`, `_put_items` y `_put_scalar_or_list` están en la clase base porque el almacenamiento es común a todos los procesadores; así las subclases solo se ocupan de validar y convertir/formatear sus datos.
 
 Procesadores concretos:
 
@@ -46,7 +46,7 @@ Devuelve `True` solo si el dato tiene la forma esperada por ese procesador. Su f
 **¿Por qué `ingest` también llama a `validate`?**  
 Para proteger la clase si el usuario no valida antes. Así los datos inválidos no llegan al almacenamiento interno.
 
-**¿Por qué `_store_items` está en `DataProcessor` y no repetido en cada subclase?**  
+**¿Por qué `_put_items` está en `DataProcessor` y no repetido en cada subclase?**  
 Porque almacenar una lista de cadenas es comportamiento compartido. Centralizarlo evita duplicación y no cambia el comportamiento externo.
 
 **¿Qué excepción se lanza con datos inválidos?**  
