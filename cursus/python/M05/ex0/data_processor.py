@@ -257,50 +257,24 @@ def run_log_processor_demo(
     print_outputs(processor, output_amount, "Log entry")
 
 
-def run_demo(
-    numeric_valid_value: Any,
-    numeric_invalid_value: Any,
-    numeric_invalid_ingest: Any,
-    numeric_data: NumericData,
-    text_invalid_value: Any,
-    text_data: TextData,
-    log_invalid_value: Any,
-    log_data: LogData,
-    numeric_output_amount: int,
-    text_output_amount: int,
-    log_output_amount: int,
-) -> None:
-    """ Run the data processor demo """
-
-    print("=== Code Nexus - Data Processor ===")
-    run_numeric_processor_demo(
-        numeric_valid_value,
-        numeric_invalid_value,
-        numeric_invalid_ingest,
-        numeric_data,
-        numeric_output_amount,
-    )
-    run_text_processor_demo(text_invalid_value, text_data, text_output_amount)
-    run_log_processor_demo(log_invalid_value, log_data, log_output_amount)
-
-
 def main() -> None:
     """ Run the script entrypoint """
 
-    run_demo(
+    print("=== Code Nexus - Data Processor ===")
+    run_numeric_processor_demo(
         NUM_VAL,
         NUM_INV_VAL,
         NUM_INV_ING,
         NUM_DATA,
-        TXT_INV_VAL,
-        TXT_DATA,
+        NUM_OUT_NB,
+    )
+    run_text_processor_demo(TXT_INV_VAL, TXT_DATA, TXT_OUT_NB)
+    run_log_processor_demo(
         LOG_INV_VAL,
         [
             build_log_entry(LOG_NOTICE_LVL, LOG_NOTICE_MSG),
             build_log_entry(LOG_ERR_LVL, LOG_ERR_MSG),
         ],
-        NUM_OUT_NB,
-        TXT_OUT_NB,
         LOG_OUT_NB,
     )
 

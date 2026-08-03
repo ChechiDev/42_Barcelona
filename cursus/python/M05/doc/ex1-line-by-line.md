@@ -273,64 +273,53 @@ Este documento vincula cada línea de `ex1/data_stream.py` con lo que hace.
 | 267 | Devuelve `list(items)`. |
 | 268 | Línea en blanco de separación. |
 | 269 | Línea en blanco de separación. |
-| 270 | Declara `def run_demo(`. |
-| 271 | Continúa con `stream: list[Any],`. |
-| 272 | Continúa con `numeric_output_amount: int,`. |
-| 273 | Continúa con `text_output_amount: int,`. |
-| 274 | Continúa con `log_output_amount: int,`. |
-| 275 | Cierra una estructura o llamada multilínea. |
-| 276 | Docstring: `""" Run the data stream demonstration scenario """`. |
-| 277 | Línea en blanco de separación. |
-| 278 | Imprime `print("=== Code Nexus - Data Stream ===")`. |
-| 279 | Imprime `print()`. |
-| 280 | Imprime `print("Initialize Data Stream...")`. |
-| 281 | Ejecuta `data_stream = DataStream()`. |
-| 282 | Ejecuta `data_stream.print_processors_stats()`. |
-| 283 | Línea en blanco de separación. |
-| 284 | Ejecuta `numeric_processor = NumericProcessor()`. |
-| 285 | Imprime `print("Registering Numeric Processor")`. |
-| 286 | Ejecuta `data_stream.register_processor(numeric_processor)`. |
-| 287 | Imprime `print(f"Send first batch of data on stream: {stream}")`. |
-| 288 | Ejecuta `data_stream.process_stream(stream)`. |
-| 289 | Ejecuta `data_stream.print_processors_stats()`. |
-| 290 | Línea en blanco de separación. |
-| 291 | Ejecuta `text_processor = TextProcessor()`. |
-| 292 | Ejecuta `log_processor = LogProcessor()`. |
-| 293 | Imprime `print("Registering other data processors")`. |
-| 294 | Imprime `print()`. |
-| 295 | Ejecuta `data_stream.register_processor(text_processor)`. |
-| 296 | Ejecuta `data_stream.register_processor(log_processor)`. |
-| 297 | Imprime `print("Send the same batch again")`. |
-| 298 | Ejecuta `data_stream.process_stream(stream)`. |
-| 299 | Ejecuta `data_stream.print_processors_stats()`. |
-| 300 | Línea en blanco de separación. |
-| 301 | Imprime `print(`. |
-| 302 | Continúa con `"Consume some elements from the data processors: "`. |
-| 303 | Continúa con `f"Numeric {numeric_output_amount}, "`. |
-| 304 | Continúa con `f"Text {text_output_amount}, "`. |
-| 305 | Continúa con `f"Log {log_output_amount}"`. |
-| 306 | Cierra una estructura o llamada multilínea. |
-| 307 | Ejecuta `put_processor_outputs(numeric_processor, numeric_output_amount)`. |
-| 308 | Ejecuta `put_processor_outputs(text_processor, text_output_amount)`. |
-| 309 | Ejecuta `put_processor_outputs(log_processor, log_output_amount)`. |
-| 310 | Ejecuta `data_stream.print_processors_stats()`. |
-| 311 | Línea en blanco de separación. |
-| 312 | Línea en blanco de separación. |
-| 313 | Declara `def main() -> None:`. |
-| 314 | Docstring: `""" Run the script entrypoint """`. |
-| 315 | Línea en blanco de separación. |
-| 316 | Asigna `build_stream(` a `stream`. |
-| 317 | Continúa con `TXT_VAL,`. |
-| 318 | Continúa con `NUM_DATA,`. |
-| 319 | Continúa con `[`. |
-| 320 | Continúa con `build_log_entry(LOG_WARN_LVL, LOG_WARN_MSG),`. |
-| 321 | Continúa con `build_log_entry(LOG_INFO_LVL, LOG_INFO_MSG),`. |
-| 322 | Cierra una estructura o llamada multilínea. |
-| 323 | Continúa con `NUM_VAL,`. |
-| 324 | Continúa con `TXT_DATA,`. |
-| 325 | Cierra una estructura o llamada multilínea. |
-| 326 | Ejecuta `run_demo(stream, NUM_OUT_NB, TXT_OUT_NB, LOG_OUT_NB)`. |
-| 327 | Línea en blanco de separación. |
-| 328 | Línea en blanco de separación. |
-| 329 | Comprueba `__name__ == "__main__"`. |
-| 330 | Ejecuta `main()`. |
+| 270 | Declara `def main() -> None:`. |
+| 271 | Docstring: `""" Run the script entrypoint """`. |
+| 272 | Línea en blanco de separación. |
+| 273 | Asigna `build_stream(` a `stream`. |
+| 274 | Continúa con `TXT_VAL,`. |
+| 275 | Continúa con `NUM_DATA,`. |
+| 276 | Continúa con `[`. |
+| 277 | Continúa con `build_log_entry(LOG_WARN_LVL, LOG_WARN_MSG),`. |
+| 278 | Continúa con `build_log_entry(LOG_INFO_LVL, LOG_INFO_MSG),`. |
+| 279 | Cierra una estructura o llamada multilínea. |
+| 280 | Continúa con `NUM_VAL,`. |
+| 281 | Continúa con `TXT_DATA,`. |
+| 282 | Cierra una estructura o llamada multilínea. |
+| 283 | Imprime `print("=== Code Nexus - Data Stream ===")`. |
+| 284 | Imprime `print()`. |
+| 285 | Imprime `print("Initialize Data Stream...")`. |
+| 286 | Ejecuta `data_stream = DataStream()`. |
+| 287 | Ejecuta `data_stream.print_processors_stats()`. |
+| 288 | Línea en blanco de separación. |
+| 289 | Ejecuta `numeric_processor = NumericProcessor()`. |
+| 290 | Imprime `print("Registering Numeric Processor")`. |
+| 291 | Ejecuta `data_stream.register_processor(numeric_processor)`. |
+| 292 | Imprime `print(f"Send first batch of data on stream: {stream}")`. |
+| 293 | Ejecuta `data_stream.process_stream(stream)`. |
+| 294 | Ejecuta `data_stream.print_processors_stats()`. |
+| 295 | Línea en blanco de separación. |
+| 296 | Ejecuta `text_processor = TextProcessor()`. |
+| 297 | Ejecuta `log_processor = LogProcessor()`. |
+| 298 | Imprime `print("Registering other data processors")`. |
+| 299 | Imprime `print()`. |
+| 300 | Ejecuta `data_stream.register_processor(text_processor)`. |
+| 301 | Ejecuta `data_stream.register_processor(log_processor)`. |
+| 302 | Imprime `print("Send the same batch again")`. |
+| 303 | Ejecuta `data_stream.process_stream(stream)`. |
+| 304 | Ejecuta `data_stream.print_processors_stats()`. |
+| 305 | Línea en blanco de separación. |
+| 306 | Imprime `print(`. |
+| 307 | Continúa con `"Consume some elements from the data processors: "`. |
+| 308 | Continúa con `f"Numeric {NUM_OUT_NB}, "`. |
+| 309 | Continúa con `f"Text {TXT_OUT_NB}, "`. |
+| 310 | Continúa con `f"Log {LOG_OUT_NB}"`. |
+| 311 | Cierra una estructura o llamada multilínea. |
+| 312 | Ejecuta `put_processor_outputs(numeric_processor, NUM_OUT_NB)`. |
+| 313 | Ejecuta `put_processor_outputs(text_processor, TXT_OUT_NB)`. |
+| 314 | Ejecuta `put_processor_outputs(log_processor, LOG_OUT_NB)`. |
+| 315 | Ejecuta `data_stream.print_processors_stats()`. |
+| 316 | Línea en blanco de separación. |
+| 317 | Línea en blanco de separación. |
+| 318 | Comprueba `__name__ == "__main__"`. |
+| 319 | Ejecuta `main()`. |

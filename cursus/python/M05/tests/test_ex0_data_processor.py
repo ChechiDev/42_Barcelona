@@ -20,8 +20,7 @@ from data_processor import (  # noqa: E402
     LogProcessor,
     NumericProcessor,
     TextProcessor,
-    build_log_entry,
-    run_demo,
+    main,
 )
 
 
@@ -168,25 +167,10 @@ def test_output_empty_processor_raises_index_error() -> None:
         TextProcessor().output()
 
 
-def test_run_demo_prints_expected_demo_lines(capsys: Any) -> None:
-    """Running run_demo executes the subject demonstration"""
+def test_main_prints_expected_demo_lines(capsys: Any) -> None:
+    """Running main executes the subject demonstration"""
 
-    run_demo(
-        42,
-        "Hello",
-        "foo",
-        [1, 2, 3, 4, 5],
-        42,
-        ["Hello", "Nexus", "World"],
-        "Hello",
-        [
-            build_log_entry("NOTICE", "Connection to server"),
-            build_log_entry("ERROR", "Unauthorized access!!"),
-        ],
-        3,
-        1,
-        2,
-    )
+    main()
     output = capsys.readouterr().out
 
     assert "=== Code Nexus - Data Processor ===" in output

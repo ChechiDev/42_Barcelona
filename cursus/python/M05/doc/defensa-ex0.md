@@ -33,7 +33,7 @@ Flujo principal:
 3. Los datos válidos se almacenan separados usando los helpers comunes de `DataProcessor`, manteniendo orden FIFO.
 4. `output` extrae y elimina el elemento más antiguo; si no hay datos, lanza `IndexError`.
 
-La función `run_demo(...)` permite ejecutar una demostración dinámica: recibe los datos de prueba, los valores inválidos y las cantidades de salida. `main()` usa constantes cortas en mayúsculas para lanzar la demo al ejecutar el archivo directamente, manteniendo los datos separados de la lógica.
+La función `main()` ejecuta la demostración usando constantes cortas en mayúsculas. Los datos están separados de la lógica de los procesadores, y las funciones auxiliares reciben los valores por parámetro.
 
 ## 2. Posibles preguntas de corrección y respuestas
 
@@ -77,7 +77,7 @@ Debe ser un `dict` donde todas las claves y todos los valores sean `str`, o una 
 Para poder formatear entradas con `log_level` y `log_message` sin fallar si alguna clave no existe.
 
 **¿Qué comportamiento se ha comprobado en tests/revisión?**  
-Clase abstracta, validaciones válidas e inválidas, excepciones en ingesta inválida, orden FIFO, rangos, salida en procesador vacío, `LogProcessor` con un único `dict` de entrada, ejecución dinámica de `run_demo(...)` y ejecución directa mediante `main()`.
+Clase abstracta, validaciones válidas e inválidas, excepciones en ingesta inválida, orden FIFO, rangos, salida en procesador vacío, `LogProcessor` con un único `dict` de entrada y ejecución directa mediante `main()`.
 
 **¿Cumple el subject?**  
 Sí: hay una clase abstracta común, tres procesadores especializados, métodos `validate`, `ingest` y `output`, almacenamiento separado, conversión a `str` cuando corresponde y pruebas/demostración de casos válidos e inválidos.

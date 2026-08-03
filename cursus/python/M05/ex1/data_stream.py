@@ -267,14 +267,19 @@ def build_stream(*items: Any) -> list[Any]:
     return list(items)
 
 
-def run_demo(
-    stream: list[Any],
-    numeric_output_amount: int,
-    text_output_amount: int,
-    log_output_amount: int,
-) -> None:
-    """ Run the data stream demonstration scenario """
+def main() -> None:
+    """ Run the script entrypoint """
 
+    stream = build_stream(
+        TXT_VAL,
+        NUM_DATA,
+        [
+            build_log_entry(LOG_WARN_LVL, LOG_WARN_MSG),
+            build_log_entry(LOG_INFO_LVL, LOG_INFO_MSG),
+        ],
+        NUM_VAL,
+        TXT_DATA,
+    )
     print("=== Code Nexus - Data Stream ===")
     print()
     print("Initialize Data Stream...")
@@ -300,30 +305,14 @@ def run_demo(
 
     print(
         "Consume some elements from the data processors: "
-        f"Numeric {numeric_output_amount}, "
-        f"Text {text_output_amount}, "
-        f"Log {log_output_amount}"
+        f"Numeric {NUM_OUT_NB}, "
+        f"Text {TXT_OUT_NB}, "
+        f"Log {LOG_OUT_NB}"
     )
-    put_processor_outputs(numeric_processor, numeric_output_amount)
-    put_processor_outputs(text_processor, text_output_amount)
-    put_processor_outputs(log_processor, log_output_amount)
+    put_processor_outputs(numeric_processor, NUM_OUT_NB)
+    put_processor_outputs(text_processor, TXT_OUT_NB)
+    put_processor_outputs(log_processor, LOG_OUT_NB)
     data_stream.print_processors_stats()
-
-
-def main() -> None:
-    """ Run the script entrypoint """
-
-    stream = build_stream(
-        TXT_VAL,
-        NUM_DATA,
-        [
-            build_log_entry(LOG_WARN_LVL, LOG_WARN_MSG),
-            build_log_entry(LOG_INFO_LVL, LOG_INFO_MSG),
-        ],
-        NUM_VAL,
-        TXT_DATA,
-    )
-    run_demo(stream, NUM_OUT_NB, TXT_OUT_NB, LOG_OUT_NB)
 
 
 if __name__ == "__main__":

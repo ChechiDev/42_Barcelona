@@ -23,6 +23,7 @@ from data_stream import (  # noqa: E402
     TextProcessor,
     build_log_entry,
     build_stream,
+    main,
     put_processor_outputs,
 )
 
@@ -164,12 +165,10 @@ def test_processor_validation_edge_cases_and_empty_output() -> None:
         numeric.output()
 
 
-def test_run_demo_demonstrates_required_scenario(capsys: Any) -> None:
-    """ Execute run_demo and verify key subject output """
+def test_main_demonstrates_required_scenario(capsys: Any) -> None:
+    """ Execute main and verify key subject output """
 
-    from data_stream import run_demo  # noqa: PLC0415
-
-    run_demo(build_subject_stream(), 3, 2, 1)
+    main()
     output = capsys.readouterr().out
     assert "=== Code Nexus - Data Stream ===" in output
     assert "Registering Numeric Processor" in output

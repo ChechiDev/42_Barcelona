@@ -263,53 +263,27 @@ Este documento vincula cada línea de `ex0/data_processor.py` con lo que hace.
 | 257 | Ejecuta `print_outputs(processor, output_amount, "Log entry")`. |
 | 258 | Línea en blanco de separación. |
 | 259 | Línea en blanco de separación. |
-| 260 | Declara `def run_demo(`. |
-| 261 | Continúa con `numeric_valid_value: Any,`. |
-| 262 | Continúa con `numeric_invalid_value: Any,`. |
-| 263 | Continúa con `numeric_invalid_ingest: Any,`. |
-| 264 | Continúa con `numeric_data: NumericData,`. |
-| 265 | Continúa con `text_invalid_value: Any,`. |
-| 266 | Continúa con `text_data: TextData,`. |
-| 267 | Continúa con `log_invalid_value: Any,`. |
-| 268 | Continúa con `log_data: LogData,`. |
-| 269 | Continúa con `numeric_output_amount: int,`. |
-| 270 | Continúa con `text_output_amount: int,`. |
-| 271 | Continúa con `log_output_amount: int,`. |
-| 272 | Cierra una estructura o llamada multilínea. |
-| 273 | Docstring: `""" Run the data processor demo """`. |
-| 274 | Línea en blanco de separación. |
-| 275 | Imprime `print("=== Code Nexus - Data Processor ===")`. |
-| 276 | Continúa con `run_numeric_processor_demo(`. |
-| 277 | Continúa con `numeric_valid_value,`. |
-| 278 | Continúa con `numeric_invalid_value,`. |
-| 279 | Continúa con `numeric_invalid_ingest,`. |
-| 280 | Continúa con `numeric_data,`. |
-| 281 | Continúa con `numeric_output_amount,`. |
-| 282 | Cierra una estructura o llamada multilínea. |
-| 283 | Ejecuta `run_text_processor_demo(text_invalid_value, text_data, text_output_amount)`. |
-| 284 | Ejecuta `run_log_processor_demo(log_invalid_value, log_data, log_output_amount)`. |
-| 285 | Línea en blanco de separación. |
-| 286 | Línea en blanco de separación. |
-| 287 | Declara `def main() -> None:`. |
-| 288 | Docstring: `""" Run the script entrypoint """`. |
-| 289 | Línea en blanco de separación. |
-| 290 | Continúa con `run_demo(`. |
-| 291 | Continúa con `NUM_VAL,`. |
-| 292 | Continúa con `NUM_INV_VAL,`. |
-| 293 | Continúa con `NUM_INV_ING,`. |
-| 294 | Continúa con `NUM_DATA,`. |
-| 295 | Continúa con `TXT_INV_VAL,`. |
-| 296 | Continúa con `TXT_DATA,`. |
-| 297 | Continúa con `LOG_INV_VAL,`. |
-| 298 | Continúa con `[`. |
-| 299 | Continúa con `build_log_entry(LOG_NOTICE_LVL, LOG_NOTICE_MSG),`. |
-| 300 | Continúa con `build_log_entry(LOG_ERR_LVL, LOG_ERR_MSG),`. |
-| 301 | Cierra una estructura o llamada multilínea. |
-| 302 | Continúa con `NUM_OUT_NB,`. |
-| 303 | Continúa con `TXT_OUT_NB,`. |
-| 304 | Continúa con `LOG_OUT_NB,`. |
-| 305 | Cierra una estructura o llamada multilínea. |
-| 306 | Línea en blanco de separación. |
-| 307 | Línea en blanco de separación. |
-| 308 | Comprueba `__name__ == "__main__"`. |
-| 309 | Ejecuta `main()`. |
+| 260 | Declara `def main() -> None:`. |
+| 261 | Docstring: `""" Run the script entrypoint """`. |
+| 262 | Línea en blanco de separación. |
+| 263 | Imprime `print("=== Code Nexus - Data Processor ===")`. |
+| 264 | Continúa con `run_numeric_processor_demo(`. |
+| 265 | Continúa con `NUM_VAL,`. |
+| 266 | Continúa con `NUM_INV_VAL,`. |
+| 267 | Continúa con `NUM_INV_ING,`. |
+| 268 | Continúa con `NUM_DATA,`. |
+| 269 | Continúa con `NUM_OUT_NB,`. |
+| 270 | Cierra una estructura o llamada multilínea. |
+| 271 | Ejecuta `run_text_processor_demo(TXT_INV_VAL, TXT_DATA, TXT_OUT_NB)`. |
+| 272 | Continúa con `run_log_processor_demo(`. |
+| 273 | Continúa con `LOG_INV_VAL,`. |
+| 274 | Continúa con `[`. |
+| 275 | Continúa con `build_log_entry(LOG_NOTICE_LVL, LOG_NOTICE_MSG),`. |
+| 276 | Continúa con `build_log_entry(LOG_ERR_LVL, LOG_ERR_MSG),`. |
+| 277 | Cierra una estructura o llamada multilínea. |
+| 278 | Continúa con `LOG_OUT_NB,`. |
+| 279 | Cierra una estructura o llamada multilínea. |
+| 280 | Línea en blanco de separación. |
+| 281 | Línea en blanco de separación. |
+| 282 | Comprueba `__name__ == "__main__"`. |
+| 283 | Ejecuta `main()`. |
