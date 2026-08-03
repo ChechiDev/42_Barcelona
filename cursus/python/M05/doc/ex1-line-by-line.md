@@ -5,297 +5,297 @@ Este documento vincula cada línea de `ex1/data_stream.py` con lo que hace.
 | Línea | Qué hace |
 | --- | --- |
 | 1 | Indica al sistema que ejecute el archivo con `python3`. |
-| 2 | Línea en blanco obligatoria después del shebang. |
-| 3 | Importa `ABC` y `abstractmethod` para crear clases abstractas. |
-| 4 | Importa `Any` para anotar datos de cualquier tipo. |
+| 2 | Línea en blanco de separación. |
+| 3 | Importa `abc import ABC, abstractmethod`. |
+| 4 | Importa `typing import Any`. |
 | 5 | Línea en blanco de separación. |
 | 6 | Línea en blanco de separación. |
-| 7 | Define el alias `NumericData` para números o listas de números. |
-| 8 | Define el alias `TextData` para texto o listas de texto. |
-| 9 | Define el alias `LogEntry` como diccionario de claves y valores `str`. |
-| 10 | Define el alias `LogData` como un log o una lista de logs. |
+| 7 | Asigna `int | float | list[int | float]` a `NumericData`. |
+| 8 | Asigna `str | list[str]` a `TextData`. |
+| 9 | Asigna `dict[str, str]` a `LogEntry`. |
+| 10 | Asigna `LogEntry | list[LogEntry]` a `LogData`. |
 | 11 | Línea en blanco de separación. |
 | 12 | Línea en blanco de separación. |
-| 13 | Declara la clase abstracta base `DataProcessor`. |
-| 14 | Docstring de la clase base. |
-| 15 | Línea en blanco antes del constructor. |
-| 16 | Declara el constructor, recibiendo el nombre visible del procesador. |
-| 17 | Docstring del constructor. |
-| 18 | Línea en blanco antes del cuerpo. |
-| 19 | Guarda el nombre visible del procesador. |
-| 20 | Inicializa la cola interna de elementos procesados. |
-| 21 | Inicializa el ranking de salida. |
-| 22 | Inicializa el contador total de elementos procesados. |
-| 23 | Línea en blanco de separación. |
-| 24 | Declara `get_name`. |
-| 25 | Docstring de `get_name`. |
-| 26 | Línea en blanco antes del cuerpo. |
-| 27 | Devuelve el nombre visible del procesador. |
-| 28 | Línea en blanco de separación. |
-| 29 | Declara `get_data_len`. |
-| 30 | Docstring de `get_data_len`. |
-| 31 | Línea en blanco antes del cuerpo. |
-| 32 | Devuelve cuántos elementos quedan pendientes. |
-| 33 | Línea en blanco de separación. |
-| 34 | Declara `get_total_processed`. |
-| 35 | Docstring de `get_total_processed`. |
-| 36 | Línea en blanco antes del cuerpo. |
-| 37 | Devuelve el total histórico de elementos ingeridos. |
-| 38 | Línea en blanco de separación. |
-| 39 | Marca `validate` como método abstracto. |
-| 40 | Declara `validate`, obligatorio en subclases. |
-| 41 | Docstring de `validate`. |
-| 42 | Línea en blanco; no hay implementación por ser abstracto. |
-| 43 | Marca `ingest` como método abstracto. |
-| 44 | Declara `ingest`, obligatorio en subclases. |
-| 45 | Docstring de `ingest`. |
-| 46 | Línea en blanco; no hay implementación por ser abstracto. |
-| 47 | Declara `output`, común para todos los procesadores. |
-| 48 | Docstring de `output`. |
-| 49 | Línea en blanco antes del cuerpo. |
-| 50 | Comprueba si el procesador no tiene datos pendientes. |
-| 51 | Lanza `IndexError` si no hay nada que extraer. |
-| 52 | Línea en blanco de separación lógica. |
-| 53 | Guarda el ranking actual de salida. |
-| 54 | Extrae el elemento más antiguo de la cola. |
-| 55 | Incrementa el ranking para la siguiente salida. |
-| 56 | Línea en blanco de separación lógica. |
-| 57 | Devuelve la tupla `(rank, item)`. |
-| 58 | Línea en blanco de separación. |
-| 59 | Declara `_put_item`. |
-| 60 | Docstring de `_put_item`. |
-| 61 | Línea en blanco antes del cuerpo. |
-| 62 | Añade un elemento procesado a la cola. |
-| 63 | Incrementa el contador total procesado. |
-| 64 | Línea en blanco de separación. |
-| 65 | Declara `_put_items`. |
-| 66 | Docstring de `_put_items`. |
-| 67 | Línea en blanco antes del cuerpo. |
-| 68 | Añade varios elementos procesados a la cola. |
-| 69 | Incrementa el contador total según el número de elementos añadidos. |
-| 70 | Línea en blanco de separación. |
-| 71 | Declara `_put_scalar_or_list`. |
-| 72 | Docstring de `_put_scalar_or_list`. |
-| 73 | Línea en blanco antes del cuerpo. |
-| 74 | Comprueba si el dato recibido es una lista. |
-| 75 | Convierte los elementos a `str` y los guarda en bloque. |
-| 76 | Sale tras guardar la lista. |
-| 77 | Convierte un dato individual a `str` y lo guarda. |
-| 78 | Línea en blanco de separación. |
-| 79 | Línea en blanco de separación. |
-| 80 | Declara `NumericProcessor`, heredando de `DataProcessor`. |
-| 81 | Docstring del procesador numérico. |
-| 82 | Línea en blanco antes del constructor. |
-| 83 | Declara el constructor de `NumericProcessor`. |
-| 84 | Docstring del constructor numérico. |
-| 85 | Línea en blanco antes del cuerpo. |
-| 86 | Inicializa la clase base con el nombre `Numeric Processor`. |
-| 87 | Línea en blanco de separación. |
-| 88 | Implementa `validate` para datos numéricos. |
-| 89 | Docstring de la validación numérica. |
-| 90 | Línea en blanco antes del cuerpo. |
-| 91 | Comprueba si el dato es una lista. |
-| 92 | Valida que todos los elementos sean números no booleanos. |
-| 93 | Valida un dato individual como número no booleano. |
-| 94 | Línea en blanco de separación. |
-| 95 | Implementa `ingest` para `NumericData`. |
-| 96 | Docstring de la ingesta numérica. |
-| 97 | Línea en blanco antes del cuerpo. |
-| 98 | Comprueba si el dato numérico es inválido. |
-| 99 | Lanza `ValueError` con el mensaje requerido para números. |
-| 100 | Línea en blanco antes de almacenar. |
-| 101 | Guarda número o lista de números como strings. |
-| 102 | Línea en blanco de separación. |
-| 103 | Declara `_is_numeric`. |
-| 104 | Docstring de `_is_numeric`. |
-| 105 | Línea en blanco antes del cuerpo. |
-| 106 | Devuelve `True` para `int` o `float`, rechazando `bool`. |
-| 107 | Línea en blanco de separación. |
-| 108 | Línea en blanco de separación. |
-| 109 | Declara `TextProcessor`, heredando de `DataProcessor`. |
-| 110 | Docstring del procesador de texto. |
-| 111 | Línea en blanco antes del constructor. |
-| 112 | Declara el constructor de `TextProcessor`. |
-| 113 | Docstring del constructor de texto. |
-| 114 | Línea en blanco antes del cuerpo. |
-| 115 | Inicializa la clase base con el nombre `Text Processor`. |
-| 116 | Línea en blanco de separación. |
-| 117 | Implementa `validate` para texto. |
-| 118 | Docstring de la validación de texto. |
-| 119 | Línea en blanco antes del cuerpo. |
-| 120 | Comprueba si el dato es un string. |
-| 121 | Acepta el string individual. |
-| 122 | Comprueba si el dato es una lista. |
-| 123 | Valida que todos los elementos de la lista sean strings. |
-| 124 | Rechaza cualquier otro tipo. |
-| 125 | Línea en blanco de separación. |
-| 126 | Implementa `ingest` para `TextData`. |
-| 127 | Docstring de la ingesta de texto. |
-| 128 | Línea en blanco antes del cuerpo. |
-| 129 | Comprueba si el texto es inválido. |
-| 130 | Lanza `ValueError` con el mensaje requerido para texto. |
-| 131 | Línea en blanco antes de almacenar. |
-| 132 | Guarda string o lista de strings. |
-| 133 | Línea en blanco de separación. |
-| 134 | Línea en blanco de separación. |
-| 135 | Declara `LogProcessor`, heredando de `DataProcessor`. |
-| 136 | Docstring del procesador de logs. |
-| 137 | Línea en blanco antes del constructor. |
-| 138 | Declara el constructor de `LogProcessor`. |
-| 139 | Docstring del constructor de logs. |
-| 140 | Línea en blanco antes del cuerpo. |
-| 141 | Inicializa la clase base con el nombre `Log Processor`. |
-| 142 | Línea en blanco de separación. |
-| 143 | Implementa `validate` para logs. |
-| 144 | Docstring de la validación de logs. |
-| 145 | Línea en blanco antes del cuerpo. |
-| 146 | Comprueba si el dato es un diccionario. |
-| 147 | Valida un único diccionario de log. |
-| 148 | Comprueba si el dato es una lista. |
-| 149 | Valida que todos los elementos sean logs válidos. |
-| 150 | Rechaza cualquier otro tipo. |
-| 151 | Línea en blanco de separación. |
-| 152 | Implementa `ingest` para `LogData`. |
-| 153 | Docstring de la ingesta de logs. |
-| 154 | Línea en blanco antes del cuerpo. |
-| 155 | Comprueba si el log es inválido. |
-| 156 | Lanza `ValueError` con el mensaje requerido para logs. |
-| 157 | Línea en blanco antes de almacenar. |
-| 158 | Comprueba si el dato es una lista de logs. |
-| 159 | Formatea cada log y guarda todos los resultados. |
-| 160 | Sale tras guardar la lista. |
-| 161 | Formatea y guarda un único log. |
-| 162 | Línea en blanco de separación. |
-| 163 | Declara `_is_log_entry`. |
-| 164 | Docstring de `_is_log_entry`. |
-| 165 | Línea en blanco antes del cuerpo. |
-| 166 | Comprueba que el dato sea diccionario y evalúa sus pares. |
-| 167 | Comprueba que cada clave y valor sean strings. |
-| 168 | Recorre todos los pares clave-valor del diccionario. |
-| 169 | Cierra la expresión y devuelve el resultado. |
-| 170 | Línea en blanco de separación. |
-| 171 | Declara `_format_log_entry`. |
-| 172 | Docstring de `_format_log_entry`. |
-| 173 | Línea en blanco antes del cuerpo. |
-| 174 | Obtiene `log_level` o string vacío. |
-| 175 | Obtiene `log_message` o string vacío. |
-| 176 | Comprueba si existe nivel o mensaje. |
-| 177 | Devuelve el formato `LEVEL: message`. |
-| 178 | Si no hay claves conocidas, devuelve el diccionario como string. |
-| 179 | Línea en blanco de separación. |
-| 180 | Línea en blanco de separación. |
-| 181 | Declara la clase `DataStream`. |
-| 182 | Docstring de `DataStream`. |
-| 183 | Línea en blanco antes del constructor. |
-| 184 | Declara el constructor de `DataStream`. |
-| 185 | Docstring del constructor de stream. |
-| 186 | Línea en blanco antes del cuerpo. |
-| 187 | Inicializa la lista de procesadores registrados. |
-| 188 | Línea en blanco de separación. |
-| 189 | Declara `get_processors`. |
-| 190 | Docstring de `get_processors`. |
-| 191 | Línea en blanco antes del cuerpo. |
-| 192 | Devuelve la lista de procesadores registrados. |
-| 193 | Línea en blanco de separación. |
-| 194 | Declara `register_processor`, método requerido por el subject. |
-| 195 | Docstring de `register_processor`. |
-| 196 | Línea en blanco antes del cuerpo. |
-| 197 | Añade el procesador recibido al stream. |
-| 198 | Línea en blanco de separación. |
-| 199 | Declara `process_stream`, método requerido por el subject. |
-| 200 | Docstring de `process_stream`. |
-| 201 | Línea en blanco antes del cuerpo. |
-| 202 | Recorre cada elemento del stream recibido. |
-| 203 | Intenta enviar el elemento a algún procesador registrado. |
-| 204 | Empieza el `print` multilínea de error si nadie lo procesa. |
-| 205 | Primera parte del mensaje de error requerido. |
-| 206 | Añade el elemento no procesado al mensaje. |
-| 207 | Cierra el `print` de error. |
-| 208 | Línea en blanco de separación. |
-| 209 | Declara `print_processors_stats`, método requerido por el subject. |
-| 210 | Docstring de `print_processors_stats`. |
-| 211 | Línea en blanco antes del cuerpo. |
-| 212 | Imprime el título de estadísticas. |
-| 213 | Comprueba si no hay procesadores registrados. |
-| 214 | Imprime el mensaje de stream vacío. |
-| 215 | Sale porque no hay estadísticas que mostrar. |
-| 216 | Línea en blanco de separación lógica. |
-| 217 | Recorre todos los procesadores registrados. |
-| 218 | Empieza el `print` multilínea de estadísticas. |
-| 219 | Imprime el nombre del procesador y empieza el total. |
-| 220 | Añade el total de elementos procesados. |
-| 221 | Añade los elementos pendientes en el procesador. |
-| 222 | Cierra el `print` de estadísticas. |
-| 223 | Línea en blanco de separación. |
-| 224 | Declara el helper interno `_put_element`. |
-| 225 | Docstring de `_put_element`. |
-| 226 | Línea en blanco antes del cuerpo. |
-| 227 | Recorre los procesadores registrados por orden. |
-| 228 | Pregunta al procesador si puede aceptar el elemento. |
-| 229 | Ingiere el elemento en el primer procesador compatible. |
-| 230 | Devuelve `True` porque el elemento fue procesado. |
-| 231 | Devuelve `False` si ningún procesador aceptó el elemento. |
+| 13 | Declara la clase `DataProcessor`. |
+| 14 | Docstring: `""" Define the common interface for all data processors """`. |
+| 15 | Línea en blanco de separación. |
+| 16 | Declara la función o método `__init__`. |
+| 17 | Asigna `name` a `self._name`. |
+| 18 | Asigna `[]` a `self._items: list[str]`. |
+| 19 | Asigna `0` a `self._next_output_rank`. |
+| 20 | Asigna `0` a `self._total_processed`. |
+| 21 | Línea en blanco de separación. |
+| 22 | Declara la función o método `get_name`. |
+| 23 | Docstring: `""" Return the processor display name """`. |
+| 24 | Línea en blanco de separación. |
+| 25 | Devuelve `self._name`. |
+| 26 | Línea en blanco de separación. |
+| 27 | Declara la función o método `get_data_len`. |
+| 28 | Docstring: `""" Return the number of items waiting on the processor """`. |
+| 29 | Línea en blanco de separación. |
+| 30 | Devuelve `len(self._items)`. |
+| 31 | Línea en blanco de separación. |
+| 32 | Declara la función o método `get_total_processed`. |
+| 33 | Docstring: `""" Return the total number of ingested items """`. |
+| 34 | Línea en blanco de separación. |
+| 35 | Devuelve `self._total_processed`. |
+| 36 | Línea en blanco de separación. |
+| 37 | Marca el método siguiente como abstracto. |
+| 38 | Declara la función o método `validate`. |
+| 39 | Docstring: `""" Return whether data can be ingested by this processor """`. |
+| 40 | Línea en blanco de separación. |
+| 41 | Marca el método siguiente como abstracto. |
+| 42 | Declara la función o método `ingest`. |
+| 43 | Docstring: `""" Ingest valid data into this processor """`. |
+| 44 | Línea en blanco de separación. |
+| 45 | Declara la función o método `output`. |
+| 46 | Docstring: `""" Extract and return the oldest stored item with its rank """`. |
+| 47 | Línea en blanco de separación. |
+| 48 | Comprueba `not self._items`. |
+| 49 | Lanza `IndexError("No data to output")`. |
+| 50 | Línea en blanco de separación. |
+| 51 | Asigna `self._next_output_rank` a `rank`. |
+| 52 | Asigna `self._items.pop(0)` a `item`. |
+| 53 | Asigna `1` a `self._next_output_rank +`. |
+| 54 | Línea en blanco de separación. |
+| 55 | Devuelve `rank, item`. |
+| 56 | Línea en blanco de separación. |
+| 57 | Declara la función o método `_put_item`. |
+| 58 | Docstring: `""" Store one processed item and update statistics """`. |
+| 59 | Línea en blanco de separación. |
+| 60 | Ejecuta `self._items.append(item)`. |
+| 61 | Asigna `1` a `self._total_processed +`. |
+| 62 | Línea en blanco de separación. |
+| 63 | Declara la función o método `_put_items`. |
+| 64 | Docstring: `""" Store several processed items and update statistics """`. |
+| 65 | Línea en blanco de separación. |
+| 66 | Ejecuta `self._items.extend(items)`. |
+| 67 | Asigna `len(items)` a `self._total_processed +`. |
+| 68 | Línea en blanco de separación. |
+| 69 | Declara la función o método `_put_scalar_or_list`. |
+| 70 | Docstring: `""" Store one value or every value from a list as strings """`. |
+| 71 | Línea en blanco de separación. |
+| 72 | Comprueba `isinstance(data, list)`. |
+| 73 | Ejecuta `self._put_items([str(item) for item in data])`. |
+| 74 | Sale de la función o método. |
+| 75 | Ejecuta `self._put_item(str(data))`. |
+| 76 | Línea en blanco de separación. |
+| 77 | Línea en blanco de separación. |
+| 78 | Declara la clase `NumericProcessor`. |
+| 79 | Docstring: `""" Process numeric values and lists of numeric values """`. |
+| 80 | Línea en blanco de separación. |
+| 81 | Declara la función o método `__init__`. |
+| 82 | Docstring: `""" Initialize a numeric processor """`. |
+| 83 | Línea en blanco de separación. |
+| 84 | Ejecuta `super().__init__("Numeric Processor")`. |
+| 85 | Línea en blanco de separación. |
+| 86 | Declara la función o método `validate`. |
+| 87 | Docstring: `""" Return whether data is numeric or a numeric list """`. |
+| 88 | Línea en blanco de separación. |
+| 89 | Comprueba `isinstance(data, list)`. |
+| 90 | Devuelve `all(self._is_numeric(item) for item in data)`. |
+| 91 | Devuelve `self._is_numeric(data)`. |
+| 92 | Línea en blanco de separación. |
+| 93 | Declara la función o método `ingest`. |
+| 94 | Docstring: `""" Ingest numeric data as separated string items """`. |
+| 95 | Línea en blanco de separación. |
+| 96 | Comprueba `not self.validate(data)`. |
+| 97 | Lanza `ValueError("Improper numeric data")`. |
+| 98 | Línea en blanco de separación. |
+| 99 | Ejecuta `self._put_scalar_or_list(data)`. |
+| 100 | Línea en blanco de separación. |
+| 101 | Declara la función o método `_is_numeric`. |
+| 102 | Docstring: `""" Return whether data is a non-boolean number """`. |
+| 103 | Línea en blanco de separación. |
+| 104 | Devuelve `isinstance(data, (int, float)) and not isinstance(data, bool)`. |
+| 105 | Línea en blanco de separación. |
+| 106 | Línea en blanco de separación. |
+| 107 | Declara la clase `TextProcessor`. |
+| 108 | Docstring: `""" Process text values and lists of text values """`. |
+| 109 | Línea en blanco de separación. |
+| 110 | Declara la función o método `__init__`. |
+| 111 | Docstring: `""" Initialize a text processor """`. |
+| 112 | Línea en blanco de separación. |
+| 113 | Ejecuta `super().__init__("Text Processor")`. |
+| 114 | Línea en blanco de separación. |
+| 115 | Declara la función o método `validate`. |
+| 116 | Docstring: `""" Return whether data is text or a text list """`. |
+| 117 | Línea en blanco de separación. |
+| 118 | Comprueba `isinstance(data, str)`. |
+| 119 | Devuelve `True`. |
+| 120 | Comprueba `isinstance(data, list)`. |
+| 121 | Devuelve `all(isinstance(item, str) for item in data)`. |
+| 122 | Devuelve `False`. |
+| 123 | Línea en blanco de separación. |
+| 124 | Declara la función o método `ingest`. |
+| 125 | Docstring: `""" Ingest text data as separated string items """`. |
+| 126 | Línea en blanco de separación. |
+| 127 | Comprueba `not self.validate(data)`. |
+| 128 | Lanza `ValueError("Improper text data")`. |
+| 129 | Línea en blanco de separación. |
+| 130 | Ejecuta `self._put_scalar_or_list(data)`. |
+| 131 | Línea en blanco de separación. |
+| 132 | Línea en blanco de separación. |
+| 133 | Declara la clase `LogProcessor`. |
+| 134 | Docstring: `""" Process log dictionaries and lists of log dictionaries """`. |
+| 135 | Línea en blanco de separación. |
+| 136 | Declara la función o método `__init__`. |
+| 137 | Docstring: `""" Initialize a log processor """`. |
+| 138 | Línea en blanco de separación. |
+| 139 | Ejecuta `super().__init__("Log Processor")`. |
+| 140 | Línea en blanco de separación. |
+| 141 | Declara la función o método `validate`. |
+| 142 | Docstring: `""" Return whether data is a valid log entry or list """`. |
+| 143 | Línea en blanco de separación. |
+| 144 | Comprueba `isinstance(data, dict)`. |
+| 145 | Devuelve `self._is_log_entry(data)`. |
+| 146 | Comprueba `isinstance(data, list)`. |
+| 147 | Devuelve `all(self._is_log_entry(item) for item in data)`. |
+| 148 | Devuelve `False`. |
+| 149 | Línea en blanco de separación. |
+| 150 | Declara la función o método `ingest`. |
+| 151 | Docstring: `""" Ingest log data as separated formatted strings """`. |
+| 152 | Línea en blanco de separación. |
+| 153 | Comprueba `not self.validate(data)`. |
+| 154 | Lanza `ValueError("Improper log data")`. |
+| 155 | Línea en blanco de separación. |
+| 156 | Comprueba `isinstance(data, list)`. |
+| 157 | Ejecuta `self._put_items([self._format_log_entry(item) for item in data])`. |
+| 158 | Sale de la función o método. |
+| 159 | Ejecuta `self._put_item(self._format_log_entry(data))`. |
+| 160 | Línea en blanco de separación. |
+| 161 | Declara la función o método `_is_log_entry`. |
+| 162 | Docstring: `""" Return whether data is a dictionary with string pairs """`. |
+| 163 | Línea en blanco de separación. |
+| 164 | Devuelve `isinstance(data, dict) and all(`. |
+| 165 | Ejecuta `isinstance(key, str) and isinstance(value, str)`. |
+| 166 | Recorre `key, value in data.items()`. |
+| 167 | Cierra una llamada o expresión multilínea. |
+| 168 | Línea en blanco de separación. |
+| 169 | Declara la función o método `_format_log_entry`. |
+| 170 | Docstring: `""" Convert a log entry into the expected output format """`. |
+| 171 | Línea en blanco de separación. |
+| 172 | Asigna `entry.get("log_level", "")` a `level`. |
+| 173 | Asigna `entry.get("log_message", "")` a `message`. |
+| 174 | Comprueba `level or message`. |
+| 175 | Devuelve `f"{level}: {message}"`. |
+| 176 | Devuelve `str(entry)`. |
+| 177 | Línea en blanco de separación. |
+| 178 | Línea en blanco de separación. |
+| 179 | Declara la clase `DataStream`. |
+| 180 | Docstring: `""" Route stream elements to registered data processors """`. |
+| 181 | Línea en blanco de separación. |
+| 182 | Declara la función o método `__init__`. |
+| 183 | Docstring: `""" Initialize an empty data stream """`. |
+| 184 | Línea en blanco de separación. |
+| 185 | Asigna `[]` a `self._processors: list[DataProcessor]`. |
+| 186 | Línea en blanco de separación. |
+| 187 | Declara la función o método `get_processors`. |
+| 188 | Docstring: `""" Return registered processors """`. |
+| 189 | Línea en blanco de separación. |
+| 190 | Devuelve `self._processors`. |
+| 191 | Línea en blanco de separación. |
+| 192 | Declara la función o método `register_processor`. |
+| 193 | Docstring: `""" Register a data processor for future stream processing """`. |
+| 194 | Línea en blanco de separación. |
+| 195 | Ejecuta `self._processors.append(proc)`. |
+| 196 | Línea en blanco de separación. |
+| 197 | Declara la función o método `process_stream`. |
+| 198 | Docstring: `""" Send each stream element to the first compatible processor """`. |
+| 199 | Línea en blanco de separación. |
+| 200 | Recorre `element in stream`. |
+| 201 | Comprueba `not self._put_element(element)`. |
+| 202 | Imprime un mensaje por pantalla. |
+| 203 | Ejecuta `"DataStream error - Can't process element in stream: "`. |
+| 204 | Ejecuta `f"{element}"`. |
+| 205 | Cierra una llamada o expresión multilínea. |
+| 206 | Línea en blanco de separación. |
+| 207 | Declara la función o método `print_processors_stats`. |
+| 208 | Docstring: `""" Print statistics for every registered processor """`. |
+| 209 | Línea en blanco de separación. |
+| 210 | Imprime un mensaje por pantalla. |
+| 211 | Comprueba `not self._processors`. |
+| 212 | Imprime un mensaje por pantalla. |
+| 213 | Sale de la función o método. |
+| 214 | Línea en blanco de separación. |
+| 215 | Recorre `processor in self._processors`. |
+| 216 | Imprime un mensaje por pantalla. |
+| 217 | Ejecuta `f"{processor.get_name()}: total "`. |
+| 218 | Ejecuta `f"{processor.get_total_processed()} items processed, "`. |
+| 219 | Ejecuta `f"remaining {processor.get_data_len()} on processor"`. |
+| 220 | Cierra una llamada o expresión multilínea. |
+| 221 | Línea en blanco de separación. |
+| 222 | Declara la función o método `_put_element`. |
+| 223 | Docstring: `""" Return whether an element was sent to a processor """`. |
+| 224 | Línea en blanco de separación. |
+| 225 | Recorre `processor in self._processors`. |
+| 226 | Comentario: `Polymorphism: DataStream uses the DataProcessor interface only.`. |
+| 227 | Comprueba `processor.validate(element)`. |
+| 228 | Ejecuta `processor.ingest(element)`. |
+| 229 | Devuelve `True`. |
+| 230 | Devuelve `False`. |
+| 231 | Línea en blanco de separación. |
 | 232 | Línea en blanco de separación. |
-| 233 | Línea en blanco de separación. |
-| 234 | Declara `put_processor_outputs`. |
-| 235 | Docstring de `put_processor_outputs`. |
-| 236 | Línea en blanco antes del cuerpo. |
-| 237 | Repite la extracción tantas veces como indique `amount`. |
-| 238 | Consume un elemento llamando a `output`. |
+| 233 | Declara la función o método `put_processor_outputs`. |
+| 234 | Docstring: `""" Consume a fixed number of values from a processor """`. |
+| 235 | Línea en blanco de separación. |
+| 236 | Recorre `_ in range(amount)`. |
+| 237 | Ejecuta `processor.output()`. |
+| 238 | Línea en blanco de separación. |
 | 239 | Línea en blanco de separación. |
-| 240 | Línea en blanco de separación. |
-| 241 | Declara `build_demo_stream`. |
-| 242 | Docstring de `build_demo_stream`. |
-| 243 | Línea en blanco antes del cuerpo. |
-| 244 | Empieza la lista del stream de demostración. |
-| 245 | Primer elemento: texto simple. |
-| 246 | Segundo elemento: lista numérica. |
-| 247 | Tercer elemento: lista de logs. |
-| 248 | Empieza el primer log. |
-| 249 | Define el nivel del primer log. |
-| 250 | Define el mensaje del primer log. |
-| 251 | Cierra el primer log. |
-| 252 | Define el segundo log en una línea. |
-| 253 | Cierra la lista de logs. |
-| 254 | Cuarto elemento: número individual. |
-| 255 | Quinto elemento: lista de strings. |
-| 256 | Cierra y devuelve la lista del stream. |
-| 257 | Línea en blanco de separación. |
-| 258 | Línea en blanco de separación. |
-| 259 | Declara `run_demo`. |
-| 260 | Docstring de `run_demo`. |
-| 261 | Línea en blanco antes del cuerpo. |
-| 262 | Imprime el título principal del ejercicio. |
-| 263 | Imprime el mensaje de inicialización. |
-| 264 | Crea un `DataStream`. |
-| 265 | Imprime estadísticas sin procesadores. |
-| 266 | Línea en blanco de separación lógica. |
-| 267 | Crea el procesador numérico. |
-| 268 | Imprime que se registra el procesador numérico. |
-| 269 | Registra el procesador numérico en el stream. |
-| 270 | Construye el stream de demostración. |
-| 271 | Imprime el primer lote de datos. |
-| 272 | Procesa el primer lote con solo el procesador numérico. |
-| 273 | Imprime estadísticas tras el primer lote. |
-| 274 | Línea en blanco de separación lógica. |
-| 275 | Crea el procesador de texto. |
-| 276 | Crea el procesador de logs. |
-| 277 | Imprime que se registran los demás procesadores. |
-| 278 | Registra el procesador de texto. |
-| 279 | Registra el procesador de logs. |
-| 280 | Imprime que se reenviará el mismo lote. |
-| 281 | Procesa el mismo stream con los tres procesadores. |
-| 282 | Imprime estadísticas actualizadas. |
-| 283 | Línea en blanco de separación lógica. |
-| 284 | Empieza el `print` multilínea sobre el consumo de datos. |
-| 285 | Primera parte del mensaje de consumo. |
-| 286 | Segunda parte del mensaje de consumo. |
-| 287 | Cierra el `print` de consumo. |
-| 288 | Consume tres salidas del procesador numérico. |
-| 289 | Consume dos salidas del procesador de texto. |
-| 290 | Consume una salida del procesador de logs. |
-| 291 | Imprime estadísticas finales. |
-| 292 | Línea en blanco de separación. |
-| 293 | Línea en blanco de separación. |
-| 294 | Comprueba si el archivo se ejecuta directamente. |
-| 295 | Ejecuta la demo principal. |
+| 240 | Declara la función o método `build_log_entry`. |
+| 241 | Docstring: `""" Build one log entry from dynamic values """`. |
+| 242 | Línea en blanco de separación. |
+| 243 | Devuelve `{`. |
+| 244 | Continúa una estructura o llamada con `"log_level": level,`. |
+| 245 | Continúa una estructura o llamada con `"log_message": message,`. |
+| 246 | Cierra el diccionario. |
+| 247 | Línea en blanco de separación. |
+| 248 | Línea en blanco de separación. |
+| 249 | Declara la función o método `build_stream`. |
+| 250 | Docstring: `""" Build a stream from received items """`. |
+| 251 | Línea en blanco de separación. |
+| 252 | Devuelve `list(items)`. |
+| 253 | Línea en blanco de separación. |
+| 254 | Línea en blanco de separación. |
+| 255 | Declara la función o método `run_demo`. |
+| 256 | Continúa una estructura o llamada con `stream: list[Any],`. |
+| 257 | Continúa una estructura o llamada con `numeric_output_amount: int,`. |
+| 258 | Continúa una estructura o llamada con `text_output_amount: int,`. |
+| 259 | Continúa una estructura o llamada con `log_output_amount: int,`. |
+| 260 | Cierra una firma multilínea de función o método. |
+| 261 | Docstring: `""" Run the data stream demonstration scenario """`. |
+| 262 | Línea en blanco de separación. |
+| 263 | Imprime un mensaje por pantalla. |
+| 264 | Imprime un mensaje por pantalla. |
+| 265 | Imprime un mensaje por pantalla. |
+| 266 | Asigna `DataStream()` a `data_stream`. |
+| 267 | Ejecuta `data_stream.print_processors_stats()`. |
+| 268 | Línea en blanco de separación. |
+| 269 | Asigna `NumericProcessor()` a `numeric_processor`. |
+| 270 | Imprime un mensaje por pantalla. |
+| 271 | Ejecuta `data_stream.register_processor(numeric_processor)`. |
+| 272 | Imprime un mensaje por pantalla. |
+| 273 | Ejecuta `data_stream.process_stream(stream)`. |
+| 274 | Ejecuta `data_stream.print_processors_stats()`. |
+| 275 | Línea en blanco de separación. |
+| 276 | Asigna `TextProcessor()` a `text_processor`. |
+| 277 | Asigna `LogProcessor()` a `log_processor`. |
+| 278 | Imprime un mensaje por pantalla. |
+| 279 | Imprime un mensaje por pantalla. |
+| 280 | Ejecuta `data_stream.register_processor(text_processor)`. |
+| 281 | Ejecuta `data_stream.register_processor(log_processor)`. |
+| 282 | Imprime un mensaje por pantalla. |
+| 283 | Ejecuta `data_stream.process_stream(stream)`. |
+| 284 | Ejecuta `data_stream.print_processors_stats()`. |
+| 285 | Línea en blanco de separación. |
+| 286 | Imprime un mensaje por pantalla. |
+| 287 | Ejecuta `"Consume some elements from the data processors: "`. |
+| 288 | Ejecuta `f"Numeric {numeric_output_amount}, "`. |
+| 289 | Ejecuta `f"Text {text_output_amount}, "`. |
+| 290 | Ejecuta `f"Log {log_output_amount}"`. |
+| 291 | Cierra una llamada o expresión multilínea. |
+| 292 | Ejecuta `put_processor_outputs(numeric_processor, numeric_output_amount)`. |
+| 293 | Ejecuta `put_processor_outputs(text_processor, text_output_amount)`. |
+| 294 | Ejecuta `put_processor_outputs(log_processor, log_output_amount)`. |
+| 295 | Ejecuta `data_stream.print_processors_stats()`. |

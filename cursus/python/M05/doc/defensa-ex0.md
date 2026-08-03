@@ -33,7 +33,7 @@ Flujo principal:
 3. Los datos válidos se almacenan separados usando los helpers comunes de `DataProcessor`, manteniendo orden FIFO.
 4. `output` extrae y elimina el elemento más antiguo; si no hay datos, lanza `IndexError`.
 
-El script incluye una demostración ejecutable con `python3 data_processor.py`, creando los tres procesadores, probando validaciones, una ingesta inválida y varias salidas.
+La función `run_demo(...)` permite ejecutar una demostración dinámica: recibe desde fuera los datos de prueba, los valores inválidos y las cantidades de salida. Así el código del ejercicio no contiene datos de ejemplo hardcodeados.
 
 ## 2. Posibles preguntas de corrección y respuestas
 
@@ -77,7 +77,7 @@ Debe ser un `dict` donde todas las claves y todos los valores sean `str`, o una 
 Para poder formatear entradas con `log_level` y `log_message` sin fallar si alguna clave no existe.
 
 **¿Qué comportamiento se ha comprobado en tests/revisión?**  
-Clase abstracta, validaciones válidas e inválidas, excepciones en ingesta inválida, orden FIFO, rangos, salida en procesador vacío, `LogProcessor` con un único `dict` de entrada y ejecución del script de demostración.
+Clase abstracta, validaciones válidas e inválidas, excepciones en ingesta inválida, orden FIFO, rangos, salida en procesador vacío, `LogProcessor` con un único `dict` de entrada y ejecución dinámica de `run_demo(...)` con datos inyectados desde tests.
 
 **¿Cumple el subject?**  
 Sí: hay una clase abstracta común, tres procesadores especializados, métodos `validate`, `ingest` y `output`, almacenamiento separado, conversión a `str` cuando corresponde y pruebas/demostración de casos válidos e inválidos.

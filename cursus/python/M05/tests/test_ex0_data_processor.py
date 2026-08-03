@@ -4,9 +4,9 @@
 
 from __future__ import annotations
 
-import subprocess
 import sys
 from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -20,6 +20,8 @@ from data_processor import (  # noqa: E402
     LogProcessor,
     NumericProcessor,
     TextProcessor,
+    build_log_entry,
+    run_demo,
 )
 
 
@@ -166,18 +168,29 @@ def test_output_empty_processor_raises_index_error() -> None:
         TextProcessor().output()
 
 
-def test_script_execution_prints_expected_demo_lines() -> None:
-    """Running data_processor.py executes the subject demonstration"""
+def test_run_demo_prints_expected_demo_lines(capsys: Any) -> None:
+    """Running run_demo executes the subject demonstration"""
 
-    result = subprocess.run(
-        [sys.executable, str(EX0 / "data_processor.py")],
-        check=True,
-        capture_output=True,
-        text=True,
+    run_demo(
+        42,
+        "Hello",
+        "foo",
+        [1, 2, 3, 4, 5],
+        42,
+        ["Hello", "Nexus", "World"],
+        "Hello",
+        [
+            build_log_entry("NOTICE", "Connection to server"),
+            build_log_entry("ERROR", "Unauthorized access!!"),
+        ],
+        3,
+        1,
+        2,
     )
+    output = capsys.readouterr().out
 
-    assert "=== Code Nexus - Data Processor ===" in result.stdout
-    assert "Got exception: Improper numeric data" in result.stdout
-    assert "Numeric value 0: 1" in result.stdout
-    assert "Text value 0: Hello" in result.stdout
-    assert "Log entry 1: ERROR: Unauthorized access!!" in result.stdout
+    assert "=== Code Nexus - Data Processor ===" in output
+    assert "Got exception: Improper numeric data" in output
+    assert "Numeric value 0: 1" in output
+    assert "Text value 0: Hello" in output
+    assert "Log entry 1: ERROR: Unauthorized access!!" in output

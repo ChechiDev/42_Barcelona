@@ -3,7 +3,6 @@
 """Focused tests for M05 exercise 1 data stream behavior"""
 
 import ast
-import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -22,7 +21,8 @@ from data_stream import (  # noqa: E402
     LogProcessor,
     NumericProcessor,
     TextProcessor,
-    build_demo_stream,
+    build_log_entry,
+    build_stream,
     put_processor_outputs,
 )
 
@@ -31,6 +31,21 @@ def drain(processor: DataProcessor) -> list[tuple[int, str]]:
     """ Return all pending processor outputs """
 
     return [processor.output() for _ in range(processor.get_data_len())]
+
+
+def build_subject_stream() -> list[Any]:
+    """ Build the stream used by the subject scenario tests """
+
+    return build_stream(
+        "Hello world",
+        [3.14, -1, 2.71],
+        [
+            build_log_entry("WARNING", "Telnet access! Use ssh instead"),
+            build_log_entry("INFO", "User wil is connected"),
+        ],
+        42,
+        ["Hi", "five"],
+    )
 
 
 def test_source_uses_only_authorized_imports() -> None:
@@ -100,11 +115,11 @@ def test_stats_match_subject_counts_after_processing_and_consuming(
     assert "No processor found, no data" in initial_stats
 
     stream.register_processor(numeric)
-    stream.process_stream(build_demo_stream())
+    stream.process_stream(build_subject_stream())
     capsys.readouterr()
     stream.register_processor(text)
     stream.register_processor(log)
-    stream.process_stream(build_demo_stream())
+    stream.process_stream(build_subject_stream())
     put_processor_outputs(numeric, 3)
     put_processor_outputs(text, 2)
     put_processor_outputs(log, 1)
@@ -149,17 +164,13 @@ def test_processor_validation_edge_cases_and_empty_output() -> None:
         numeric.output()
 
 
-def test_script_execution_demonstrates_required_scenario() -> None:
-    """ Execute data_stream.py and verify key subject output """
+def test_run_demo_demonstrates_required_scenario(capsys: Any) -> None:
+    """ Execute run_demo and verify key subject output """
 
-    result = subprocess.run(
-        [sys.executable, str(SOURCE)],
-        check=True,
-        text=True,
-        capture_output=True,
-    )
+    from data_stream import run_demo  # noqa: PLC0415
 
-    output = result.stdout
+    run_demo(build_subject_stream(), 3, 2, 1)
+    output = capsys.readouterr().out
     assert "=== Code Nexus - Data Stream ===" in output
     assert "Registering Numeric Processor" in output
     assert "Registering other data processors" in output

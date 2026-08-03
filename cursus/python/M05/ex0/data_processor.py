@@ -14,6 +14,8 @@ class DataProcessor(ABC):
     """ Define the common interface for all data processors """
 
     def __init__(self) -> None:
+        """ Initialize an empty processor storage """
+
         self._items: list[str] = []
         self._next_output_rank = 0
 
@@ -165,73 +167,101 @@ def print_outputs(
         print(f"{label} {rank}: {value}")
 
 
-def run_numeric_processor_demo() -> None:
+def build_log_entry(level: str, message: str) -> LogEntry:
+    """ Build one log entry from dynamic values """
+
+    return {
+        "log_level": level,
+        "log_message": message,
+    }
+
+
+def run_numeric_processor_demo(
+    valid_value: Any,
+    invalid_value: Any,
+    invalid_ingest: Any,
+    numeric_data: NumericData,
+    output_amount: int,
+) -> None:
     """ Run the numeric processor demo """
 
     processor = NumericProcessor()
     print()
     print("Testing Numeric Processor...")
-    print_validation(processor, 42)
-    print_validation(processor, "Hello")
-    print("Test invalid ingestion of string'foo'without prior validation:")
+    print_validation(processor, valid_value)
+    print_validation(processor, invalid_value)
+    print(
+        "Test invalid ingestion of "
+        f"string'{invalid_ingest}'without prior validation:"
+    )
 
     try:
-        processor.ingest("foo")  # type: ignore[arg-type]
+        processor.ingest(invalid_ingest)  # type: ignore[arg-type]
     except ValueError as error:
         print(f"Got exception: {error}")
 
-    numeric_data = [1, 2, 3, 4, 5]
     print(f"Processing data: {numeric_data}")
     processor.ingest(numeric_data)
-    print("Extracting 3 values...")
-    print_outputs(processor, 3, "Numeric value")
+    print(f"Extracting {output_amount} values...")
+    print_outputs(processor, output_amount, "Numeric value")
 
 
-def run_text_processor_demo() -> None:
+def run_text_processor_demo(
+    invalid_value: Any,
+    text_data: TextData,
+    output_amount: int,
+) -> None:
     """ Run the text processor demo """
 
     processor = TextProcessor()
     print()
     print("Testing Text Processor...")
-    print_validation(processor, 42)
-    text_data = ["Hello", "Nexus", "World"]
+    print_validation(processor, invalid_value)
     print(f"Processing data: {text_data}")
     processor.ingest(text_data)
-    print("Extracting 1 value...")
-    print_outputs(processor, 1, "Text value")
+    print(f"Extracting {output_amount} value...")
+    print_outputs(processor, output_amount, "Text value")
 
 
-def run_log_processor_demo() -> None:
+def run_log_processor_demo(
+    invalid_value: Any,
+    log_data: LogData,
+    output_amount: int,
+) -> None:
     """ Run the log processor demo """
 
     processor = LogProcessor()
     print()
     print("Testing Log Processor...")
-    print_validation(processor, "Hello")
-    log_data = [
-        {
-            "log_level": "NOTICE",
-            "log_message": "Connection to server",
-        },
-        {
-            "log_level": "ERROR",
-            "log_message": "Unauthorized access!!",
-        },
-    ]
+    print_validation(processor, invalid_value)
     print(f"Processing data: {log_data}")
     processor.ingest(log_data)
-    print("Extracting 2 values...")
-    print_outputs(processor, 2, "Log entry")
+    print(f"Extracting {output_amount} values...")
+    print_outputs(processor, output_amount, "Log entry")
 
 
-def run_demo() -> None:
-    """ Run the data processor demo"""
+def run_demo(
+    numeric_valid_value: Any,
+    numeric_invalid_value: Any,
+    numeric_invalid_ingest: Any,
+    numeric_data: NumericData,
+    text_invalid_value: Any,
+    text_data: TextData,
+    log_invalid_value: Any,
+    log_data: LogData,
+    numeric_output_amount: int,
+    text_output_amount: int,
+    log_output_amount: int,
+) -> None:
+    """ Run the data processor demo """
 
     print("=== Code Nexus - Data Processor ===")
-    run_numeric_processor_demo()
-    run_text_processor_demo()
-    run_log_processor_demo()
-
-
-if __name__ == "__main__":
-    run_demo()
+    run_numeric_processor_demo(
+        numeric_valid_value,
+        numeric_invalid_value,
+        numeric_invalid_ingest,
+        numeric_data,
+        numeric_output_amount,
+    )
+    run_text_processor_demo(text_invalid_value, text_data, text_output_amount)
+    run_log_processor_demo(log_invalid_value, log_data, log_output_amount)

@@ -79,6 +79,8 @@ class NumericProcessor(DataProcessor):
     """ Process numeric values and lists of numeric values """
 
     def __init__(self) -> None:
+        """ Initialize a numeric processor """
+
         super().__init__("Numeric Processor")
 
     def validate(self, data: Any) -> bool:
@@ -106,6 +108,8 @@ class TextProcessor(DataProcessor):
     """ Process text values and lists of text values """
 
     def __init__(self) -> None:
+        """ Initialize a text processor """
+
         super().__init__("Text Processor")
 
     def validate(self, data: Any) -> bool:
@@ -219,6 +223,7 @@ class DataStream:
         """ Return whether an element was sent to a processor """
 
         for processor in self._processors:
+            # Polymorphism: DataStream uses the DataProcessor interface only.
             if processor.validate(element):
                 processor.ingest(element)
                 return True
@@ -232,25 +237,27 @@ def put_processor_outputs(processor: DataProcessor, amount: int) -> None:
         processor.output()
 
 
-def build_demo_stream() -> list[Any]:
-    """ Build the demonstration data stream """
+def build_log_entry(level: str, message: str) -> LogEntry:
+    """ Build one log entry from dynamic values """
 
-    return [
-        "Hello world",
-        [3.14, -1, 2.71],
-        [
-            {
-                "log_level": "WARNING",
-                "log_message": "Telnet access! Use ssh instead",
-            },
-            {"log_level": "INFO", "log_message": "User wil is connected"},
-        ],
-        42,
-        ["Hi", "five"],
-    ]
+    return {
+        "log_level": level,
+        "log_message": message,
+    }
 
 
-def run_demo() -> None:
+def build_stream(*items: Any) -> list[Any]:
+    """ Build a stream from received items """
+
+    return list(items)
+
+
+def run_demo(
+    stream: list[Any],
+    numeric_output_amount: int,
+    text_output_amount: int,
+    log_output_amount: int,
+) -> None:
     """ Run the data stream demonstration scenario """
 
     print("=== Code Nexus - Data Stream ===")
@@ -262,9 +269,8 @@ def run_demo() -> None:
     numeric_processor = NumericProcessor()
     print("Registering Numeric Processor")
     data_stream.register_processor(numeric_processor)
-    demo_stream = build_demo_stream()
-    print(f"Send first batch of data on stream: {demo_stream}")
-    data_stream.process_stream(demo_stream)
+    print(f"Send first batch of data on stream: {stream}")
+    data_stream.process_stream(stream)
     data_stream.print_processors_stats()
 
     text_processor = TextProcessor()
@@ -274,18 +280,16 @@ def run_demo() -> None:
     data_stream.register_processor(text_processor)
     data_stream.register_processor(log_processor)
     print("Send the same batch again")
-    data_stream.process_stream(demo_stream)
+    data_stream.process_stream(stream)
     data_stream.print_processors_stats()
 
     print(
         "Consume some elements from the data processors: "
-        "Numeric 3, Text 2, Log 1"
+        f"Numeric {numeric_output_amount}, "
+        f"Text {text_output_amount}, "
+        f"Log {log_output_amount}"
     )
-    put_processor_outputs(numeric_processor, 3)
-    put_processor_outputs(text_processor, 2)
-    put_processor_outputs(log_processor, 1)
+    put_processor_outputs(numeric_processor, numeric_output_amount)
+    put_processor_outputs(text_processor, text_output_amount)
+    put_processor_outputs(log_processor, log_output_amount)
     data_stream.print_processors_stats()
-
-
-if __name__ == "__main__":
-    run_demo()
