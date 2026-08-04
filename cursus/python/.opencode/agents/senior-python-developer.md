@@ -41,7 +41,8 @@ Working method:
 
 Code quality expectations:
 - Clear names over comments.
-- Add a one-line English docstring immediately after every function or class header, formatted as `""" Text without final period """`, followed by one blank line.
+- Add a one-line English docstring immediately after every function or class header, except `__init__` methods, formatted as `""" Text without final period """`, followed by one blank line.
+- Do not add docstrings to `__init__` methods.
 - Small functions with one clear responsibility.
 - No unnecessary global state.
 - No broad exception swallowing.

@@ -17,7 +17,8 @@ Priorities:
 
 Python style:
 - Use clear names and simple control flow.
-- Add a one-line English docstring immediately after every function or class header, formatted as `""" Text without final period """`, followed by one blank line.
+- Add a one-line English docstring immediately after every function or class header, except `__init__` methods, formatted as `""" Text without final period """`, followed by one blank line.
+- Do not add docstrings to `__init__` methods.
 - Avoid broad exception swallowing.
 - Avoid hidden side effects at import time unless the exercise requires script behavior.
 - Keep generated files, caches, and virtual environments out of source control.

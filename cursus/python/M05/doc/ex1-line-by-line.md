@@ -10,25 +10,25 @@ Este documento vincula cada línea de `ex1/data_stream.py` con lo que hace.
 | 4 | Importa `typing import Any`. |
 | 5 | Línea en blanco de separación. |
 | 6 | Línea en blanco de separación. |
-| 7 | Asigna `int \| float \| list[int \| float]` a `NumericData`. |
-| 8 | Asigna `str \| list[str]` a `TextData`. |
-| 9 | Asigna `dict[str, str]` a `LogEntry`. |
-| 10 | Asigna `LogEntry \| list[LogEntry]` a `LogData`. |
+| 7 | Ejecuta `NumericData = int \| float \| list[int \| float]`. |
+| 8 | Ejecuta `TextData = str \| list[str]`. |
+| 9 | Ejecuta `LogEntry = dict[str, str]`. |
+| 10 | Ejecuta `LogData = LogEntry \| list[LogEntry]`. |
 | 11 | Línea en blanco de separación. |
-| 12 | Asigna `"Hello world"` a `TXT_VAL`. |
-| 13 | Asigna `[3.14, -1, 2.71]` a `NUM_DATA`. |
+| 12 | Ejecuta `TXT_VAL = "Hello world"`. |
+| 13 | Ejecuta `NUM_DATA = [3.14, -1, 2.71]`. |
 | 14 | Línea en blanco de separación. |
-| 15 | Asigna `"WARNING"` a `LOG_WARN_LVL`. |
-| 16 | Asigna `"Telnet access! Use ssh instead"` a `LOG_WARN_MSG`. |
-| 17 | Asigna `"INFO"` a `LOG_INFO_LVL`. |
-| 18 | Asigna `"User wil is connected"` a `LOG_INFO_MSG`. |
+| 15 | Ejecuta `LOG_WARN_LVL = "WARNING"`. |
+| 16 | Ejecuta `LOG_WARN_MSG = "Telnet access! Use ssh instead"`. |
+| 17 | Ejecuta `LOG_INFO_LVL = "INFO"`. |
+| 18 | Ejecuta `LOG_INFO_MSG = "User wil is connected"`. |
 | 19 | Línea en blanco de separación. |
-| 20 | Asigna `42` a `NUM_VAL`. |
-| 21 | Asigna `["Hi", "five"]` a `TXT_DATA`. |
+| 20 | Ejecuta `NUM_VAL = 42`. |
+| 21 | Ejecuta `TXT_DATA = ["Hi", "five"]`. |
 | 22 | Línea en blanco de separación. |
-| 23 | Asigna `3` a `NUM_OUT_NB`. |
-| 24 | Asigna `2` a `TXT_OUT_NB`. |
-| 25 | Asigna `1` a `LOG_OUT_NB`. |
+| 23 | Ejecuta `NUM_OUT_NB = 3`. |
+| 24 | Ejecuta `TXT_OUT_NB = 2`. |
+| 25 | Ejecuta `LOG_OUT_NB = 1`. |
 | 26 | Línea en blanco de separación. |
 | 27 | Línea en blanco de separación. |
 | 28 | Declara `class DataProcessor(ABC):`. |
@@ -69,7 +69,7 @@ Este documento vincula cada línea de `ex1/data_stream.py` con lo que hace.
 | 63 | Comprueba `not self._items`. |
 | 64 | Lanza `IndexError("No data to output")`. |
 | 65 | Línea en blanco de separación. |
-| 66 | Asigna `self._next_output_rank` a `rank`. |
+| 66 | Ejecuta `rank = self._next_output_rank`. |
 | 67 | Ejecuta `item = self._items.pop(0)`. |
 | 68 | Ejecuta `self._next_output_rank += 1`. |
 | 69 | Línea en blanco de separación. |
@@ -100,226 +100,218 @@ Este documento vincula cada línea de `ex1/data_stream.py` con lo que hace.
 | 94 | Docstring: `""" Process numeric values and lists of numeric values """`. |
 | 95 | Línea en blanco de separación. |
 | 96 | Declara `def __init__(self) -> None:`. |
-| 97 | Docstring: `""" Initialize a numeric processor """`. |
+| 97 | Ejecuta `super().__init__("Numeric Processor")`. |
 | 98 | Línea en blanco de separación. |
-| 99 | Ejecuta `super().__init__("Numeric Processor")`. |
-| 100 | Línea en blanco de separación. |
-| 101 | Declara `def validate(self, data: Any) -> bool:`. |
-| 102 | Docstring: `""" Return whether data is numeric or a numeric list """`. |
-| 103 | Línea en blanco de separación. |
-| 104 | Comprueba `isinstance(data, list)`. |
-| 105 | Devuelve `all(self._is_numeric(item) for item in data)`. |
-| 106 | Devuelve `self._is_numeric(data)`. |
-| 107 | Línea en blanco de separación. |
-| 108 | Declara `def ingest(self, data: NumericData) -> None:`. |
-| 109 | Docstring: `""" Ingest numeric data as separated string items """`. |
-| 110 | Línea en blanco de separación. |
-| 111 | Comprueba `not self.validate(data)`. |
-| 112 | Lanza `ValueError("Improper numeric data")`. |
+| 99 | Declara `def validate(self, data: Any) -> bool:`. |
+| 100 | Docstring: `""" Return whether data is numeric or a numeric list """`. |
+| 101 | Línea en blanco de separación. |
+| 102 | Comprueba `isinstance(data, list)`. |
+| 103 | Devuelve `all(self._is_numeric(item) for item in data)`. |
+| 104 | Devuelve `self._is_numeric(data)`. |
+| 105 | Línea en blanco de separación. |
+| 106 | Declara `def ingest(self, data: NumericData) -> None:`. |
+| 107 | Docstring: `""" Ingest numeric data as separated string items """`. |
+| 108 | Línea en blanco de separación. |
+| 109 | Comprueba `not self.validate(data)`. |
+| 110 | Lanza `ValueError("Improper numeric data")`. |
+| 111 | Línea en blanco de separación. |
+| 112 | Ejecuta `self._put_scalar_or_list(data)`. |
 | 113 | Línea en blanco de separación. |
-| 114 | Ejecuta `self._put_scalar_or_list(data)`. |
-| 115 | Línea en blanco de separación. |
-| 116 | Declara `def _is_numeric(self, data: Any) -> bool:`. |
-| 117 | Docstring: `""" Return whether data is a non-boolean number """`. |
+| 114 | Declara `def _is_numeric(self, data: Any) -> bool:`. |
+| 115 | Docstring: `""" Return whether data is a non-boolean number """`. |
+| 116 | Línea en blanco de separación. |
+| 117 | Devuelve `isinstance(data, (int, float)) and not isinstance(data, bool)`. |
 | 118 | Línea en blanco de separación. |
-| 119 | Devuelve `isinstance(data, (int, float)) and not isinstance(data, bool)`. |
-| 120 | Línea en blanco de separación. |
-| 121 | Línea en blanco de separación. |
-| 122 | Declara `class TextProcessor(DataProcessor):`. |
-| 123 | Docstring: `""" Process text values and lists of text values """`. |
-| 124 | Línea en blanco de separación. |
-| 125 | Declara `def __init__(self) -> None:`. |
-| 126 | Docstring: `""" Initialize a text processor """`. |
-| 127 | Línea en blanco de separación. |
-| 128 | Ejecuta `super().__init__("Text Processor")`. |
-| 129 | Línea en blanco de separación. |
-| 130 | Declara `def validate(self, data: Any) -> bool:`. |
-| 131 | Docstring: `""" Return whether data is text or a text list """`. |
-| 132 | Línea en blanco de separación. |
-| 133 | Comprueba `isinstance(data, str)`. |
-| 134 | Devuelve `True`. |
-| 135 | Comprueba `isinstance(data, list)`. |
-| 136 | Devuelve `all(isinstance(item, str) for item in data)`. |
-| 137 | Devuelve `False`. |
-| 138 | Línea en blanco de separación. |
-| 139 | Declara `def ingest(self, data: TextData) -> None:`. |
-| 140 | Docstring: `""" Ingest text data as separated string items """`. |
-| 141 | Línea en blanco de separación. |
-| 142 | Comprueba `not self.validate(data)`. |
-| 143 | Lanza `ValueError("Improper text data")`. |
-| 144 | Línea en blanco de separación. |
-| 145 | Ejecuta `self._put_scalar_or_list(data)`. |
+| 119 | Línea en blanco de separación. |
+| 120 | Declara `class TextProcessor(DataProcessor):`. |
+| 121 | Docstring: `""" Process text values and lists of text values """`. |
+| 122 | Línea en blanco de separación. |
+| 123 | Declara `def __init__(self) -> None:`. |
+| 124 | Ejecuta `super().__init__("Text Processor")`. |
+| 125 | Línea en blanco de separación. |
+| 126 | Declara `def validate(self, data: Any) -> bool:`. |
+| 127 | Docstring: `""" Return whether data is text or a text list """`. |
+| 128 | Línea en blanco de separación. |
+| 129 | Comprueba `isinstance(data, str)`. |
+| 130 | Devuelve `True`. |
+| 131 | Comprueba `isinstance(data, list)`. |
+| 132 | Devuelve `all(isinstance(item, str) for item in data)`. |
+| 133 | Devuelve `False`. |
+| 134 | Línea en blanco de separación. |
+| 135 | Declara `def ingest(self, data: TextData) -> None:`. |
+| 136 | Docstring: `""" Ingest text data as separated string items """`. |
+| 137 | Línea en blanco de separación. |
+| 138 | Comprueba `not self.validate(data)`. |
+| 139 | Lanza `ValueError("Improper text data")`. |
+| 140 | Línea en blanco de separación. |
+| 141 | Ejecuta `self._put_scalar_or_list(data)`. |
+| 142 | Línea en blanco de separación. |
+| 143 | Línea en blanco de separación. |
+| 144 | Declara `class LogProcessor(DataProcessor):`. |
+| 145 | Docstring: `""" Process log dictionaries and lists of log dictionaries """`. |
 | 146 | Línea en blanco de separación. |
-| 147 | Línea en blanco de separación. |
-| 148 | Declara `class LogProcessor(DataProcessor):`. |
-| 149 | Docstring: `""" Process log dictionaries and lists of log dictionaries """`. |
-| 150 | Línea en blanco de separación. |
-| 151 | Declara `def __init__(self) -> None:`. |
-| 152 | Docstring: `""" Initialize a log processor """`. |
-| 153 | Línea en blanco de separación. |
-| 154 | Ejecuta `super().__init__("Log Processor")`. |
-| 155 | Línea en blanco de separación. |
-| 156 | Declara `def validate(self, data: Any) -> bool:`. |
-| 157 | Docstring: `""" Return whether data is a valid log entry or list """`. |
+| 147 | Declara `def __init__(self) -> None:`. |
+| 148 | Ejecuta `super().__init__("Log Processor")`. |
+| 149 | Línea en blanco de separación. |
+| 150 | Declara `def validate(self, data: Any) -> bool:`. |
+| 151 | Docstring: `""" Return whether data is a valid log entry or list """`. |
+| 152 | Línea en blanco de separación. |
+| 153 | Comprueba `isinstance(data, dict)`. |
+| 154 | Devuelve `self._is_log_entry(data)`. |
+| 155 | Comprueba `isinstance(data, list)`. |
+| 156 | Devuelve `all(self._is_log_entry(item) for item in data)`. |
+| 157 | Devuelve `False`. |
 | 158 | Línea en blanco de separación. |
-| 159 | Comprueba `isinstance(data, dict)`. |
-| 160 | Devuelve `self._is_log_entry(data)`. |
-| 161 | Comprueba `isinstance(data, list)`. |
-| 162 | Devuelve `all(self._is_log_entry(item) for item in data)`. |
-| 163 | Devuelve `False`. |
+| 159 | Declara `def ingest(self, data: LogData) -> None:`. |
+| 160 | Docstring: `""" Ingest log data as separated formatted strings """`. |
+| 161 | Línea en blanco de separación. |
+| 162 | Comprueba `not self.validate(data)`. |
+| 163 | Lanza `ValueError("Improper log data")`. |
 | 164 | Línea en blanco de separación. |
-| 165 | Declara `def ingest(self, data: LogData) -> None:`. |
-| 166 | Docstring: `""" Ingest log data as separated formatted strings """`. |
-| 167 | Línea en blanco de separación. |
-| 168 | Comprueba `not self.validate(data)`. |
-| 169 | Lanza `ValueError("Improper log data")`. |
-| 170 | Línea en blanco de separación. |
-| 171 | Comprueba `isinstance(data, list)`. |
-| 172 | Ejecuta `self._put_items([self._format_log_entry(item) for item in data])`. |
-| 173 | Devuelve desde la función. |
-| 174 | Ejecuta `self._put_item(self._format_log_entry(data))`. |
-| 175 | Línea en blanco de separación. |
-| 176 | Declara `def _is_log_entry(self, data: Any) -> bool:`. |
-| 177 | Docstring: `""" Return whether data is a dictionary with string pairs """`. |
-| 178 | Línea en blanco de separación. |
-| 179 | Devuelve `isinstance(data, dict) and all(`. |
-| 180 | Ejecuta `isinstance(key, str) and isinstance(value, str)`. |
-| 181 | Recorre `key, value in data.items()`. |
-| 182 | Cierra una estructura o llamada multilínea. |
-| 183 | Línea en blanco de separación. |
-| 184 | Declara `def _format_log_entry(self, entry: LogEntry) -> str:`. |
-| 185 | Docstring: `""" Convert a log entry into the expected output format """`. |
+| 165 | Comprueba `isinstance(data, list)`. |
+| 166 | Ejecuta `self._put_items([self._format_log_entry(item) for item in data])`. |
+| 167 | Devuelve desde la función. |
+| 168 | Ejecuta `self._put_item(self._format_log_entry(data))`. |
+| 169 | Línea en blanco de separación. |
+| 170 | Declara `def _is_log_entry(self, data: Any) -> bool:`. |
+| 171 | Docstring: `""" Return whether data is a dictionary with string pairs """`. |
+| 172 | Línea en blanco de separación. |
+| 173 | Devuelve `isinstance(data, dict) and all(`. |
+| 174 | Ejecuta `isinstance(key, str) and isinstance(value, str)`. |
+| 175 | Recorre `key, value in data.items()`. |
+| 176 | Cierra una estructura o llamada multilínea. |
+| 177 | Línea en blanco de separación. |
+| 178 | Declara `def _format_log_entry(self, entry: LogEntry) -> str:`. |
+| 179 | Docstring: `""" Convert a log entry into the expected output format """`. |
+| 180 | Línea en blanco de separación. |
+| 181 | Ejecuta `level = entry.get("log_level", "")`. |
+| 182 | Ejecuta `message = entry.get("log_message", "")`. |
+| 183 | Comprueba `level or message`. |
+| 184 | Devuelve `f"{level}: {message}"`. |
+| 185 | Devuelve `str(entry)`. |
 | 186 | Línea en blanco de separación. |
-| 187 | Ejecuta `level = entry.get("log_level", "")`. |
-| 188 | Ejecuta `message = entry.get("log_message", "")`. |
-| 189 | Comprueba `level or message`. |
-| 190 | Devuelve `f"{level}: {message}"`. |
-| 191 | Devuelve `str(entry)`. |
-| 192 | Línea en blanco de separación. |
+| 187 | Línea en blanco de separación. |
+| 188 | Declara `class DataStream:`. |
+| 189 | Docstring: `""" Route stream elements to registered data processors """`. |
+| 190 | Línea en blanco de separación. |
+| 191 | Declara `def __init__(self) -> None:`. |
+| 192 | Ejecuta `self._processors: list[DataProcessor] = []`. |
 | 193 | Línea en blanco de separación. |
-| 194 | Declara `class DataStream:`. |
-| 195 | Docstring: `""" Route stream elements to registered data processors """`. |
+| 194 | Declara `def get_processors(self) -> list[DataProcessor]:`. |
+| 195 | Docstring: `""" Return registered processors """`. |
 | 196 | Línea en blanco de separación. |
-| 197 | Declara `def __init__(self) -> None:`. |
-| 198 | Docstring: `""" Initialize an empty data stream """`. |
-| 199 | Línea en blanco de separación. |
-| 200 | Ejecuta `self._processors: list[DataProcessor] = []`. |
+| 197 | Devuelve `self._processors`. |
+| 198 | Línea en blanco de separación. |
+| 199 | Declara `def register_processor(self, proc: DataProcessor) -> None:`. |
+| 200 | Docstring: `""" Register a data processor for future stream processing """`. |
 | 201 | Línea en blanco de separación. |
-| 202 | Declara `def get_processors(self) -> list[DataProcessor]:`. |
-| 203 | Docstring: `""" Return registered processors """`. |
-| 204 | Línea en blanco de separación. |
-| 205 | Devuelve `self._processors`. |
+| 202 | Ejecuta `self._processors.append(proc)`. |
+| 203 | Línea en blanco de separación. |
+| 204 | Declara `def process_stream(self, stream: list[Any]) -> None:`. |
+| 205 | Docstring: `""" Send each stream element to the first compatible processor """`. |
 | 206 | Línea en blanco de separación. |
-| 207 | Declara `def register_processor(self, proc: DataProcessor) -> None:`. |
-| 208 | Docstring: `""" Register a data processor for future stream processing """`. |
-| 209 | Línea en blanco de separación. |
-| 210 | Ejecuta `self._processors.append(proc)`. |
-| 211 | Línea en blanco de separación. |
-| 212 | Declara `def process_stream(self, stream: list[Any]) -> None:`. |
-| 213 | Docstring: `""" Send each stream element to the first compatible processor """`. |
-| 214 | Línea en blanco de separación. |
-| 215 | Recorre `element in stream`. |
-| 216 | Comprueba `not self._put_element(element)`. |
-| 217 | Imprime `print(`. |
-| 218 | Continúa con `"DataStream error - Can't process element in stream: "`. |
-| 219 | Continúa con `f"{element}"`. |
-| 220 | Cierra una estructura o llamada multilínea. |
+| 207 | Recorre `element in stream`. |
+| 208 | Comprueba `not self._put_element(element)`. |
+| 209 | Imprime `print(`. |
+| 210 | Ejecuta `"DataStream error - Can't process element in stream: "`. |
+| 211 | Ejecuta `f"{element}"`. |
+| 212 | Cierra una estructura o llamada multilínea. |
+| 213 | Línea en blanco de separación. |
+| 214 | Declara `def print_processors_stats(self) -> None:`. |
+| 215 | Docstring: `""" Print statistics for every registered processor """`. |
+| 216 | Línea en blanco de separación. |
+| 217 | Imprime `print("== DataStream statistics ==")`. |
+| 218 | Comprueba `not self._processors`. |
+| 219 | Imprime `print("No processor found, no data")`. |
+| 220 | Devuelve desde la función. |
 | 221 | Línea en blanco de separación. |
-| 222 | Declara `def print_processors_stats(self) -> None:`. |
-| 223 | Docstring: `""" Print statistics for every registered processor """`. |
-| 224 | Línea en blanco de separación. |
-| 225 | Imprime `print("== DataStream statistics ==")`. |
-| 226 | Comprueba `not self._processors`. |
-| 227 | Imprime `print("No processor found, no data")`. |
-| 228 | Devuelve desde la función. |
-| 229 | Línea en blanco de separación. |
-| 230 | Recorre `processor in self._processors`. |
-| 231 | Imprime `print(`. |
-| 232 | Continúa con `f"{processor.get_name()}: total "`. |
-| 233 | Continúa con `f"{processor.get_total_processed()} items processed, "`. |
-| 234 | Continúa con `f"remaining {processor.get_data_len()} on processor"`. |
-| 235 | Cierra una estructura o llamada multilínea. |
-| 236 | Línea en blanco de separación. |
-| 237 | Declara `def _put_element(self, element: Any) -> bool:`. |
-| 238 | Docstring: `""" Return whether an element was sent to a processor """`. |
+| 222 | Recorre `processor in self._processors`. |
+| 223 | Imprime `print(`. |
+| 224 | Ejecuta `f"{processor.get_name()}: total "`. |
+| 225 | Ejecuta `f"{processor.get_total_processed()} items processed, "`. |
+| 226 | Ejecuta `f"remaining {processor.get_data_len()} on processor"`. |
+| 227 | Cierra una estructura o llamada multilínea. |
+| 228 | Línea en blanco de separación. |
+| 229 | Declara `def _put_element(self, element: Any) -> bool:`. |
+| 230 | Docstring: `""" Return whether an element was sent to a processor """`. |
+| 231 | Línea en blanco de separación. |
+| 232 | Recorre `processor in self._processors`. |
+| 233 | Comentario: `Polymorphism: DataStream uses the DataProcessor interface only.`. |
+| 234 | Comprueba `processor.validate(element)`. |
+| 235 | Ejecuta `processor.ingest(element)`. |
+| 236 | Devuelve `True`. |
+| 237 | Devuelve `False`. |
+| 238 | Línea en blanco de separación. |
 | 239 | Línea en blanco de separación. |
-| 240 | Recorre `processor in self._processors`. |
-| 241 | Comentario: `Polymorphism: DataStream uses the DataProcessor interface only.`. |
-| 242 | Comprueba `processor.validate(element)`. |
-| 243 | Ejecuta `processor.ingest(element)`. |
-| 244 | Devuelve `True`. |
-| 245 | Devuelve `False`. |
+| 240 | Declara `def put_processor_outputs(processor: DataProcessor, amount: int) -> None:`. |
+| 241 | Docstring: `""" Consume a fixed number of values from a processor """`. |
+| 242 | Línea en blanco de separación. |
+| 243 | Recorre `_ in range(amount)`. |
+| 244 | Ejecuta `processor.output()`. |
+| 245 | Línea en blanco de separación. |
 | 246 | Línea en blanco de separación. |
-| 247 | Línea en blanco de separación. |
-| 248 | Declara `def put_processor_outputs(processor: DataProcessor, amount: int) -> None:`. |
-| 249 | Docstring: `""" Consume a fixed number of values from a processor """`. |
-| 250 | Línea en blanco de separación. |
-| 251 | Recorre `_ in range(amount)`. |
-| 252 | Ejecuta `processor.output()`. |
-| 253 | Línea en blanco de separación. |
+| 247 | Declara `def build_log_entry(level: str, message: str) -> LogEntry:`. |
+| 248 | Docstring: `""" Build one log entry from dynamic values """`. |
+| 249 | Línea en blanco de separación. |
+| 250 | Devuelve `{`. |
+| 251 | Continúa con `"log_level": level,`. |
+| 252 | Continúa con `"log_message": message,`. |
+| 253 | Cierra una estructura o llamada multilínea. |
 | 254 | Línea en blanco de separación. |
-| 255 | Declara `def build_log_entry(level: str, message: str) -> LogEntry:`. |
-| 256 | Docstring: `""" Build one log entry from dynamic values """`. |
-| 257 | Línea en blanco de separación. |
-| 258 | Devuelve `{`. |
-| 259 | Continúa con `"log_level": level,`. |
-| 260 | Continúa con `"log_message": message,`. |
-| 261 | Cierra una estructura o llamada multilínea. |
-| 262 | Línea en blanco de separación. |
-| 263 | Línea en blanco de separación. |
-| 264 | Declara `def build_stream(*items: Any) -> list[Any]:`. |
-| 265 | Docstring: `""" Build a stream from received items """`. |
-| 266 | Línea en blanco de separación. |
-| 267 | Devuelve `list(items)`. |
-| 268 | Línea en blanco de separación. |
-| 269 | Línea en blanco de separación. |
-| 270 | Declara `def main() -> None:`. |
-| 271 | Docstring: `""" Run the script entrypoint """`. |
-| 272 | Línea en blanco de separación. |
-| 273 | Asigna `build_stream(` a `stream`. |
-| 274 | Continúa con `TXT_VAL,`. |
-| 275 | Continúa con `NUM_DATA,`. |
-| 276 | Continúa con `[`. |
-| 277 | Continúa con `build_log_entry(LOG_WARN_LVL, LOG_WARN_MSG),`. |
-| 278 | Continúa con `build_log_entry(LOG_INFO_LVL, LOG_INFO_MSG),`. |
-| 279 | Cierra una estructura o llamada multilínea. |
-| 280 | Continúa con `NUM_VAL,`. |
-| 281 | Continúa con `TXT_DATA,`. |
-| 282 | Cierra una estructura o llamada multilínea. |
-| 283 | Imprime `print("=== Code Nexus - Data Stream ===")`. |
-| 284 | Imprime `print()`. |
-| 285 | Imprime `print("Initialize Data Stream...")`. |
-| 286 | Ejecuta `data_stream = DataStream()`. |
-| 287 | Ejecuta `data_stream.print_processors_stats()`. |
-| 288 | Línea en blanco de separación. |
-| 289 | Ejecuta `numeric_processor = NumericProcessor()`. |
-| 290 | Imprime `print("Registering Numeric Processor")`. |
-| 291 | Ejecuta `data_stream.register_processor(numeric_processor)`. |
-| 292 | Imprime `print(f"Send first batch of data on stream: {stream}")`. |
-| 293 | Ejecuta `data_stream.process_stream(stream)`. |
-| 294 | Ejecuta `data_stream.print_processors_stats()`. |
-| 295 | Línea en blanco de separación. |
-| 296 | Ejecuta `text_processor = TextProcessor()`. |
-| 297 | Ejecuta `log_processor = LogProcessor()`. |
-| 298 | Imprime `print("Registering other data processors")`. |
-| 299 | Imprime `print()`. |
-| 300 | Ejecuta `data_stream.register_processor(text_processor)`. |
-| 301 | Ejecuta `data_stream.register_processor(log_processor)`. |
-| 302 | Imprime `print("Send the same batch again")`. |
-| 303 | Ejecuta `data_stream.process_stream(stream)`. |
-| 304 | Ejecuta `data_stream.print_processors_stats()`. |
-| 305 | Línea en blanco de separación. |
-| 306 | Imprime `print(`. |
-| 307 | Continúa con `"Consume some elements from the data processors: "`. |
-| 308 | Continúa con `f"Numeric {NUM_OUT_NB}, "`. |
-| 309 | Continúa con `f"Text {TXT_OUT_NB}, "`. |
-| 310 | Continúa con `f"Log {LOG_OUT_NB}"`. |
-| 311 | Cierra una estructura o llamada multilínea. |
-| 312 | Ejecuta `put_processor_outputs(numeric_processor, NUM_OUT_NB)`. |
-| 313 | Ejecuta `put_processor_outputs(text_processor, TXT_OUT_NB)`. |
-| 314 | Ejecuta `put_processor_outputs(log_processor, LOG_OUT_NB)`. |
-| 315 | Ejecuta `data_stream.print_processors_stats()`. |
-| 316 | Línea en blanco de separación. |
-| 317 | Línea en blanco de separación. |
-| 318 | Comprueba `__name__ == "__main__"`. |
-| 319 | Ejecuta `main()`. |
+| 255 | Línea en blanco de separación. |
+| 256 | Declara `def build_stream(*items: Any) -> list[Any]:`. |
+| 257 | Docstring: `""" Build a stream from received items """`. |
+| 258 | Línea en blanco de separación. |
+| 259 | Devuelve `list(items)`. |
+| 260 | Línea en blanco de separación. |
+| 261 | Línea en blanco de separación. |
+| 262 | Declara `def main() -> None:`. |
+| 263 | Docstring: `""" Run the script entrypoint """`. |
+| 264 | Línea en blanco de separación. |
+| 265 | Continúa con `stream = build_stream(`. |
+| 266 | Continúa con `TXT_VAL,`. |
+| 267 | Continúa con `NUM_DATA,`. |
+| 268 | Abre `[`. |
+| 269 | Continúa con `build_log_entry(LOG_WARN_LVL, LOG_WARN_MSG),`. |
+| 270 | Continúa con `build_log_entry(LOG_INFO_LVL, LOG_INFO_MSG),`. |
+| 271 | Cierra una estructura o llamada multilínea. |
+| 272 | Continúa con `NUM_VAL,`. |
+| 273 | Continúa con `TXT_DATA,`. |
+| 274 | Cierra una estructura o llamada multilínea. |
+| 275 | Imprime `print("=== Code Nexus - Data Stream ===")`. |
+| 276 | Imprime `print()`. |
+| 277 | Imprime `print("Initialize Data Stream...")`. |
+| 278 | Ejecuta `data_stream = DataStream()`. |
+| 279 | Ejecuta `data_stream.print_processors_stats()`. |
+| 280 | Línea en blanco de separación. |
+| 281 | Ejecuta `numeric_processor = NumericProcessor()`. |
+| 282 | Imprime `print("Registering Numeric Processor")`. |
+| 283 | Ejecuta `data_stream.register_processor(numeric_processor)`. |
+| 284 | Imprime `print(f"Send first batch of data on stream: {stream}")`. |
+| 285 | Ejecuta `data_stream.process_stream(stream)`. |
+| 286 | Ejecuta `data_stream.print_processors_stats()`. |
+| 287 | Línea en blanco de separación. |
+| 288 | Ejecuta `text_processor = TextProcessor()`. |
+| 289 | Ejecuta `log_processor = LogProcessor()`. |
+| 290 | Imprime `print("Registering other data processors")`. |
+| 291 | Imprime `print()`. |
+| 292 | Ejecuta `data_stream.register_processor(text_processor)`. |
+| 293 | Ejecuta `data_stream.register_processor(log_processor)`. |
+| 294 | Imprime `print("Send the same batch again")`. |
+| 295 | Ejecuta `data_stream.process_stream(stream)`. |
+| 296 | Ejecuta `data_stream.print_processors_stats()`. |
+| 297 | Línea en blanco de separación. |
+| 298 | Imprime `print(`. |
+| 299 | Ejecuta `"Consume some elements from the data processors: "`. |
+| 300 | Ejecuta `f"Numeric {NUM_OUT_NB}, "`. |
+| 301 | Ejecuta `f"Text {TXT_OUT_NB}, "`. |
+| 302 | Ejecuta `f"Log {LOG_OUT_NB}"`. |
+| 303 | Cierra una estructura o llamada multilínea. |
+| 304 | Ejecuta `put_processor_outputs(numeric_processor, NUM_OUT_NB)`. |
+| 305 | Ejecuta `put_processor_outputs(text_processor, TXT_OUT_NB)`. |
+| 306 | Ejecuta `put_processor_outputs(log_processor, LOG_OUT_NB)`. |
+| 307 | Ejecuta `data_stream.print_processors_stats()`. |
+| 308 | Línea en blanco de separación. |
+| 309 | Línea en blanco de separación. |
+| 310 | Comprueba `__name__ == "__main__"`. |
+| 311 | Ejecuta `main()`. |

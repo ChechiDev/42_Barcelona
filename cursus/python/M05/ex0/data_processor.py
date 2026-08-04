@@ -31,8 +31,6 @@ class DataProcessor(ABC):
     """ Define the common interface for all data processors """
 
     def __init__(self) -> None:
-        """ Initialize an empty processor storage """
-
         self._items: list[str] = []
         self._next_output_rank = 0
 

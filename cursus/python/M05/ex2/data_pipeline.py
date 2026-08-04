@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import Any, Protocol
 
 
 NumericData = int | float | list[int | float]
 TextData = str | list[str]
 LogEntry = dict[str, str]
 LogData = LogEntry | list[LogEntry]
+OutputData = list[tuple[int, str]]
 
 TXT_VAL = "Hello world"
 NUM_DATA = [3.14, -1, 2.71]
@@ -20,9 +21,25 @@ LOG_INFO_MSG = "User wil is connected"
 NUM_VAL = 42
 TXT_DATA = ["Hi", "five"]
 
-NUM_OUT_NB = 3
-TXT_OUT_NB = 2
-LOG_OUT_NB = 1
+CSV_OUT_NB = 3
+
+NUM_VAL_2 = 21
+TXT_DATA_2 = ["I love AI", "LLMs are wonderful", "Stay healthy"]
+LOG_ERR_LVL = "ERROR"
+LOG_ERR_MSG = "500 server crash"
+LOG_NOTICE_LVL = "NOTICE"
+LOG_NOTICE_MSG = "Certificate expires in 10 days"
+NUM_DATA_2 = [32, 42, 64, 84, 128, 168]
+TXT_VAL_2 = "World hello"
+
+JSON_OUT_NB = 5
+
+
+class ExportPlugin(Protocol):
+    """ Define the output plugin protocol """
+
+    def process_output(self, data: OutputData) -> None:
+        """ Process output data from one processor """
 
 
 class DataProcessor(ABC):
@@ -186,7 +203,7 @@ class LogProcessor(DataProcessor):
 
 
 class DataStream:
-    """ Route stream elements to registered data processors """
+    """ Route stream elements and export processor output """
 
     def __init__(self) -> None:
         self._processors: list[DataProcessor] = []
@@ -210,6 +227,12 @@ class DataStream:
                     "DataStream error - Can't process element in stream: "
                     f"{element}"
                 )
+
+    def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
+        """ Export up to nb outputs from every registered processor """
+
+        for processor in self._processors:
+            plugin.process_output(self._get_processor_outputs(processor, nb))
 
     def print_processors_stats(self) -> None:
         """ Print statistics for every registered processor """
@@ -236,12 +259,57 @@ class DataStream:
                 return True
         return False
 
+    def _get_processor_outputs(
+        self,
+        processor: DataProcessor,
+        amount: int,
+    ) -> OutputData:
+        """ Return available outputs from one processor """
 
-def put_processor_outputs(processor: DataProcessor, amount: int) -> None:
-    """ Consume a fixed number of values from a processor """
+        outputs: OutputData = []
+        for _ in range(amount):
+            if processor.get_data_len() == 0:
+                break
+            outputs.append(processor.output())
+        return outputs
 
-    for _ in range(amount):
-        processor.output()
+
+class CSVExportPlugin:
+    """ Export processor output as CSV text """
+
+    def process_output(self, data: OutputData) -> None:
+        """ Print output data as a CSV line """
+
+        print("CSV Output:")
+        print(",".join(value for _, value in data))
+
+
+class JSONExportPlugin:
+    """ Export processor output as JSON text """
+
+    def process_output(self, data: OutputData) -> None:
+        """ Print output data as a JSON object """
+
+        print("JSON Output:")
+        print(self._format_json_object(data))
+
+    def _format_json_object(self, data: OutputData) -> str:
+        """ Return output data formatted as a JSON object """
+
+        pairs = [
+            f'"item_{rank}": "{self._format_json_string(value)}"'
+            for rank, value in data
+        ]
+        return "{" + ", ".join(pairs) + "}"
+
+    def _format_json_string(self, value: str) -> str:
+        """ Return a manually escaped JSON string value """
+
+        escaped = value.replace("\\", "\\\\")
+        escaped = escaped.replace('"', '\\"')
+        escaped = escaped.replace("\n", "\\n")
+        escaped = escaped.replace("\r", "\\r")
+        return escaped.replace("\t", "\\t")
 
 
 def build_log_entry(level: str, message: str) -> LogEntry:
@@ -259,10 +327,18 @@ def build_stream(*items: Any) -> list[Any]:
     return list(items)
 
 
+def put_processors(data_stream: DataStream) -> None:
+    """ Register all subject processors in one data stream """
+
+    data_stream.register_processor(NumericProcessor())
+    data_stream.register_processor(TextProcessor())
+    data_stream.register_processor(LogProcessor())
+
+
 def main() -> None:
     """ Run the script entrypoint """
 
-    stream = build_stream(
+    first_stream = build_stream(
         TXT_VAL,
         NUM_DATA,
         [
@@ -272,38 +348,44 @@ def main() -> None:
         NUM_VAL,
         TXT_DATA,
     )
-    print("=== Code Nexus - Data Stream ===")
-    print()
-    print("Initialize Data Stream...")
+    second_stream = build_stream(
+        NUM_VAL_2,
+        TXT_DATA_2,
+        [
+            build_log_entry(LOG_ERR_LVL, LOG_ERR_MSG),
+            build_log_entry(LOG_NOTICE_LVL, LOG_NOTICE_MSG),
+        ],
+        NUM_DATA_2,
+        TXT_VAL_2,
+    )
     data_stream = DataStream()
+
+    print("=== Code Nexus - Data Pipeline ===")
+    print("Initialize Data Stream...")
     data_stream.print_processors_stats()
 
-    numeric_processor = NumericProcessor()
-    print("Registering Numeric Processor")
-    data_stream.register_processor(numeric_processor)
-    print(f"Send first batch of data on stream: {stream}")
-    data_stream.process_stream(stream)
-    data_stream.print_processors_stats()
-
-    text_processor = TextProcessor()
-    log_processor = LogProcessor()
-    print("Registering other data processors")
-    print()
-    data_stream.register_processor(text_processor)
-    data_stream.register_processor(log_processor)
-    print("Send the same batch again")
-    data_stream.process_stream(stream)
+    print("Registering Processors")
+    put_processors(data_stream)
+    print(f"Send first batch of data on stream: {first_stream}")
+    data_stream.process_stream(first_stream)
     data_stream.print_processors_stats()
 
     print(
-        "Consume some elements from the data processors: "
-        f"Numeric {NUM_OUT_NB}, "
-        f"Text {TXT_OUT_NB}, "
-        f"Log {LOG_OUT_NB}"
+        f"Send {CSV_OUT_NB} processed data from each processor "
+        "to a CSV plugin:"
     )
-    put_processor_outputs(numeric_processor, NUM_OUT_NB)
-    put_processor_outputs(text_processor, TXT_OUT_NB)
-    put_processor_outputs(log_processor, LOG_OUT_NB)
+    data_stream.output_pipeline(CSV_OUT_NB, CSVExportPlugin())
+    data_stream.print_processors_stats()
+
+    print(f"Send another batch of data: {second_stream}")
+    data_stream.process_stream(second_stream)
+    data_stream.print_processors_stats()
+
+    print(
+        f"Send {JSON_OUT_NB} processed data from each processor "
+        "to a JSON plugin:"
+    )
+    data_stream.output_pipeline(JSON_OUT_NB, JSONExportPlugin())
     data_stream.print_processors_stats()
 
 

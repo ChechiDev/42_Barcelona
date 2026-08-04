@@ -26,3 +26,22 @@
   - `test_`: pytest test functions.
 
 - Required subject APIs always take priority over the naming standard. Keep names such as `validate`, `ingest`, or `output` unchanged when the subject requires them.
+
+- Exercise demo and entrypoint standard:
+  - Prefer `main()` as the executable entrypoint for scripts.
+  - Use `if __name__ == "__main__": main()` when the subject expects direct script execution.
+  - Avoid a separate `run_demo()` when the same flow can stay readable inside `main()`.
+  - Keep exercise logic dynamic and reusable; do not hide fixed example data inside processing logic.
+  - Put script/demo data in module-level constants when direct execution needs sample data.
+  - Constants must use short `UPPER_CASE` names, without a `DEMO_` prefix, such as `NUM_VAL`, `NUM_INV_VAL`, `NUM_INV_ING`, `NUM_DATA`, `NUM_OUT_NB`, `TXT_DATA`, `LOG_ERR_MSG`.
+  - Build compound demo structures in `main()` from constants and helper builders such as `build_log_entry()` or `build_stream()`.
+  - Keep public exercise APIs and subject-required output text unchanged even when applying these conventions.
+
+- Getter/setter style:
+  - Prefer explicit `get_...()` methods over `@property` when following the project naming standard.
+  - Do not add setters for internal processor state unless the subject or design requires external state replacement.
+  - Preserve validation boundaries: data should normally enter through subject APIs such as `ingest()` and leave through `output()`.
+
+- Docstring style:
+  - Add a one-line English docstring immediately after every function or class header, formatted as `""" Text without final period """`, followed by one blank line.
+  - Do not add docstrings to `__init__` methods.

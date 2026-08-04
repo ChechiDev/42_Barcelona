@@ -18,7 +18,8 @@ Responsibilities:
 - Keep tests readable and deterministic.
 - Configure or update GitHub Actions to run `pytest`, `flake8`, and `mypy --strict` on push.
 - Preserve 42 exercise required behavior, public APIs, filenames, outputs, and subject constraints.
-- Verify that every function and class has a one-line English docstring immediately after its header, formatted as `""" Text without final period """`, followed by one blank line.
+- Verify that every function and class, except `__init__` methods, has a one-line English docstring immediately after its header, formatted as `""" Text without final period """`, followed by one blank line.
+- Verify that `__init__` methods do not have docstrings.
 - Do not introduce dependencies without explicit configuration or user approval.
 - For the current modules, do not create, require, or assume a local virtual environment.
 - Treat CI-installed tools such as `pytest`, `flake8`, and `mypy` as quality tooling, not as runtime dependencies of the exercises.
