@@ -12,7 +12,7 @@ LogData = LogEntry | list[LogEntry]
 NUM_VAL = 42
 NUM_INV_VAL = "Hello"
 NUM_INV_ING = "foo"
-NUM_DATA = [1, 2, 3, 4, 5]
+NUM_DATA: NumericData = [1, 2, 3, 4, 5]
 NUM_OUT_NB = 3
 
 TXT_INV_VAL = 42
@@ -211,7 +211,7 @@ def run_numeric_processor_demo(
     )
 
     try:
-        processor.ingest(invalid_ingest)  # type: ignore[arg-type]
+        processor.ingest(invalid_ingest)
     except ValueError as error:
         print(f"Got exception: {error}")
 

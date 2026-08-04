@@ -156,11 +156,14 @@ def test_processor_validation_edge_cases_and_empty_output() -> None:
     assert not log.validate({"log_level": "INFO", "count": 1})
 
     with pytest.raises(ValueError, match="Improper numeric data"):
-        numeric.ingest([1, True])  # type: ignore[list-item]
+        numeric.ingest([1, True])
     with pytest.raises(ValueError, match="Improper text data"):
         text.ingest(["ok", 1])  # type: ignore[list-item]
     with pytest.raises(ValueError, match="Improper log data"):
-        log.ingest({"log_level": "INFO", "count": 1})
+        log.ingest({
+            "log_level": "INFO",
+            "count": 1,  # type: ignore[dict-item]
+        })
     with pytest.raises(IndexError, match="No data to output"):
         numeric.output()
 

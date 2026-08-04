@@ -28,7 +28,7 @@ class Plant:
         )
 
 
-def main():
+def main() -> None:
     p = Plant("Rose", 25, 30, 0.8)
     start_height = p._height
 

@@ -11,7 +11,7 @@ def garden_operations(operation_number: int) -> None:
     elif (operation_number == 2):
         open("/non/existent/file")
     elif (operation_number == 3):
-        "int" + 1  # Mypy: Ignore
+        "int" + 1  # type: ignore[operator]
 
 
 def test_error_types() -> None:
@@ -41,7 +41,7 @@ def test_error_types() -> None:
     print("Operation completed successfully\n")
 
 
-def main():
+def main() -> None:
     """ Run the error type demonstration """
 
     print("=== Garden Error Types Demo ===")

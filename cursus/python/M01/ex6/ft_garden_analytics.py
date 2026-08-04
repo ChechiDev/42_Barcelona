@@ -15,6 +15,7 @@ class Plant:
         self._name = name
         self._height = height if height >= 0 else 0.0
         self._age = age if age > 0 else 0
+        self._grow_rate = _GROW_RATE
         self._stats = self._Stats()
 
     class _Stats:
@@ -23,7 +24,7 @@ class Plant:
 
         def __init__(self) -> None:
             self._counts = {label: 0 for label in self._LABELS}
-   
+
         def increment(self, method: str) -> None:
             """ Increment the counter for the given method name """
             if method in self._counts:
@@ -36,7 +37,7 @@ class Plant:
                 for label in self._LABELS
             ]
             print(f"Stats: {', '.join(parts)}")
- 
+
     @staticmethod
     def _is_older(age: int) -> str:
         """ Return a string indicating if age exceeds one year """
@@ -49,7 +50,7 @@ class Plant:
         """ Create an anonymous plant when full info is not available """
         return cls("Unknown plant", 0.0, 0)
 
-    def grow(self, grow_rate: float = None) -> None:
+    def grow(self, grow_rate: float | None = None) -> None:
         """ Grow the plant by grow_rate or by its default rate """
         rate = grow_rate if grow_rate is not None else self._grow_rate
         self._height = round(self._height + rate, 1)
@@ -60,7 +61,7 @@ class Plant:
         self._age += 1
         self._stats.increment("age")
 
-    def simulate(self, days: int, grow_rate: float = None) -> None:
+    def simulate(self, days: int, grow_rate: float | None = None) -> None:
         """ Grow and age the plant for the given number of days """
         for _ in range(days):
             self.grow(grow_rate)
@@ -90,7 +91,7 @@ class Flower(Plant):
         self._color = color
         self._blooming = False
         self._grow_rate = _GROW_RATE
-  
+
     def bloom(self) -> None:
         """ Set the flower to blooming state """
         self._blooming = True
@@ -188,7 +189,7 @@ class Vegetable(Plant):
         self._nutritional_value = 0
         self._grow_rate = grow_rate
 
-    def grow(self, grow_rate: float = None) -> None:
+    def grow(self, grow_rate: float | None = None) -> None:
         """ Grow the vegetable and increment its nutritional value """
         super().grow(grow_rate)
         self._nutritional_value += 1
@@ -215,7 +216,7 @@ def _show_and_stats(plant: Plant, show_plant: bool = True) -> None:
     print()
 
 
-def main():
+def main() -> None:
     print("=== Garden stadistics ===")
     print("=== Check year-old")
     print(Plant._is_older(30))

@@ -15,7 +15,7 @@ class Plant:
         )
 
 
-def main():
+def main() -> None:
     plants = [
         Plant("Rose", 25.0, 30),
         Plant("Oak", 200.0, 365),

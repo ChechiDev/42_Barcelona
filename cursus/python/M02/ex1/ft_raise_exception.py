@@ -44,7 +44,7 @@ def test_temperature() -> None:
         print(f"Caught input_temperature error: {e}\n")
 
 
-def main():
+def main() -> None:
     """ Run the temperature validation demo """
 
     print("=== Garden Temperature ===\n")

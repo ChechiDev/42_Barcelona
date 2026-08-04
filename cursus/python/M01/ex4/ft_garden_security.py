@@ -42,7 +42,7 @@ class Plant:
         )
 
 
-def main():
+def main() -> None:
     p = Plant("Rose", 15.0, 10)
     p.show()
     print()

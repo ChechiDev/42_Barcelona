@@ -26,7 +26,7 @@ def test_temperature() -> None:
     print("All tests completed - program didn't crash!")
 
 
-def main():
+def main() -> None:
     """ Run the temperature conversion demo """
     print("=== Garden Temperature ===\n")
     test_temperature()

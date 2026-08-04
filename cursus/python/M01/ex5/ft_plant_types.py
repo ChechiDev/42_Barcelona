@@ -10,6 +10,7 @@ class Plant:
         self._name = name
         self._height = height if height >= 0 else 0.0
         self._age = age if age > 0 else 0
+        self._grow_rate = 0.8
 
     def grow(self) -> None:
         self._height = round(self._height + self._grow_rate, 1)
@@ -102,7 +103,7 @@ class Vegetable(Plant):
         print(f"Nutritional value: {self._nutritional_value}")
 
 
-def main():
+def main() -> None:
     print("=== Garden Plant Types ===")
     f = Flower("Rose", 15, 10, "red")
     f.show()
