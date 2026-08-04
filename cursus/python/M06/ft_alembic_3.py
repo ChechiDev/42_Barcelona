@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+
+"""Demonstrate package function import for air creation"""
+
+from alchemy.elements import create_air
+
+
+def main() -> None:
+    """Run the alembic three demonstration"""
+
+    print("=== Alembic 3 ===")
+    print(
+        "Accessing alchemy/elements.py using 'from ... import ...' "
+        "structure"
+    )
+    print(f"Testing create_air: {create_air()}")
+
+
+if __name__ == "__main__":
+    main()
