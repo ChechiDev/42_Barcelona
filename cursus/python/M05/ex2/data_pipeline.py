@@ -232,7 +232,8 @@ class DataStream:
         """ Export up to nb outputs from every registered processor """
 
         for processor in self._processors:
-            plugin.process_output(self._get_processor_outputs(processor, nb))
+            output_data = self._get_processor_outputs(processor, nb)
+            plugin.process_output(output_data)
 
     def print_processors_stats(self) -> None:
         """ Print statistics for every registered processor """
@@ -327,12 +328,14 @@ def build_stream(*items: Any) -> list[Any]:
     return list(items)
 
 
-def put_processors(data_stream: DataStream) -> None:
-    """ Register all subject processors in one data stream """
+def put_processors(
+    data_stream: DataStream,
+    processors: list[DataProcessor],
+) -> None:
+    """ Register processors in one data stream """
 
-    data_stream.register_processor(NumericProcessor())
-    data_stream.register_processor(TextProcessor())
-    data_stream.register_processor(LogProcessor())
+    for processor in processors:
+        data_stream.register_processor(processor)
 
 
 def main() -> None:
@@ -365,7 +368,14 @@ def main() -> None:
     data_stream.print_processors_stats()
 
     print("Registering Processors")
-    put_processors(data_stream)
+    put_processors(
+        data_stream,
+        [
+            NumericProcessor(),
+            TextProcessor(),
+            LogProcessor(),
+        ],
+    )
     print(f"Send first batch of data on stream: {first_stream}")
     data_stream.process_stream(first_stream)
     data_stream.print_processors_stats()

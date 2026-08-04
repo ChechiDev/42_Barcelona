@@ -238,162 +238,172 @@ Este documento vincula cada línea de `ex2/data_pipeline.py` con lo que hace.
 | 232 | Docstring: `""" Export up to nb outputs from every registered processor """`. |
 | 233 | Línea en blanco de separación. |
 | 234 | Inicia un bucle sobre `processor in self._processors`. |
-| 235 | Ejecuta `plugin.process_output(self._get_processor_outputs(processor, nb))`. |
-| 236 | Línea en blanco de separación. |
-| 237 | Declara `def print_processors_stats(self) -> None:`. |
-| 238 | Docstring: `""" Print statistics for every registered processor """`. |
-| 239 | Línea en blanco de separación. |
-| 240 | Ejecuta `print("== DataStream statistics ==")`. |
-| 241 | Comprueba `not self._processors`. |
-| 242 | Ejecuta `print("No processor found, no data")`. |
-| 243 | Termina la función y devuelve `None` implícitamente. |
-| 244 | Línea en blanco de separación. |
-| 245 | Inicia un bucle sobre `processor in self._processors`. |
-| 246 | Ejecuta `print(`. |
-| 247 | Ejecuta `f"{processor.get_name()}: total "`. |
-| 248 | Ejecuta `f"{processor.get_total_processed()} items processed, "`. |
-| 249 | Ejecuta `f"remaining {processor.get_data_len()} on processor"`. |
-| 250 | Cierra la estructura con `)`. |
-| 251 | Línea en blanco de separación. |
-| 252 | Declara `def _put_element(self, element: Any) -> bool:`. |
-| 253 | Docstring: `""" Return whether an element was sent to a processor """`. |
-| 254 | Línea en blanco de separación. |
-| 255 | Inicia un bucle sobre `processor in self._processors`. |
-| 256 | Comentario: `# Polymorphism: DataStream uses the DataProcessor interface only.`. |
-| 257 | Comprueba `processor.validate(element)`. |
-| 258 | Ejecuta `processor.ingest(element)`. |
-| 259 | Devuelve `True`. |
-| 260 | Devuelve `False`. |
-| 261 | Línea en blanco de separación. |
-| 262 | Declara `def _get_processor_outputs(`. |
-| 263 | Ejecuta `self,`. |
-| 264 | Ejecuta `processor: DataProcessor,`. |
-| 265 | Ejecuta `amount: int,`. |
-| 266 | Ejecuta `) -> OutputData:`. |
-| 267 | Docstring: `""" Return available outputs from one processor """`. |
-| 268 | Línea en blanco de separación. |
-| 269 | Ejecuta `outputs: OutputData = []`. |
-| 270 | Inicia un bucle sobre `_ in range(amount)`. |
-| 271 | Comprueba `processor.get_data_len() == 0`. |
-| 272 | Interrumpe el bucle actual. |
-| 273 | Ejecuta `outputs.append(processor.output())`. |
-| 274 | Devuelve `outputs`. |
-| 275 | Línea en blanco de separación. |
+| 235 | Ejecuta `output_data = self._get_processor_outputs(processor, nb)`. |
+| 236 | Ejecuta `plugin.process_output(output_data)`. |
+| 237 | Línea en blanco de separación. |
+| 238 | Declara `def print_processors_stats(self) -> None:`. |
+| 239 | Docstring: `""" Print statistics for every registered processor """`. |
+| 240 | Línea en blanco de separación. |
+| 241 | Ejecuta `print("== DataStream statistics ==")`. |
+| 242 | Comprueba `not self._processors`. |
+| 243 | Ejecuta `print("No processor found, no data")`. |
+| 244 | Termina la función y devuelve `None` implícitamente. |
+| 245 | Línea en blanco de separación. |
+| 246 | Inicia un bucle sobre `processor in self._processors`. |
+| 247 | Ejecuta `print(`. |
+| 248 | Ejecuta `f"{processor.get_name()}: total "`. |
+| 249 | Ejecuta `f"{processor.get_total_processed()} items processed, "`. |
+| 250 | Ejecuta `f"remaining {processor.get_data_len()} on processor"`. |
+| 251 | Cierra la estructura con `)`. |
+| 252 | Línea en blanco de separación. |
+| 253 | Declara `def _put_element(self, element: Any) -> bool:`. |
+| 254 | Docstring: `""" Return whether an element was sent to a processor """`. |
+| 255 | Línea en blanco de separación. |
+| 256 | Inicia un bucle sobre `processor in self._processors`. |
+| 257 | Comentario: `# Polymorphism: DataStream uses the DataProcessor interface only.`. |
+| 258 | Comprueba `processor.validate(element)`. |
+| 259 | Ejecuta `processor.ingest(element)`. |
+| 260 | Devuelve `True`. |
+| 261 | Devuelve `False`. |
+| 262 | Línea en blanco de separación. |
+| 263 | Declara `def _get_processor_outputs(`. |
+| 264 | Ejecuta `self,`. |
+| 265 | Ejecuta `processor: DataProcessor,`. |
+| 266 | Ejecuta `amount: int,`. |
+| 267 | Ejecuta `) -> OutputData:`. |
+| 268 | Docstring: `""" Return available outputs from one processor """`. |
+| 269 | Línea en blanco de separación. |
+| 270 | Ejecuta `outputs: OutputData = []`. |
+| 271 | Inicia un bucle sobre `_ in range(amount)`. |
+| 272 | Comprueba `processor.get_data_len() == 0`. |
+| 273 | Interrumpe el bucle actual. |
+| 274 | Ejecuta `outputs.append(processor.output())`. |
+| 275 | Devuelve `outputs`. |
 | 276 | Línea en blanco de separación. |
-| 277 | Declara `class CSVExportPlugin:`. |
-| 278 | Docstring: `""" Export processor output as CSV text """`. |
-| 279 | Línea en blanco de separación. |
-| 280 | Declara `def process_output(self, data: OutputData) -> None:`. |
-| 281 | Docstring: `""" Print output data as a CSV line """`. |
-| 282 | Línea en blanco de separación. |
-| 283 | Ejecuta `print("CSV Output:")`. |
-| 284 | Ejecuta `print(",".join(value for _, value in data))`. |
-| 285 | Línea en blanco de separación. |
+| 277 | Línea en blanco de separación. |
+| 278 | Declara `class CSVExportPlugin:`. |
+| 279 | Docstring: `""" Export processor output as CSV text """`. |
+| 280 | Línea en blanco de separación. |
+| 281 | Declara `def process_output(self, data: OutputData) -> None:`. |
+| 282 | Docstring: `""" Print output data as a CSV line """`. |
+| 283 | Línea en blanco de separación. |
+| 284 | Ejecuta `print("CSV Output:")`. |
+| 285 | Ejecuta `print(",".join(value for _, value in data))`. |
 | 286 | Línea en blanco de separación. |
-| 287 | Declara `class JSONExportPlugin:`. |
-| 288 | Docstring: `""" Export processor output as JSON text """`. |
-| 289 | Línea en blanco de separación. |
-| 290 | Declara `def process_output(self, data: OutputData) -> None:`. |
-| 291 | Docstring: `""" Print output data as a JSON object """`. |
-| 292 | Línea en blanco de separación. |
-| 293 | Ejecuta `print("JSON Output:")`. |
-| 294 | Ejecuta `print(self._format_json_object(data))`. |
-| 295 | Línea en blanco de separación. |
-| 296 | Declara `def _format_json_object(self, data: OutputData) -> str:`. |
-| 297 | Docstring: `""" Return output data formatted as a JSON object """`. |
-| 298 | Línea en blanco de separación. |
-| 299 | Ejecuta `pairs = [`. |
-| 300 | Ejecuta `f'"item_{rank}": "{self._format_json_string(value)}"'`. |
-| 301 | Inicia un bucle sobre `rank, value in data`. |
-| 302 | Cierra la estructura con `]`. |
-| 303 | Devuelve `"{" + ", ".join(pairs) + "}"`. |
-| 304 | Línea en blanco de separación. |
-| 305 | Declara `def _format_json_string(self, value: str) -> str:`. |
-| 306 | Docstring: `""" Return a manually escaped JSON string value """`. |
-| 307 | Línea en blanco de separación. |
-| 308 | Ejecuta `escaped = value.replace("\\\\", "\\\\\\\\")`. |
-| 309 | Ejecuta `escaped = escaped.replace('"', '\\"')`. |
-| 310 | Ejecuta `escaped = escaped.replace("\n", "\\n")`. |
-| 311 | Ejecuta `escaped = escaped.replace("\r", "\\r")`. |
-| 312 | Devuelve `escaped.replace("\t", "\\t")`. |
-| 313 | Línea en blanco de separación. |
+| 287 | Línea en blanco de separación. |
+| 288 | Declara `class JSONExportPlugin:`. |
+| 289 | Docstring: `""" Export processor output as JSON text """`. |
+| 290 | Línea en blanco de separación. |
+| 291 | Declara `def process_output(self, data: OutputData) -> None:`. |
+| 292 | Docstring: `""" Print output data as a JSON object """`. |
+| 293 | Línea en blanco de separación. |
+| 294 | Ejecuta `print("JSON Output:")`. |
+| 295 | Ejecuta `print(self._format_json_object(data))`. |
+| 296 | Línea en blanco de separación. |
+| 297 | Declara `def _format_json_object(self, data: OutputData) -> str:`. |
+| 298 | Docstring: `""" Return output data formatted as a JSON object """`. |
+| 299 | Línea en blanco de separación. |
+| 300 | Ejecuta `pairs = [`. |
+| 301 | Ejecuta `f'"item_{rank}": "{self._format_json_string(value)}"'`. |
+| 302 | Inicia un bucle sobre `rank, value in data`. |
+| 303 | Cierra la estructura con `]`. |
+| 304 | Devuelve `"{" + ", ".join(pairs) + "}"`. |
+| 305 | Línea en blanco de separación. |
+| 306 | Declara `def _format_json_string(self, value: str) -> str:`. |
+| 307 | Docstring: `""" Return a manually escaped JSON string value """`. |
+| 308 | Línea en blanco de separación. |
+| 309 | Ejecuta `escaped = value.replace("\\", "\\\\")`. |
+| 310 | Ejecuta `escaped = escaped.replace('"', '\\"')`. |
+| 311 | Ejecuta `escaped = escaped.replace("\n", "\\n")`. |
+| 312 | Ejecuta `escaped = escaped.replace("\r", "\\r")`. |
+| 313 | Devuelve `escaped.replace("\t", "\\t")`. |
 | 314 | Línea en blanco de separación. |
-| 315 | Declara `def build_log_entry(level: str, message: str) -> LogEntry:`. |
-| 316 | Docstring: `""" Build one log entry from dynamic values """`. |
-| 317 | Línea en blanco de separación. |
-| 318 | Devuelve `{`. |
-| 319 | Ejecuta `"log_level": level,`. |
-| 320 | Ejecuta `"log_message": message,`. |
-| 321 | Cierra la estructura con `}`. |
-| 322 | Línea en blanco de separación. |
+| 315 | Línea en blanco de separación. |
+| 316 | Declara `def build_log_entry(level: str, message: str) -> LogEntry:`. |
+| 317 | Docstring: `""" Build one log entry from dynamic values """`. |
+| 318 | Línea en blanco de separación. |
+| 319 | Devuelve `{`. |
+| 320 | Ejecuta `"log_level": level,`. |
+| 321 | Ejecuta `"log_message": message,`. |
+| 322 | Cierra la estructura con `}`. |
 | 323 | Línea en blanco de separación. |
-| 324 | Declara `def build_stream(*items: Any) -> list[Any]:`. |
-| 325 | Docstring: `""" Build a stream from received items """`. |
-| 326 | Línea en blanco de separación. |
-| 327 | Devuelve `list(items)`. |
-| 328 | Línea en blanco de separación. |
+| 324 | Línea en blanco de separación. |
+| 325 | Declara `def build_stream(*items: Any) -> list[Any]:`. |
+| 326 | Docstring: `""" Build a stream from received items """`. |
+| 327 | Línea en blanco de separación. |
+| 328 | Devuelve `list(items)`. |
 | 329 | Línea en blanco de separación. |
-| 330 | Declara `def put_processors(data_stream: DataStream) -> None:`. |
-| 331 | Docstring: `""" Register all subject processors in one data stream """`. |
-| 332 | Línea en blanco de separación. |
-| 333 | Ejecuta `data_stream.register_processor(NumericProcessor())`. |
-| 334 | Ejecuta `data_stream.register_processor(TextProcessor())`. |
-| 335 | Ejecuta `data_stream.register_processor(LogProcessor())`. |
+| 330 | Línea en blanco de separación. |
+| 331 | Declara `def put_processors(`. |
+| 332 | Ejecuta `data_stream: DataStream,`. |
+| 333 | Ejecuta `processors: list[DataProcessor],`. |
+| 334 | Ejecuta `) -> None:`. |
+| 335 | Docstring: `""" Register processors in one data stream """`. |
 | 336 | Línea en blanco de separación. |
-| 337 | Línea en blanco de separación. |
-| 338 | Declara `def main() -> None:`. |
-| 339 | Docstring: `""" Run the script entrypoint """`. |
+| 337 | Inicia un bucle sobre `processor in processors`. |
+| 338 | Ejecuta `data_stream.register_processor(processor)`. |
+| 339 | Línea en blanco de separación. |
 | 340 | Línea en blanco de separación. |
-| 341 | Ejecuta `first_stream = build_stream(`. |
-| 342 | Ejecuta `TXT_VAL,`. |
-| 343 | Ejecuta `NUM_DATA,`. |
-| 344 | Ejecuta `[`. |
-| 345 | Ejecuta `build_log_entry(LOG_WARN_LVL, LOG_WARN_MSG),`. |
-| 346 | Ejecuta `build_log_entry(LOG_INFO_LVL, LOG_INFO_MSG),`. |
-| 347 | Ejecuta `],`. |
-| 348 | Ejecuta `NUM_VAL,`. |
-| 349 | Ejecuta `TXT_DATA,`. |
-| 350 | Cierra la estructura con `)`. |
-| 351 | Ejecuta `second_stream = build_stream(`. |
-| 352 | Ejecuta `NUM_VAL_2,`. |
-| 353 | Ejecuta `TXT_DATA_2,`. |
-| 354 | Ejecuta `[`. |
-| 355 | Ejecuta `build_log_entry(LOG_ERR_LVL, LOG_ERR_MSG),`. |
-| 356 | Ejecuta `build_log_entry(LOG_NOTICE_LVL, LOG_NOTICE_MSG),`. |
-| 357 | Ejecuta `],`. |
-| 358 | Ejecuta `NUM_DATA_2,`. |
-| 359 | Ejecuta `TXT_VAL_2,`. |
-| 360 | Cierra la estructura con `)`. |
-| 361 | Ejecuta `data_stream = DataStream()`. |
-| 362 | Línea en blanco de separación. |
-| 363 | Ejecuta `print("=== Code Nexus - Data Pipeline ===")`. |
-| 364 | Ejecuta `print("Initialize Data Stream...")`. |
-| 365 | Ejecuta `data_stream.print_processors_stats()`. |
-| 366 | Línea en blanco de separación. |
-| 367 | Ejecuta `print("Registering Processors")`. |
-| 368 | Ejecuta `put_processors(data_stream)`. |
-| 369 | Ejecuta `print(f"Send first batch of data on stream: {first_stream}")`. |
-| 370 | Ejecuta `data_stream.process_stream(first_stream)`. |
-| 371 | Ejecuta `data_stream.print_processors_stats()`. |
-| 372 | Línea en blanco de separación. |
-| 373 | Ejecuta `print(`. |
-| 374 | Ejecuta `f"Send {CSV_OUT_NB} processed data from each processor "`. |
-| 375 | Ejecuta `"to a CSV plugin:"`. |
-| 376 | Cierra la estructura con `)`. |
-| 377 | Ejecuta `data_stream.output_pipeline(CSV_OUT_NB, CSVExportPlugin())`. |
-| 378 | Ejecuta `data_stream.print_processors_stats()`. |
-| 379 | Línea en blanco de separación. |
-| 380 | Ejecuta `print(f"Send another batch of data: {second_stream}")`. |
-| 381 | Ejecuta `data_stream.process_stream(second_stream)`. |
-| 382 | Ejecuta `data_stream.print_processors_stats()`. |
-| 383 | Línea en blanco de separación. |
-| 384 | Ejecuta `print(`. |
-| 385 | Ejecuta `f"Send {JSON_OUT_NB} processed data from each processor "`. |
-| 386 | Ejecuta `"to a JSON plugin:"`. |
-| 387 | Cierra la estructura con `)`. |
-| 388 | Ejecuta `data_stream.output_pipeline(JSON_OUT_NB, JSONExportPlugin())`. |
-| 389 | Ejecuta `data_stream.print_processors_stats()`. |
-| 390 | Línea en blanco de separación. |
-| 391 | Línea en blanco de separación. |
-| 392 | Comprueba `__name__ == "__main__"`. |
-| 393 | Ejecuta `main()`. |
+| 341 | Declara `def main() -> None:`. |
+| 342 | Docstring: `""" Run the script entrypoint """`. |
+| 343 | Línea en blanco de separación. |
+| 344 | Ejecuta `first_stream = build_stream(`. |
+| 345 | Ejecuta `TXT_VAL,`. |
+| 346 | Ejecuta `NUM_DATA,`. |
+| 347 | Ejecuta `[`. |
+| 348 | Ejecuta `build_log_entry(LOG_WARN_LVL, LOG_WARN_MSG),`. |
+| 349 | Ejecuta `build_log_entry(LOG_INFO_LVL, LOG_INFO_MSG),`. |
+| 350 | Ejecuta `],`. |
+| 351 | Ejecuta `NUM_VAL,`. |
+| 352 | Ejecuta `TXT_DATA,`. |
+| 353 | Cierra la estructura con `)`. |
+| 354 | Ejecuta `second_stream = build_stream(`. |
+| 355 | Ejecuta `NUM_VAL_2,`. |
+| 356 | Ejecuta `TXT_DATA_2,`. |
+| 357 | Ejecuta `[`. |
+| 358 | Ejecuta `build_log_entry(LOG_ERR_LVL, LOG_ERR_MSG),`. |
+| 359 | Ejecuta `build_log_entry(LOG_NOTICE_LVL, LOG_NOTICE_MSG),`. |
+| 360 | Ejecuta `],`. |
+| 361 | Ejecuta `NUM_DATA_2,`. |
+| 362 | Ejecuta `TXT_VAL_2,`. |
+| 363 | Cierra la estructura con `)`. |
+| 364 | Ejecuta `data_stream = DataStream()`. |
+| 365 | Línea en blanco de separación. |
+| 366 | Ejecuta `print("=== Code Nexus - Data Pipeline ===")`. |
+| 367 | Ejecuta `print("Initialize Data Stream...")`. |
+| 368 | Ejecuta `data_stream.print_processors_stats()`. |
+| 369 | Línea en blanco de separación. |
+| 370 | Ejecuta `print("Registering Processors")`. |
+| 371 | Ejecuta `put_processors(`. |
+| 372 | Ejecuta `data_stream,`. |
+| 373 | Ejecuta `[`. |
+| 374 | Ejecuta `NumericProcessor(),`. |
+| 375 | Ejecuta `TextProcessor(),`. |
+| 376 | Ejecuta `LogProcessor(),`. |
+| 377 | Ejecuta `],`. |
+| 378 | Cierra la estructura con `)`. |
+| 379 | Ejecuta `print(f"Send first batch of data on stream: {first_stream}")`. |
+| 380 | Ejecuta `data_stream.process_stream(first_stream)`. |
+| 381 | Ejecuta `data_stream.print_processors_stats()`. |
+| 382 | Línea en blanco de separación. |
+| 383 | Ejecuta `print(`. |
+| 384 | Ejecuta `f"Send {CSV_OUT_NB} processed data from each processor "`. |
+| 385 | Ejecuta `"to a CSV plugin:"`. |
+| 386 | Cierra la estructura con `)`. |
+| 387 | Ejecuta `data_stream.output_pipeline(CSV_OUT_NB, CSVExportPlugin())`. |
+| 388 | Ejecuta `data_stream.print_processors_stats()`. |
+| 389 | Línea en blanco de separación. |
+| 390 | Ejecuta `print(f"Send another batch of data: {second_stream}")`. |
+| 391 | Ejecuta `data_stream.process_stream(second_stream)`. |
+| 392 | Ejecuta `data_stream.print_processors_stats()`. |
+| 393 | Línea en blanco de separación. |
+| 394 | Ejecuta `print(`. |
+| 395 | Ejecuta `f"Send {JSON_OUT_NB} processed data from each processor "`. |
+| 396 | Ejecuta `"to a JSON plugin:"`. |
+| 397 | Cierra la estructura con `)`. |
+| 398 | Ejecuta `data_stream.output_pipeline(JSON_OUT_NB, JSONExportPlugin())`. |
+| 399 | Ejecuta `data_stream.print_processors_stats()`. |
+| 400 | Línea en blanco de separación. |
+| 401 | Línea en blanco de separación. |
+| 402 | Comprueba `__name__ == "__main__"`. |
+| 403 | Ejecuta `main()`. |
