@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 
 import sys
+import typing
+
+
+def get_open_file(filename: str) -> typing.IO[str] | None:
+    """ Return an opened file or None when opening fails """
+
+    try:
+        # Abrir puede fallar por permisos, rutas o ausencia del archivo.
+        return open(filename)
+    except OSError as e:
+        print(f"Error opening file '{filename}': {e}")
+        return None
 
 
 def display_file(filename: str) -> None:
@@ -9,11 +21,8 @@ def display_file(filename: str) -> None:
     print("=== Cyber Archives Recovery ===")
     print(f"Accessing file '{filename}'")
 
-    try:
-        # Abrir puede fallar por permisos, rutas o ausencia del archivo.
-        file = open(filename)
-    except OSError as e:
-        print(f"Error opening file '{filename}': {e}")
+    file = get_open_file(filename)
+    if file is None:
         return
 
     try:

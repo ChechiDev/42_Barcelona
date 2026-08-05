@@ -4,6 +4,19 @@ import sys
 import typing
 
 
+def get_open_file(
+    filename: str,
+    mode: str = "r",
+) -> typing.IO[str] | None:
+    """ Return an opened file or None when opening fails """
+
+    try:
+        return open(filename, mode)
+    except OSError as e:
+        print(f"Error opening file '{filename}': {e}")
+        return None
+
+
 def process_content(content: str) -> str:
     """ Add the archive marker at the end of each line """
 
@@ -34,10 +47,8 @@ def read_file(filename: str) -> str | None:
     print("=== Cyber Archives Recovery & Preservation ===")
     print(f"Accessing file '{filename}'")
 
-    try:
-        file: typing.IO[str] = open(filename)
-    except OSError as e:
-        print(f"Error opening file '{filename}': {e}")
+    file = get_open_file(filename)
+    if file is None:
         return None
 
     try:
@@ -56,11 +67,9 @@ def save_content(filename: str, content: str) -> None:
 
     print(f"Saving data to '{filename}'")
 
-    try:
-        # El modo "w" crea el archivo o reemplaza su contenido existente.
-        file: typing.IO[str] = open(filename, "w")
-    except OSError as e:
-        print(f"Error opening file '{filename}': {e}")
+    # El modo "w" crea el archivo o reemplaza su contenido existente.
+    file = get_open_file(filename, "w")
+    if file is None:
         return
 
     try:
