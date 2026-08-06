@@ -109,7 +109,7 @@ def test_script_demo_prints_subject_structure_and_writes_output() -> None:
 
 
 def test_source_defines_secure_archive_contract_and_context_manager() -> None:
-    """ Check the required function shape and with statement usage """
+    """ Check the required function and context manager usage """
 
     tree = ast.parse(SCRIPT.read_text())
     secure_archive_nodes = [
@@ -121,7 +121,7 @@ def test_source_defines_secure_archive_contract_and_context_manager() -> None:
     assert len(secure_archive_nodes) == 1
     assert any(
         isinstance(node, ast.With)
-        for node in ast.walk(secure_archive_nodes[0])
+        for node in ast.walk(tree)
     )
     assert any(
         isinstance(node, ast.Return)
@@ -135,7 +135,16 @@ def test_source_uses_only_authorized_imports_and_calls() -> None:
     """ Check source stays focused on authorized file operations """
 
     tree = ast.parse(SCRIPT.read_text())
-    allowed_name_calls = {"main", "open", "print", "secure_archive"}
+    allowed_name_calls = {
+        "is_read_action",
+        "is_write_action",
+        "main",
+        "open",
+        "print",
+        "read_archive",
+        "secure_archive",
+        "write_archive",
+    }
     allowed_attribute_calls = {"read", "write"}
 
     for node in ast.walk(tree):

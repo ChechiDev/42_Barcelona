@@ -41,6 +41,14 @@ def process_content(content: str) -> str:
     return result
 
 
+def print_archive_content(content: str) -> None:
+    """ Print archive content between recovery separators """
+
+    print("---")
+    print(content, end="")
+    print("---")
+
+
 def read_file(filename: str) -> str | None:
     """ Read and display the requested archive file """
 
@@ -53,9 +61,7 @@ def read_file(filename: str) -> str | None:
 
     try:
         content = file.read()
-        print("---")
-        print(content, end="")
-        print("---")
+        print_archive_content(content)
         return content
     finally:
         file.close()
@@ -80,6 +86,19 @@ def save_content(filename: str, content: str) -> None:
     print(f"Data saved in file '{filename}'.")
 
 
+def ask_output_filename() -> str:
+    """ Ask for the optional output archive filename """
+
+    return input("Enter new file name (or empty): ")
+
+
+def print_transformed_content(content: str) -> None:
+    """ Print transformed archive content with its heading """
+
+    print("Transform data:")
+    print_archive_content(content)
+
+
 def process_archive(filename: str) -> None:
     """ Read archive data and optionally save transformed content """
 
@@ -88,13 +107,10 @@ def process_archive(filename: str) -> None:
         return
 
     transformed_content = process_content(content)
-    print("Transform data:")
-    print("---")
-    print(transformed_content, end="")
-    print("---")
+    print_transformed_content(transformed_content)
 
     # Una entrada vacía decide explícitamente no persistir la transformación.
-    new_filename = input("Enter new file name (or empty): ")
+    new_filename = ask_output_filename()
     if not new_filename:
         print("Not saving data.")
         return

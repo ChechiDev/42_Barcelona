@@ -4,6 +4,36 @@
 READ_MODE = "read"
 WRITE_MODE = "write"
 SUCCESS_MESSAGE = "Content successfully written to file"
+INVALID_ACTION_MESSAGE = "Invalid archive action"
+
+
+def is_write_action(action: str) -> bool:
+    """ Return whether the requested archive action is write """
+
+    return action == WRITE_MODE
+
+
+def is_read_action(action: str) -> bool:
+    """ Return whether the requested archive action is read """
+
+    return action == READ_MODE
+
+
+def read_archive(filename: str) -> tuple[bool, str]:
+    """ Safely read all content from an archive file """
+
+    with open(filename) as file:
+        # La tupla combina estado de éxito y dato leído en un retorno.
+        return True, file.read()
+
+
+def write_archive(filename: str, content: str) -> tuple[bool, str]:
+    """ Safely write content into an archive file """
+
+    # with cierra el archivo automáticamente al salir del bloque.
+    with open(filename, "w") as file:
+        file.write(content)
+    return True, SUCCESS_MESSAGE
 
 
 def secure_archive(
@@ -14,15 +44,11 @@ def secure_archive(
     """ Safely read from or write to an archive file """
 
     try:
-        if action == WRITE_MODE:
-            # with cierra el archivo automáticamente al salir del bloque.
-            with open(filename, "w") as file:
-                file.write(content)
-            return True, SUCCESS_MESSAGE
-
-        with open(filename) as file:
-            # La tupla combina estado de éxito y dato leído en un retorno.
-            return True, file.read()
+        if is_write_action(action):
+            return write_archive(filename, content)
+        if is_read_action(action):
+            return read_archive(filename)
+        return False, INVALID_ACTION_MESSAGE
     except OSError as e:
         # Capturar OSError concentra errores de permisos, rutas y E/S.
         return False, f"{e}"

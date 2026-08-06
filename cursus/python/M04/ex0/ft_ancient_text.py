@@ -15,6 +15,20 @@ def get_open_file(filename: str) -> typing.IO[str] | None:
         return None
 
 
+def get_file_content(file: typing.IO[str]) -> str:
+    """ Return all content from an opened file """
+
+    return file.read()
+
+
+def print_archive_content(content: str) -> None:
+    """ Print archive content between recovery separators """
+
+    print("---")
+    print(content, end="")
+    print("---")
+
+
 def display_file(filename: str) -> None:
     """ Display the target file with archive recovery headers """
 
@@ -26,9 +40,7 @@ def display_file(filename: str) -> None:
         return
 
     try:
-        print("---")
-        print(file.read(), end="")
-        print("---")
+        print_archive_content(get_file_content(file))
     finally:
         # finally garantiza el cierre incluso ante errores de lectura.
         file.close()

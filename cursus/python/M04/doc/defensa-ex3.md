@@ -9,15 +9,19 @@ La función siempre devuelve una tupla de dos elementos:
 - `(True, texto)` si la operación funciona.
 - `(False, mensaje_de_error)` si ocurre un error de sistema al abrir, leer o escribir el archivo.
 
-Para leer, se usa la acción por defecto `"read"`. La función abre el archivo con `with open(filename) as file:` y devuelve el contenido con `file.read()`.
+Para leer, se usa la acción por defecto `"read"`. `secure_archive()` detecta esa acción con `is_read_action()` y delega en `read_archive()`, que abre el archivo con `with open(filename) as file:` y devuelve el contenido con `file.read()`.
 
-Para escribir, se pasa la acción `"write"`. La función abre el archivo con `with open(filename, "w") as file:`, escribe `content` con `file.write(content)` y devuelve el mensaje `"Content successfully written to file"`.
+Para escribir, se pasa la acción `"write"`. `secure_archive()` detecta esa acción con `is_write_action()` y delega en `write_archive()`, que abre el archivo con `with open(filename, "w") as file:`, escribe `content` con `file.write(content)` y devuelve el mensaje `"Content successfully written to file"`.
+
+Si se recibe una acción distinta de `"read"` o `"write"`, la función no intenta abrir el archivo y devuelve `(False, "Invalid archive action")`. Así el flujo de control queda explícito y no interpreta acciones desconocidas como lectura por accidente.
 
 El punto central del ejercicio es el uso de `with`, que es un context manager. Esto garantiza que el archivo se cierre automáticamente al salir del bloque, tanto si la operación termina bien como si ocurre un error. Por eso este ejercicio usa `with` en lugar de escribir manualmente un `try/finally`: el objetivo del subject es practicar el cierre automático y seguro de recursos sin tener que llamar a `close()` explícitamente.
 
 Los errores se capturan con `except OSError as e`. `OSError` cubre fallos habituales de archivos, como rutas inexistentes, permisos insuficientes o problemas del sistema operativo. La variable `e` contiene el error original y se convierte a texto para devolverlo en la tupla.
 
 El archivo no usa imports. Esto respeta la restricción del subject: las operaciones relevantes se limitan a `open()`, `read()`, `write()` y `print()`.
+
+El refactor separa responsabilidades pequeñas: `secure_archive()` decide la acción y centraliza la captura de errores, `read_archive()` solo lee, `write_archive()` solo escribe, e `is_read_action()`/`is_write_action()` hacen más legible la condición. No se añaden clases porque no hay estado complejo ni varias implementaciones intercambiables; funciones simples cumplen mejor el subject.
 
 La función `main()` muestra una demo con cuatro casos:
 
@@ -38,7 +42,11 @@ Devuelve una tupla `(bool, str)`. El booleano indica éxito o fallo, y el string
 
 ### ¿Qué acciones soporta la función?
 
-Soporta lectura por defecto con `"read"` y escritura con `"write"`. Si la acción es `"write"`, escribe el contenido recibido; en caso contrario intenta leer el archivo.
+Soporta lectura por defecto con `"read"` y escritura con `"write"`. Si la acción no coincide con ninguna de las dos, devuelve `(False, "Invalid archive action")`.
+
+### ¿Por qué hay funciones auxiliares para leer y escribir?
+
+Para separar responsabilidades: una función decide qué operación hacer, otra lee y otra escribe. Esto hace el código más fácil de leer y de probar sin cambiar el contrato pedido por el subject.
 
 ### ¿Por qué se usa `with open(...) as file`?
 
@@ -63,6 +71,10 @@ Sí. El código no importa módulos y solo usa las operaciones necesarias del su
 ### ¿Qué demuestra la salida de la demo?
 
 Demuestra que la función devuelve errores controlados, puede leer un archivo válido y puede escribir el contenido leído en un nuevo archivo.
+
+### ¿Qué ocurre con una acción inválida?
+
+La función devuelve un fallo controlado con el mensaje `"Invalid archive action"` y no abre ningún archivo.
 
 ### ¿Por qué `new_fragment.txt` no se entrega?
 

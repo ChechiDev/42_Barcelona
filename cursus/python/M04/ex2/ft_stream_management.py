@@ -43,6 +43,14 @@ def print_error(message: str) -> None:
     print(f"[STDERR] {message}", file=sys.stderr)
 
 
+def print_archive_content(content: str) -> None:
+    """ Print archive content between recovery separators """
+
+    print("---")
+    print(content, end="")
+    print("---")
+
+
 def get_open_file(
     filename: str,
     mode: str = "r",
@@ -68,9 +76,7 @@ def read_file(filename: str) -> str | None:
 
     try:
         content = file.read()
-        print("---")
-        print(content, end="")
-        print("---")
+        print_archive_content(content)
         return content
     finally:
         file.close()
@@ -95,6 +101,22 @@ def save_content(filename: str, content: str) -> bool:
     return True
 
 
+def print_transformed_content(content: str) -> None:
+    """ Print transformed archive content with its heading """
+
+    print("Transform data:")
+    print_archive_content(content)
+
+
+def ask_output_filename() -> str:
+    """ Ask for the optional output archive filename through streams """
+
+    print("Enter new file name (or empty): ", end="")
+    # flush muestra el prompt antes de esperar la lectura desde stdin.
+    sys.stdout.flush()
+    return read_line()
+
+
 def process_archive(filename: str) -> None:
     """ Read archive data and optionally save transformed content """
 
@@ -103,15 +125,9 @@ def process_archive(filename: str) -> None:
         return
 
     transformed_content = process_content(content)
-    print("Transform data:")
-    print("---")
-    print(transformed_content, end="")
-    print("---")
+    print_transformed_content(transformed_content)
 
-    print("Enter new file name (or empty): ", end="")
-    # flush muestra el prompt antes de esperar la lectura desde stdin.
-    sys.stdout.flush()
-    new_filename = read_line()
+    new_filename = ask_output_filename()
     if not new_filename:
         print("Not saving data.")
         return
