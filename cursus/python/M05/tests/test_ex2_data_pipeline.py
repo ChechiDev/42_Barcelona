@@ -63,6 +63,20 @@ def test_output_pipeline_exports_from_each_processor(capsys: Any) -> None:
     assert "CSV Output:\nINFO: Connected" in output
 
 
+def test_get_processors_returns_copy_without_exposing_pipeline_order() -> None:
+    """ Keep pipeline processor registration protected from callers """
+
+    data_stream = DataStream()
+    numeric = NumericProcessor()
+    text = TextProcessor()
+    data_stream.register_processor(numeric)
+
+    processors = data_stream.get_processors()
+    processors.insert(0, text)
+
+    assert data_stream.get_processors() == [numeric]
+
+
 def test_json_export_plugin_uses_output_ranks(capsys: Any) -> None:
     """ Export JSON keys using processor output ranks """
 

@@ -194,7 +194,7 @@ class DataStream:
     def get_processors(self) -> list[DataProcessor]:
         """ Return registered processors """
 
-        return self._processors
+        return self._processors.copy()
 
     def register_processor(self, proc: DataProcessor) -> None:
         """ Register a data processor for future stream processing """
@@ -220,11 +220,16 @@ class DataStream:
             return
 
         for processor in self._processors:
-            print(
-                f"{processor.get_name()}: total "
-                f"{processor.get_total_processed()} items processed, "
-                f"remaining {processor.get_data_len()} on processor"
-            )
+            print(self._format_processor_stats(processor))
+
+    def _format_processor_stats(self, processor: DataProcessor) -> str:
+        """ Return one processor statistics line """
+
+        return (
+            f"{processor.get_name()}: total "
+            f"{processor.get_total_processed()} items processed, "
+            f"remaining {processor.get_data_len()} on processor"
+        )
 
     def _put_element(self, element: Any) -> bool:
         """ Return whether an element was sent to a processor """

@@ -141,6 +141,20 @@ def test_stats_match_subject_counts_after_processing_and_consuming(
     )
 
 
+def test_get_processors_returns_copy_without_exposing_registration() -> None:
+    """ Keep registered processor storage protected from callers """
+
+    stream = DataStream()
+    numeric = NumericProcessor()
+    text = TextProcessor()
+    stream.register_processor(numeric)
+
+    processors = stream.get_processors()
+    processors.append(text)
+
+    assert stream.get_processors() == [numeric]
+
+
 def test_processor_validation_edge_cases_and_empty_output() -> None:
     """ Cover validation boundaries and empty output errors """
 
