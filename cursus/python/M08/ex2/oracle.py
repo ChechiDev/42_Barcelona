@@ -10,9 +10,14 @@ except ImportError:
 
 
 ENV_FILE = ".env"
+MATRIX_MODE = "MATRIX_MODE"
+DATABASE_URL = "DATABASE_URL"
+API_KEY = "API_KEY"
+LOG_LEVEL = "LOG_LEVEL"
+ZION_ENDPOINT = "ZION_ENDPOINT"
 DEFAULT_MODE = "development"
 DEFAULT_LOG_LEVEL = "DEBUG"
-REQUIRED_KEYS = ["DATABASE_URL", "API_KEY", "ZION_ENDPOINT"]
+REQUIRED_KEYS = [DATABASE_URL, API_KEY, ZION_ENDPOINT]
 
 
 class OracleConfig:
@@ -51,11 +56,11 @@ def build_config() -> OracleConfig:
     """Build Oracle configuration from environment variables"""
 
     return OracleConfig(
-        matrix_mode=get_environment_value("MATRIX_MODE", DEFAULT_MODE),
-        database_url=get_environment_value("DATABASE_URL"),
-        api_key=get_environment_value("API_KEY"),
-        log_level=get_environment_value("LOG_LEVEL", DEFAULT_LOG_LEVEL),
-        zion_endpoint=get_environment_value("ZION_ENDPOINT"),
+        matrix_mode=get_environment_value(MATRIX_MODE, DEFAULT_MODE),
+        database_url=get_environment_value(DATABASE_URL),
+        api_key=get_environment_value(API_KEY),
+        log_level=get_environment_value(LOG_LEVEL, DEFAULT_LOG_LEVEL),
+        zion_endpoint=get_environment_value(ZION_ENDPOINT),
     )
 
 
@@ -97,9 +102,9 @@ def get_missing_keys(config: OracleConfig) -> list[str]:
     """Return missing required configuration keys"""
 
     values = {
-        "DATABASE_URL": config.database_url,
-        "API_KEY": config.api_key,
-        "ZION_ENDPOINT": config.zion_endpoint,
+        DATABASE_URL: config.database_url,
+        API_KEY: config.api_key,
+        ZION_ENDPOINT: config.zion_endpoint,
     }
     return [key for key in REQUIRED_KEYS if not values[key]]
 

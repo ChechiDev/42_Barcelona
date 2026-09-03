@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Test M08 environment, dependency, and configuration exercises"""
-
 import ast
 import os
 import subprocess
