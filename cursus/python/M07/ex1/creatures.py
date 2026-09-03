@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Define Creature families with extra capabilities"""
-
 from ex0.creatures import Creature
 
 from .capabilities import HealCapability, TransformCapability

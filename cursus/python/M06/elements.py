@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Create basic alchemical elements"""
-
 
 def create_fire() -> str:
     """Create the fire element"""

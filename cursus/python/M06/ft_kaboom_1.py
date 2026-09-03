@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-"""Demonstrate an intentional dark grimoire circular import"""
+SPELL_NAME = "Nightmare"
+SPELL_INGREDIENTS = "bats and fog"
 
 
 def main() -> None:
@@ -11,7 +12,7 @@ def main() -> None:
     print("Test import now - THIS WILL RAISE AN UNCAUGHT EXCEPTION")
     from alchemy.grimoire.dark_spellbook import dark_spell_record
 
-    print(dark_spell_record("Nightmare", "bats and fog"))
+    print(dark_spell_record(SPELL_NAME, SPELL_INGREDIENTS))
 
 
 if __name__ == "__main__":

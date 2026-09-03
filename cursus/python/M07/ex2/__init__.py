@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Expose tournament battle strategies"""
-
 from .strategies import (
     AggressiveStrategy,
     BattleStrategy,

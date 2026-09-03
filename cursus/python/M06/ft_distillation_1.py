@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate package potion access"""
-
 import alchemy
 
 

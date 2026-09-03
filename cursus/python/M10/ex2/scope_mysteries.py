@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Closure-based helpers for FuncMage Chronicles exercise 2"""
-
 from collections.abc import Callable
 
 

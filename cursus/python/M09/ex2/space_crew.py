@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Validate nested space crew mission data with Pydantic"""
-
 from datetime import datetime
 from enum import Enum
 from typing import Self

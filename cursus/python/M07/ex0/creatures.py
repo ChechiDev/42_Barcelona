@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Define base Creature abstractions and concrete families"""
-
 from abc import ABC, abstractmethod
 
 

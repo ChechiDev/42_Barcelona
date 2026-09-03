@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Record dark magic spells with an intentional circular import"""
-
 from .dark_validator import validate_ingredients
 
 

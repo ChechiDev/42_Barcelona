@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate package function import for air creation"""
-
 from alchemy.elements import create_air
 
 

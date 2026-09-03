@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Inspect the current Python Matrix construct environment"""
-
 import os
 import site
 import sys

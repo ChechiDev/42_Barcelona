@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Decorator examples for FuncMage Chronicles exercise 4"""
-
 from collections.abc import Callable
 from functools import wraps
 from time import perf_counter

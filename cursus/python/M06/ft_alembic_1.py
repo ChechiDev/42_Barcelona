@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate direct function import for water creation"""
-
 from elements import create_water
 
 

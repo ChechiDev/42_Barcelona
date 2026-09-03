@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Run Creature tournaments using abstract strategies"""
-
 from ex0 import AquaFactory, CreatureFactory, FlameFactory
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
 from ex2 import (

@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Define Creature abstract factories"""
-
 from abc import ABC, abstractmethod
 
 from .creatures import Aquabub, Creature, Flameling, Pyrodon, Torragon

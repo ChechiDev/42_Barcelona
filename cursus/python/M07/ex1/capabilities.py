@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Define Creature capability abstractions"""
-
 from abc import ABC, abstractmethod
 
 

@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Define battle strategies for Creature tournament actions"""
-
 from abc import ABC, abstractmethod
 
 from ex0.creatures import Creature

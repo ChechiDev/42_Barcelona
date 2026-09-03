@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Functools artifacts for FuncMage Chronicles exercise 3"""
-
 from collections.abc import Callable
 from functools import lru_cache, partial, reduce, singledispatch
 from operator import add, mul

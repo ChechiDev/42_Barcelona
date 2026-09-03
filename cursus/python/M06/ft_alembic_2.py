@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate package module import for earth creation"""
-
 import alchemy.elements
 
 

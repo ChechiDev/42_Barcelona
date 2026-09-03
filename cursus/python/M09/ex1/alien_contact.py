@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Validate alien contact reports with Pydantic business rules"""
-
 from datetime import datetime
 from enum import Enum
 from typing import Self

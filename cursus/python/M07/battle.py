@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate Creature abstract factories in battle"""
-
 from ex0 import AquaFactory, CreatureFactory, FlameFactory
 
 

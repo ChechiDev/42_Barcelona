@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
 
-"""Brew alchemical potions from elements"""
-
 from elements import create_fire, create_water
 
 from .elements import create_air, create_earth
 
 
+def format_potion(name: str, first_element: str, second_element: str) -> str:
+    """Format a potion brewing message"""
+
+    return (
+        f"{name} potion brewed with '{first_element}' and "
+        f"'{second_element}'"
+    )
+
+
 def healing_potion() -> str:
     """Brew a healing potion"""
 
-    return (
-        f"Healing potion brewed with '{create_earth()}' and "
-        f"'{create_air()}'"
-    )
+    return format_potion("Healing", create_earth(), create_air())
 
 
 def strength_potion() -> str:
     """Brew a strength potion"""
 
-    return (
-        f"Strength potion brewed with '{create_fire()}' and "
-        f"'{create_water()}'"
-    )
+    return format_potion("Strength", create_fire(), create_water())

@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate Creature capabilities"""
-
 from ex0.creatures import Creature
 from ex0.factories import CreatureFactory
 from ex1 import HealingCreatureFactory, TransformCreatureFactory

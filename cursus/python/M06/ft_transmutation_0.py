@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate direct recipe module import"""
-
 import alchemy.transmutation.recipes
 
 

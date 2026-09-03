@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Lambda-based helpers for FuncMage Chronicles exercise 0"""
-
 from typing import Any
 
 

@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate alchemy package transmutation access"""
-
 import alchemy
 
 

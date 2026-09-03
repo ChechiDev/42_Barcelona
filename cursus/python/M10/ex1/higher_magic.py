@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Higher-order spell helpers for FuncMage Chronicles exercise 1"""
-
 from collections.abc import Callable
 
 

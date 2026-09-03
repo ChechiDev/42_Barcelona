@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Validate dark spell ingredients with an intentional circular import"""
-
 from .dark_spellbook import dark_spell_allowed_ingredients
 
 

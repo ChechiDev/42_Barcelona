@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate direct module import for fire creation"""
-
 import elements
 
 

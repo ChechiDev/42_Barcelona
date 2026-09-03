@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate safe light grimoire imports"""
-
 import alchemy.grimoire
 
 

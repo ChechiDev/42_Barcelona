@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate partial package interface access"""
-
 import alchemy
 
 
@@ -13,7 +11,8 @@ def main() -> None:
     print(f"Testing create_air: {alchemy.create_air()}")
     print("Now show that not all functions can be reached")
     print("This will raise an exception!")
-    print(f"Testing the hidden create_earth: {alchemy.create_earth()}")
+    hidden_earth = alchemy.create_earth()  # type: ignore[attr-defined]
+    print(f"Testing the hidden create_earth: {hidden_earth}")
 
 
 if __name__ == "__main__":

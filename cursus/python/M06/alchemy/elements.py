@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Create package alchemical elements"""
-
 
 def create_earth() -> str:
     """Create the earth element"""

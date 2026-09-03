@@ -2,7 +2,7 @@
 
 ## 1. Explicación del código
 
-Este ejercicio introduce `alchemy/transmutation/recipes.py` y la función `lead_to_gold()`. La receta construye el string final combinando aire, una poción de fuerza y fuego.
+Este ejercicio introduce `alchemy/transmutation/recipes.py` y la función `lead_to_gold()`. La receta construye el string final combinando aire, una poción de fuerza y fuego. El texto de la receta se delega en `format_transmutation_recipe()`, de modo que `lead_to_gold()` queda centrada en el flujo de datos: elegir origen, destino e ingredientes, y devolver el resultado final sin duplicar lógica de formato.
 
 El archivo usa los dos estilos pedidos por el subject: un import absoluto (`from elements import create_fire`) para llegar al módulo raíz, y imports relativos (`from ..elements import create_air`, `from ..potions import strength_potion`) para acceder a módulos del paquete `alchemy`.
 
@@ -21,3 +21,6 @@ El archivo usa los dos estilos pedidos por el subject: un import absoluto (`from
 
 - **¿Por qué hay dos `__init__.py` implicados?**  
   Uno expone la receta desde `alchemy.transmutation`; el otro la expone desde el paquete principal `alchemy`.
+
+- **¿Por qué se extrajo `format_transmutation_recipe()`?**  
+  Para separar la composición del mensaje de la obtención de ingredientes. Es un cambio mínimo que mejora legibilidad y mantiene exactamente la misma salida requerida.

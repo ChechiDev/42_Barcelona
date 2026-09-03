@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Define factories for capable Creature families"""
-
 from ex0.creatures import Creature
 from ex0.factories import CreatureFactory
 

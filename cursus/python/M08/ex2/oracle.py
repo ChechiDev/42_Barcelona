@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Load Matrix mainframe configuration safely"""
-
 import os
 import sys
 

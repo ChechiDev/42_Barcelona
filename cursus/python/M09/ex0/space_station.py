@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Validate cosmic space station data with Pydantic"""
-
 from datetime import datetime
 
 from pydantic import BaseModel, Field, ValidationError

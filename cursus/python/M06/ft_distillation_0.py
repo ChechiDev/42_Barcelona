@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-"""Demonstrate direct potion imports"""
-
 from alchemy.potions import healing_potion, strength_potion
 
 

@@ -1,34 +1,21 @@
 #!/usr/bin/env python3
 
-"""Analyze simulated Matrix data with optional external packages"""
-
 import importlib
 import sys
 
 
 DATA_POINTS = 1000
 OUTPUT_FILE = "matrix_analysis.png"
+RANDOM_SEED = 42
+PANDAS_MODULE = "pandas"
+NUMPY_MODULE = "numpy"
+MATPLOTLIB_MODULE = "matplotlib"
+PYPLOT_MODULE = "matplotlib.pyplot"
 REQUIRED_PACKAGES = {
-    "pandas": "Data manipulation ready",
-    "numpy": "Numerical computation ready",
-    "matplotlib": "Visualization ready",
+    PANDAS_MODULE: "Data manipulation ready",
+    NUMPY_MODULE: "Numerical computation ready",
+    MATPLOTLIB_MODULE: "Visualization ready",
 }
-
-
-def load_module(module_name: str) -> object | None:
-    """Return an imported module or None when it is unavailable"""
-
-    try:
-        return importlib.import_module(module_name)
-    except ImportError:
-        return None
-
-
-def get_module_version(module: object) -> str:
-    """Return a module version or unknown when absent"""
-
-    version = getattr(module, "__version__", "unknown")
-    return str(version)
 
 
 def build_dependency_modules() -> dict[str, object | None]:
@@ -40,21 +27,52 @@ def build_dependency_modules() -> dict[str, object | None]:
     }
 
 
-def print_dependency_status(
-    modules: dict[str, object | None],
-) -> None:
+def load_module(module_name: str) -> object | None:
+    """Return an imported module or None when it is unavailable"""
+
+    try:
+        return importlib.import_module(module_name)
+    except ImportError:
+        return None
+
+
+def print_dependency_status(modules: dict[str, object | None]) -> None:
     """Print dependency availability and versions"""
 
     print("Checking dependencies:")
     for package_name, description in REQUIRED_PACKAGES.items():
-        module = modules[package_name]
-        if module is None:
-            print(f"[MISSING] {package_name} - {description}")
-            continue
-        print(
-            f"[OK] {package_name} ({get_module_version(module)}) - "
-            f"{description}"
-        )
+        print(format_dependency_status(package_name, description, modules))
+
+
+def format_dependency_status(
+    package_name: str,
+    description: str,
+    modules: dict[str, object | None],
+) -> str:
+    """Return one dependency status line"""
+
+    module = modules[package_name]
+    if module is None:
+        return f"[MISSING] {package_name} - {description}"
+    return (
+        f"[OK] {package_name} ({get_module_version(module)}) - "
+        f"{description}"
+    )
+
+
+def get_module_version(module: object) -> str:
+    """Return a module version or unknown when absent"""
+
+    version = getattr(module, "__version__", "unknown")
+    return str(version)
+
+
+def print_dependency_management_comparison() -> None:
+    """Print a short pip and Poetry comparison"""
+
+    print("Dependency management comparison:")
+    print("pip uses requirements.txt for direct package installation.")
+    print("Poetry uses pyproject.toml to manage project metadata and locks.")
 
 
 def has_all_dependencies(modules: dict[str, object | None]) -> bool:
@@ -74,12 +92,34 @@ def print_installation_instructions() -> None:
     print("Then run this program again.")
 
 
-def print_dependency_management_comparison() -> None:
-    """Print a short pip and Poetry comparison"""
+def run_analysis(modules: dict[str, object | None]) -> None:
+    """Run the Matrix data analysis workflow"""
 
-    print("Dependency management comparison:")
-    print("pip uses requirements.txt for direct package installation.")
-    print("Poetry uses pyproject.toml to manage project metadata and locks.")
+    pd = require_module(modules, PANDAS_MODULE)
+    np = require_module(modules, NUMPY_MODULE)
+    plt = importlib.import_module(PYPLOT_MODULE)
+
+    print("Analyzing Matrix data...")
+    dataframe = build_matrix_dataframe(pd, np)
+    get_data_count = getattr(dataframe, "__len__")
+    print(f"Processing {get_data_count()} data points...")
+    get_analysis_summary(dataframe)
+    print("Generating visualization...")
+    save_visualization(dataframe, plt, OUTPUT_FILE)
+    print("Analysis complete!")
+    print(f"Results saved to: {OUTPUT_FILE}")
+
+
+def require_module(
+    modules: dict[str, object | None],
+    module_name: str,
+) -> object:
+    """Return a loaded module or raise when unavailable"""
+
+    module = modules[module_name]
+    if module is None:
+        raise RuntimeError(f"Missing required dependency: {module_name}")
+    return module
 
 
 def build_matrix_dataframe(
@@ -88,18 +128,26 @@ def build_matrix_dataframe(
 ) -> object:
     """Build simulated Matrix data from numpy arrays"""
 
-    random_module = getattr(numpy_module, "random")
-    default_rng = getattr(random_module, "default_rng")
-    random_generator = default_rng(42)
-    signal = random_generator.normal(loc=50, scale=12, size=DATA_POINTS)
-    anomaly = random_generator.integers(0, 2, size=DATA_POINTS)
-    noise = random_generator.normal(loc=0, scale=4, size=DATA_POINTS)
+    random_generator = get_numpy_random_generator(numpy_module)
+    normal = getattr(random_generator, "normal")
+    integers = getattr(random_generator, "integers")
+    signal = normal(loc=50, scale=12, size=DATA_POINTS)
+    anomaly = integers(0, 2, size=DATA_POINTS)
+    noise = normal(loc=0, scale=4, size=DATA_POINTS)
     dataframe_builder = getattr(pandas_module, "DataFrame")
     return dataframe_builder({
         "signal": signal,
         "anomaly": anomaly,
         "stability": signal - noise,
     })
+
+
+def get_numpy_random_generator(numpy_module: object) -> object:
+    """Return a seeded numpy random generator"""
+
+    random_module = getattr(numpy_module, "random")
+    default_rng = getattr(random_module, "default_rng")
+    return default_rng(RANDOM_SEED)
 
 
 def get_analysis_summary(dataframe: object) -> dict[str, float]:
@@ -134,31 +182,6 @@ def save_visualization(
     figure.tight_layout()
     figure.savefig(output_file)
     close(figure)
-
-
-def run_analysis(modules: dict[str, object | None]) -> None:
-    """Run the Matrix data analysis workflow"""
-
-    pandas_module = modules["pandas"]
-    numpy_module = modules["numpy"]
-    matplotlib_module = modules["matplotlib"]
-    if (
-        pandas_module is None
-        or numpy_module is None
-        or matplotlib_module is None
-    ):
-        print_installation_instructions()
-        return
-    pyplot_module = importlib.import_module("matplotlib.pyplot")
-    print("Analyzing Matrix data...")
-    dataframe = build_matrix_dataframe(pandas_module, numpy_module)
-    get_data_count = getattr(dataframe, "__len__")
-    print(f"Processing {get_data_count()} data points...")
-    get_analysis_summary(dataframe)
-    print("Generating visualization...")
-    save_visualization(dataframe, pyplot_module, OUTPUT_FILE)
-    print("Analysis complete!")
-    print(f"Results saved to: {OUTPUT_FILE}")
 
 
 def main() -> None:
