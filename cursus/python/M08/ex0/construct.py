@@ -30,36 +30,36 @@ def get_package_path() -> str:
 
 
 def print_global_environment() -> None:
-    """Print guidance for the global Python environment"""
 
-    print("MATRIX STATUS: You're still plugged in")
-    print(f"Current Python: {sys.executable}")
-    print("Virtual Environment: None detected")
-    print("WARNING: You're in the global environment!")
-    print("The machines can see everything you install.")
-    print("To enter the construct, run:")
-    print(f"python -m venv {ENV_NAME}")
-    print(f"source {ENV_NAME}/bin/activate # On Unix")
-    print(f"{ENV_NAME}\\Scripts\\activate # On Windows")
-    print("Then run this program again.")
-
+    print(
+        "\nMATRIX STATUS: You're still plugged in\n\n"
+        f"Current Python: {sys.executable}\n"
+        f"Virtual Environment: None detected\n\n"
+        f"WARNING: You're in the global environment!\n"
+        f"The machines can see everything you install.\n\n"
+        f"To enter the construct, run:\n"
+        f"python -m venv {ENV_NAME}\n"
+        f"source {ENV_NAME}/bin/activate # On Unix\n"
+        f"{ENV_NAME}\\Scripts\\activate # On Windows\n\n"
+        f"Then run this program again."
+    )
 
 def print_virtual_environment() -> None:
-    """Print details for the active virtual environment"""
 
-    print("MATRIX STATUS: Welcome to the construct")
-    print(f"Current Python: {sys.executable}")
-    print(f"Virtual Environment: {get_environment_name(sys.prefix)}")
-    print(f"Environment Path: {sys.prefix}")
-    print("SUCCESS: You're in an isolated environment!")
-    print("Safe to install packages without affecting")
-    print("the global system.")
-    print("Package installation path:")
+    print(
+        "\nMATRIX STATUS: Welcome to the construct\n\n"
+        f"Current Python: {sys.executable}\n"
+        f"Virtual Environment: {get_environment_name(sys.prefix)}\n"
+        f"Environment Path: {sys.prefix}\n\n"
+        f"SUCCESS: You're in an isolated environment!\n"
+        f"Safe to install packages without affecting\n"
+        f"the global system.\n\n"
+        f"Package installation path:"
+    )
     print(get_package_path())
 
 
 def main() -> None:
-    """Run the construct environment inspection"""
 
     if is_virtual_environment():
         print_virtual_environment()

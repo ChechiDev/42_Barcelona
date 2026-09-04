@@ -21,8 +21,6 @@ REQUIRED_KEYS = [DATABASE_URL, API_KEY, ZION_ENDPOINT]
 
 
 class OracleConfig:
-    """Store Oracle configuration values"""
-
     def __init__(
         self,
         matrix_mode: str,
@@ -118,20 +116,24 @@ def has_env_file() -> bool:
 def print_config(config: OracleConfig) -> None:
     """Print safe Oracle configuration information"""
 
-    print("Configuration loaded:")
-    print(f"Mode: {config.matrix_mode}")
-    print(f"Database: {format_database_status(config)}")
-    print(f"API Access: {format_api_status(config)}")
-    print(f"Log Level: {config.log_level}")
-    print(f"Zion Network: {format_zion_status(config)}")
+    print(
+        "\nConfiguration loaded:\n"
+        f"Mode: {config.matrix_mode}\n"
+        f"Database: {format_database_status(config)}\n"
+        f"API Access: {format_api_status(config)}\n"
+        f"Log Level: {config.log_level}\n"
+        f"Zion Network: {format_zion_status(config)}"
+    )
 
 
 def print_security_check(config: OracleConfig, env_loaded: bool) -> None:
     """Print environment security validation results"""
 
     missing_keys = get_missing_keys(config)
-    print("Environment security check:")
-    print("[OK] No hardcoded secrets detected")
+    print(
+        "\nEnvironment security check:\n"
+        "[OK] No hardcoded secrets detected"
+    )
     if env_loaded or has_env_file():
         print("[OK] .env file properly configured")
     else:
@@ -144,9 +146,8 @@ def print_security_check(config: OracleConfig, env_loaded: bool) -> None:
 
 
 def main() -> None:
-    """Run the Oracle configuration workflow"""
 
-    print("ORACLE STATUS: Reading the Matrix...")
+    print("\nORACLE STATUS: Reading the Matrix...")
     if load_dotenv is None:
         print(
             "WARNING: python-dotenv is missing. Install with "
@@ -156,7 +157,7 @@ def main() -> None:
     config = build_config()
     print_config(config)
     print_security_check(config, env_loaded)
-    print("The Oracle sees all configurations.")
+    print("\nThe Oracle sees all configurations.")
 
 
 if __name__ == "__main__":
