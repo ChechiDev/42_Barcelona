@@ -114,7 +114,6 @@ def has_env_file() -> bool:
 
 
 def print_config(config: OracleConfig) -> None:
-    """Print safe Oracle configuration information"""
 
     print(
         "\nConfiguration loaded:\n"
@@ -127,7 +126,6 @@ def print_config(config: OracleConfig) -> None:
 
 
 def print_security_check(config: OracleConfig, env_loaded: bool) -> None:
-    """Print environment security validation results"""
 
     missing_keys = get_missing_keys(config)
     print(

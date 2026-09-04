@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "matrix-loading"
+name = "matrix_env"
 version = "0.1.0"
-description = "Matrix data analysis dependency management exercise"
-authors = ["42 Barcelona"]
+description = "Matrix data analysis dependency management"
+authors = ["sperez-l"]
 package-mode = false
 
 [tool.poetry.dependencies]

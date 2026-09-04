@@ -37,11 +37,11 @@ def load_module(module_name: str) -> object | None:
 
 
 def print_dependency_status(modules: dict[str, object | None]) -> None:
-    """Print dependency availability and versions"""
 
     print("Checking dependencies:")
     for package_name, description in REQUIRED_PACKAGES.items():
         print(format_dependency_status(package_name, description, modules))
+    print()
 
 
 def format_dependency_status(
@@ -68,11 +68,12 @@ def get_module_version(module: object) -> str:
 
 
 def print_dependency_management_comparison() -> None:
-    """Print a short pip and Poetry comparison"""
 
-    print("Dependency management comparison:")
-    print("pip uses requirements.txt for direct package installation.")
-    print("Poetry uses pyproject.toml to manage project metadata and locks.")
+    print(
+        "Dependency management comparison:\n"
+        "pip uses requirements.txt for direct package installation.\n"
+        "Poetry uses pyproject.toml to manage project metadata and locks.\n"
+    )
 
 
 def has_all_dependencies(modules: dict[str, object | None]) -> bool:
@@ -82,14 +83,15 @@ def has_all_dependencies(modules: dict[str, object | None]) -> bool:
 
 
 def print_installation_instructions() -> None:
-    """Print dependency installation instructions"""
 
-    print("Missing programs detected.")
-    print("Install with pip:")
-    print(f"{sys.executable} -m pip install -r requirements.txt")
-    print("Or install with Poetry:")
-    print("poetry install")
-    print("Then run this program again.")
+    print(
+        "Missing programs detected.\n"
+        f"Install with pip:\n"
+        f"{sys.executable} -m pip install -r requirements.txt\n"
+        f"Or install with Poetry:\n"
+        f"poetry install\n"
+        f"Then run this program again.\n"
+    )
 
 
 def run_analysis(modules: dict[str, object | None]) -> None:
@@ -106,8 +108,10 @@ def run_analysis(modules: dict[str, object | None]) -> None:
     get_analysis_summary(dataframe)
     print("Generating visualization...")
     save_visualization(dataframe, plt, OUTPUT_FILE)
-    print("Analysis complete!")
-    print(f"Results saved to: {OUTPUT_FILE}")
+    print(
+        "\nAnalysis complete!\n"
+        f"Results saved to: {OUTPUT_FILE}"
+    )
 
 
 def require_module(
@@ -185,9 +189,8 @@ def save_visualization(
 
 
 def main() -> None:
-    """Run the loading programs workflow"""
 
-    print("LOADING STATUS: Loading programs...")
+    print("\nLOADING STATUS: Loading programs...\n")
     modules = build_dependency_modules()
     print_dependency_status(modules)
     print_dependency_management_comparison()
